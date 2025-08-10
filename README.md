@@ -1,9 +1,13 @@
-# chlom-protocol
-CHLOM: The Compliance Hybrid Licensing &amp; Ownership Metaprotocol. A decentralized licensing engine combining AI, smart contracts, and fingerprint-based IP protection for 60+ real-world use cases.
+# CHLOM Protocol
+
+This repo hosts the CHLOM formal proofs (BlackPaper), engineering spec (Technical White Paper),
+and execution pack (Extended Appendices + artifacts). Start with docs/CHLOM_Master.md, then
+see the linked papers and artifacts for TLC/Foundry/ZK setup.
+
+CHLOM: The Compliance Hybrid Licensing & Ownership Metaprotocol. A decentralized licensing engine combining AI, smart contracts, and fingerprint-based IP protection for 60+ real-world use cases.
 # CHLOM™ – Compliance Hybrid Licensing & Ownership Metaprotocol
 
 **Built by CrownThrive™ — Where compliance meets automation, and ownership meets AI.**
-
 ---
 
 ## 🧠 What is CHLOM™?
