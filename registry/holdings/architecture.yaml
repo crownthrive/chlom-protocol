@@ -1,0 +1,61 @@
+version: '2.5'
+baseline_date: '2026-08-17'
+status: fluid-governed-baseline
+principle: Old and new records are reconciled into one append-only operating spine; current canonical values may supersede legacy descriptions without deleting lineage.
+entity_layers:
+- name: CrownThrive Holdings
+  role: proposed parent portfolio stewardship, capital allocation, governance, long-term ownership
+  legal_status: proposed / requires counsel
+- name: CrownThrive, LLC
+  role: operating company and hybrid incubator
+  legal_status: existing operating layer
+- name: CHLOM / IP structure
+  role: rights, provenance, permissions, licensing, splits, audit, remedies
+  legal_status: structure to be finalized
+- name: CII / ThriveFund
+  role: impact and reinvestment governance
+  legal_status: program structure; do not imply nonprofit status unless established
+- name: Media / physical SPVs
+  role: risk-separated project entities where warranted
+  legal_status: future / case-by-case
+shared_spine:
+- CrownThrive ID
+- CrownThrive IO / MCP
+- CHLOM
+- OpsOasis + Collab Portal
+- CrownThrive Support + CrownInsights
+- CrownLytics + CrownPulse + ThrivePush
+- CrownRewards + Partnero
+portfolio_counts:
+  engines: 85
+  portfolio_assets: 68
+  domains: 82
+  source_records: 15
+  p0: 21
+  p1: 23
+  p2: 22
+  p3: 2
+corridors:
+- name: Technology & Operating Spine
+  asset_count: 18
+- name: Media & Culture
+  asset_count: 13
+- name: Education, Talent & Community
+  asset_count: 8
+- name: Commerce & Brands
+  asset_count: 8
+- name: Growth, Advertising & Distribution
+  asset_count: 8
+- name: Holding, Governance & IP
+  asset_count: 5
+- name: Beauty, Wellness & Physical
+  asset_count: 4
+- name: Hospitality, Travel & Experiences
+  asset_count: 4
+phase_2_5_rules:
+- Phase 2.5 starts from the Phase 2 commit so one later merge can contain both phases.
+- Registry records are authoritative working inventory, not proof that a product is commercially live.
+- Status is mutable; identity and lineage are persistent.
+- Every active asset should converge on canonical identity, rights, support, analytics, domain, owner, lifecycle, and revenue metadata.
+- Third-party platforms must not be the only copy of institutional knowledge or rights records.
+- Confidential source documents and secrets stay out of the public repository.
