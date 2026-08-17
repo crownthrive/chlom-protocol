@@ -1,0 +1,412 @@
+version: '2.5'
+baseline_date: '2026-08-17'
+record_count: 68
+assets:
+- id: CT-ASSET-001
+  corridor: Holding, Governance & IP
+  name: CrownThrive Holdings
+  status: Proposed
+  function: Portfolio ownership, governance, capital allocation, and stewardship.
+  priority: P0
+- id: CT-ASSET-002
+  corridor: Holding, Governance & IP
+  name: CrownThrive
+  status: Active / Revamp
+  function: Operating ecosystem and hybrid incubator.
+  priority: P0
+- id: CT-ASSET-003
+  corridor: Holding, Governance & IP
+  name: CHLOM
+  status: Build
+  function: Rights, provenance, permissions, licensing, audit, and enforcement.
+  priority: P0
+- id: CT-ASSET-004
+  corridor: Holding, Governance & IP
+  name: CHLOMLex
+  status: Build
+  function: Brand, domain, IP sale/lease/license marketplace.
+  priority: P1
+- id: CT-ASSET-005
+  corridor: Holding, Governance & IP
+  name: CII / ThriveFund
+  status: Active / Revamp
+  function: Impact governance, capital allocation, proof, and reinvestment.
+  priority: P1
+- id: CT-ASSET-006
+  corridor: Technology & Operating Spine
+  name: CrownThrive ID
+  status: Plan
+  function: Canonical SSO, roles, identity, and permissions.
+  priority: P0
+- id: CT-ASSET-007
+  corridor: Technology & Operating Spine
+  name: CrownThrive IO / MCP
+  status: Active / Expand
+  function: API gateway, link/QR/static-site infrastructure, and ecosystem interoperability.
+  priority: P0
+- id: CT-ASSET-008
+  corridor: Technology & Operating Spine
+  name: OpsOasis
+  status: Active / Revamp
+  function: Internal operations, client delivery, and fulfillment.
+  priority: P0
+- id: CT-ASSET-009
+  corridor: Technology & Operating Spine
+  name: Collab Portal
+  status: Active / Revamp
+  function: Ecosystem collaboration, approvals, signatures, and controlled execution.
+  priority: P0
+- id: CT-ASSET-010
+  corridor: Technology & Operating Spine
+  name: CrownThrive Support
+  status: Build
+  function: Help center, knowledge base, tickets, live chat, and AI triage.
+  priority: P0
+- id: CT-ASSET-011
+  corridor: Technology & Operating Spine
+  name: CrownInsights
+  status: Build
+  function: Visual guides, onboarding, tutorials, and SOPs.
+  priority: P1
+- id: CT-ASSET-012
+  corridor: Technology & Operating Spine
+  name: CrownLytics
+  status: Active / Expand
+  function: Cross-platform analytics and intelligence.
+  priority: P0
+- id: CT-ASSET-013
+  corridor: Technology & Operating Spine
+  name: CrownPulse
+  status: Active / Expand
+  function: Ecosystem signals and social proof.
+  priority: P1
+- id: CT-ASSET-014
+  corridor: Technology & Operating Spine
+  name: ThrivePush
+  status: Active / Expand
+  function: Permissioned push campaigns and alerts.
+  priority: P1
+- id: CT-ASSET-015
+  corridor: Technology & Operating Spine
+  name: ThriveMaps
+  status: Live / Activate
+  function: Canonical roadmap, feedback, voting, and changelog.
+  priority: P0
+- id: CT-ASSET-016
+  corridor: Technology & Operating Spine
+  name: Ecosystem Status
+  status: Active / Migrate
+  function: Uptime, API, incident, SSL, domain, and server monitoring.
+  priority: P1
+- id: CT-ASSET-017
+  corridor: Technology & Operating Spine
+  name: ThriveTools
+  status: Active
+  function: Utility tools family.
+  priority: P2
+- id: CT-ASSET-018
+  corridor: Technology & Operating Spine
+  name: ThriveTools SEO
+  status: Active
+  function: SEO audits and monitoring.
+  priority: P2
+- id: CT-ASSET-019
+  corridor: Technology & Operating Spine
+  name: ThriveTools OPT
+  status: Live
+  function: Image optimization and storage.
+  priority: P2
+- id: CT-ASSET-020
+  corridor: Technology & Operating Spine
+  name: ThriveApps
+  status: Active / Build
+  function: Rapid app production and future app marketplace.
+  priority: P1
+- id: CT-ASSET-021
+  corridor: Technology & Operating Spine
+  name: BrandCards
+  status: Active / Revamp
+  function: Digital identity and business-card infrastructure.
+  priority: P2
+- id: CT-ASSET-022
+  corridor: Technology & Operating Spine
+  name: ThriveKiosks / TapStations
+  status: Build
+  function: Interactive software and physical phygital hardware.
+  priority: P2
+- id: CT-ASSET-023
+  corridor: Technology & Operating Spine
+  name: NeuralCraft
+  status: Build
+  function: AI workforce and agent marketplace.
+  priority: P1
+- id: CT-ASSET-024
+  corridor: Media & Culture
+  name: Virality Music
+  status: Active / Monetize
+  function: Music, IP, publishing, licensing, and story universes.
+  priority: P0
+- id: CT-ASSET-025
+  corridor: Media & Culture
+  name: Melanated Voices
+  status: Rebuild
+  function: Audio, podcasts, spoken media, and community voices.
+  priority: P1
+- id: CT-ASSET-026
+  corridor: Media & Culture
+  name: Melanated TV
+  status: Active / Revamp
+  function: OTT/VOD, channels, partner content, and short drama.
+  priority: P1
+- id: CT-ASSET-027
+  corridor: Media & Culture
+  name: Melanated Voices Platform (MVP)
+  status: Long-term Build
+  function: Unified cross-media discovery, identity, library, and entitlement experience.
+  priority: P2
+- id: CT-ASSET-028
+  corridor: Media & Culture
+  name: Melanated Voices TV
+  status: Rebuild
+  function: Roku/video manifestation of Melanated Voices.
+  priority: P2
+- id: CT-ASSET-029
+  corridor: Media & Culture
+  name: Locticians TV
+  status: Active / Program
+  function: Beauty/wellness community channel and advertising inventory.
+  priority: P1
+- id: CT-ASSET-030
+  corridor: Media & Culture
+  name: The Mane Experience
+  status: Active / GTM
+  function: Participatory culture-first media network.
+  priority: P0
+- id: CT-ASSET-031
+  corridor: Media & Culture
+  name: The TAME Gallery
+  status: Revive
+  function: RSS aggregation, media intelligence, and editorial handoff.
+  priority: P1
+- id: CT-ASSET-032
+  corridor: Media & Culture
+  name: CrownThrive Studios
+  status: Build
+  function: AI-assisted creative and media production.
+  priority: P1
+- id: CT-ASSET-033
+  corridor: Media & Culture
+  name: Go Flipbooks
+  status: Active / Expand
+  function: Digital libraries, readers, licensing, and entitlements.
+  priority: P0
+- id: CT-ASSET-034
+  corridor: Media & Culture
+  name: Melanated Vault
+  status: Revamp
+  function: Cultural asset marketplace and auctions.
+  priority: P2
+- id: CT-ASSET-035
+  corridor: Media & Culture
+  name: Melanated Stock
+  status: Revamp
+  function: Culturally aligned stock media marketplace.
+  priority: P2
+- id: CT-ASSET-036
+  corridor: Media & Culture
+  name: The Artful Mane Gallery
+  status: Active / Curate
+  function: Pictorem-hosted fine-art storefront and fulfillment.
+  priority: P2
+- id: CT-ASSET-037
+  corridor: Beauty, Wellness & Physical
+  name: Locticians
+  status: Active / Monetize
+  function: Community, directory, professional discovery, and industry network.
+  priority: P0
+- id: CT-ASSET-038
+  corridor: Beauty, Wellness & Physical
+  name: ThriveSeat
+  status: Revamp
+  function: Beauty/wellness business operations, booking, staff, and client management.
+  priority: P0
+- id: CT-ASSET-039
+  corridor: Beauty, Wellness & Physical
+  name: Melanin Magic
+  status: Active / Scale
+  function: Haircare, skincare, bath/body, wholesale, and Stylepreneurs.
+  priority: P0
+- id: CT-ASSET-040
+  corridor: Beauty, Wellness & Physical
+  name: MM Suites
+  status: Pre-development
+  function: Physical suite corridor and flagship incubator node.
+  priority: P2
+- id: CT-ASSET-041
+  corridor: Commerce & Brands
+  name: Good Shit Only
+  status: Active / Monetize
+  function: Digital products, marketplace commerce, and licensed brands.
+  priority: P0
+- id: CT-ASSET-042
+  corridor: Commerce & Brands
+  name: The L Market
+  status: Brand / Incubate
+  function: Gag-gift sister marketplace to GSO.
+  priority: P2
+- id: CT-ASSET-043
+  corridor: Commerce & Brands
+  name: ThriveWick
+  status: Brand / Incubate
+  function: Candles and home fragrance.
+  priority: P2
+- id: CT-ASSET-044
+  corridor: Commerce & Brands
+  name: Tears of Defeat
+  status: Brand / Incubate
+  function: Novelty and humor products.
+  priority: P2
+- id: CT-ASSET-045
+  corridor: Commerce & Brands
+  name: ThriveThreads
+  status: Brand / Incubate
+  function: Apparel and lifestyle fashion.
+  priority: P2
+- id: CT-ASSET-046
+  corridor: Commerce & Brands
+  name: ThriveSip
+  status: Brand / Incubate
+  function: Beverage and functional drink concepts.
+  priority: P2
+- id: CT-ASSET-047
+  corridor: Commerce & Brands
+  name: XENThrive / Get Kinetic!
+  status: Brand / Incubate
+  function: Performance/wellness product lanes.
+  priority: P2
+- id: CT-ASSET-048
+  corridor: Commerce & Brands
+  name: MusiqHead Audio
+  status: Concept
+  function: Audio hardware/technology brand.
+  priority: P3
+- id: CT-ASSET-049
+  corridor: Education, Talent & Community
+  name: CrownThriveU
+  status: Active / Revamp
+  function: Courses, certificates, affiliates, experts, and internal IP monetization.
+  priority: P0
+- id: CT-ASSET-050
+  corridor: Education, Talent & Community
+  name: ThrivePeer
+  status: Active / Revamp
+  function: Mentorship and expert development.
+  priority: P1
+- id: CT-ASSET-051
+  corridor: Education, Talent & Community
+  name: ThriveAlumni
+  status: Build
+  function: Alumni, governing bodies, committees, elections, and fundraising.
+  priority: P1
+- id: CT-ASSET-052
+  corridor: Education, Talent & Community
+  name: ThriveArena
+  status: Build
+  function: Competitive learning, challenges, leaderboards, and rewards.
+  priority: P1
+- id: CT-ASSET-053
+  corridor: Education, Talent & Community
+  name: QuizNuggets
+  status: Live / Improve
+  function: Quiz creation, publishing, embedding, and competition.
+  priority: P2
+- id: CT-ASSET-054
+  corridor: Education, Talent & Community
+  name: ThriveGather
+  status: Active / Expand
+  function: Virtual spaces, co-working, workshops, and live community.
+  priority: P1
+- id: CT-ASSET-055
+  corridor: Education, Talent & Community
+  name: CrownConsults
+  status: Activate
+  function: Paid, vetted, immediate expert assistance.
+  priority: P1
+- id: CT-ASSET-056
+  corridor: Education, Talent & Community
+  name: CrownThrive Commons
+  status: Private Build
+  function: Gated ecosystem social graph, groups, relationships, and announcements.
+  priority: P1
+- id: CT-ASSET-057
+  corridor: Growth, Advertising & Distribution
+  name: AdLuxe Network
+  status: Active / Revamp
+  function: Advertiser/publisher network and ad serving.
+  priority: P0
+- id: CT-ASSET-058
+  corridor: Growth, Advertising & Distribution
+  name: AdLuxe Studio
+  status: Build
+  function: AI-generated advertising creative and campaign assets.
+  priority: P0
+- id: CT-ASSET-059
+  corridor: Growth, Advertising & Distribution
+  name: AdLuxe Places
+  status: Build
+  function: Digital signage and place-based advertising.
+  priority: P1
+- id: CT-ASSET-060
+  corridor: Growth, Advertising & Distribution
+  name: CrownFluence
+  status: Reposition
+  function: Creator campaign exchange and influence intelligence.
+  priority: P1
+- id: CT-ASSET-061
+  corridor: Growth, Advertising & Distribution
+  name: Crown Affiliates
+  status: Active / Expand
+  function: Performance referrals and commissions.
+  priority: P0
+- id: CT-ASSET-062
+  corridor: Growth, Advertising & Distribution
+  name: Crown Ambassadors
+  status: Active / Expand
+  function: High-trust brand representation and progression.
+  priority: P1
+- id: CT-ASSET-063
+  corridor: Growth, Advertising & Distribution
+  name: ThrivePerks
+  status: Activate
+  function: Giveaways, pilots, bounties, ad credits, and promotion.
+  priority: P2
+- id: CT-ASSET-064
+  corridor: Growth, Advertising & Distribution
+  name: ThriveTickets
+  status: Active / Revamp
+  function: Ticket commerce and event validation.
+  priority: P1
+- id: CT-ASSET-065
+  corridor: Hospitality, Travel & Experiences
+  name: ThriveKiln
+  status: Build
+  function: Restaurant operations and local hospitality technology.
+  priority: P2
+- id: CT-ASSET-066
+  corridor: Hospitality, Travel & Experiences
+  name: Luxperiences
+  status: Revamp
+  function: Premium spaces, venues, rentals, and experiences.
+  priority: P2
+- id: CT-ASSET-067
+  corridor: Hospitality, Travel & Experiences
+  name: ThriveTravels
+  status: Open
+  function: Culturally aligned travel and group experiences.
+  priority: P3
+- id: CT-ASSET-068
+  corridor: Hospitality, Travel & Experiences
+  name: Rooted Noir
+  status: Active / Cultural Revamp
+  function: Culturally aligned wedding planning.
+  priority: P2
