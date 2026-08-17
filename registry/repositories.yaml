@@ -1,0 +1,41 @@
+version: 1
+updated_at: 2026-08-17
+repositories:
+  - id: chlom-protocol
+    repository: crownthrive/chlom-protocol
+    role: canonical-operating-source
+    authority:
+      - chlom-registry
+      - machine-readable-governance
+      - schemas
+      - workflows
+      - agents
+      - phase-3-services
+    publication: public-safe-source
+    may_not_be_superseded_by:
+      - mintlify-rendered-pages
+      - support-copy
+      - website-copy
+  - id: crownthrive-support
+    repository: crownthrive1/CrownThrive-Support
+    role: documentation-projection
+    authority:
+      - mintlify-navigation
+      - public-help-center-copy
+      - public-runbooks
+      - public-knowledge-projection
+    upstream_sources:
+      - crownthrive/chlom-protocol
+    must_not_contain:
+      - production-secrets
+      - raw-evidence
+      - private-customer-records
+      - restricted-chlom-logic
+      - confidential-economics
+    write_access_status: collaborator-required
+rules:
+  - canonical records are changed upstream first and projected downstream second
+  - a Mintlify outage never changes source authority
+  - a GitHub sync failure creates drift status, not a silent overwrite
+  - generated or projected documentation must record upstream repository and commit
+  - restricted data never moves into the public documentation repository
