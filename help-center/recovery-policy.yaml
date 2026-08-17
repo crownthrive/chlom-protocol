@@ -1,0 +1,6 @@
+version: 1
+recovered_record_count: 795
+classes: [recovered-verbatim, reconstructed-from-sources, canonical-replacement, archived-historical, missing-owner-input]
+required_fields: [id, title, corridor, classification, recovery_class, authority_tier, sources, status, owner, review_by, publication]
+publication_values: [public, gated, internal, restricted]
+rule: A recovered title is not evidence of a recovered body or production implementation.

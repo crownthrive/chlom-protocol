@@ -1,0 +1,12 @@
+version: 1
+workflows:
+  - id: asset-to-license
+    steps: [register-asset, verify-source, record-rights-claims, classify-permitted-uses, build-dla, review-rules, approve-offer, execute-license, record-payment, create-entitlement, append-dail-event]
+  - id: correction
+    steps: [open-case, preserve-prior-version, collect-source-basis, review-identity-and-rights, approve-correction, append-correction, update-derived-views, notify-affected-parties, close-case]
+  - id: support-to-knowledge
+    steps: [receive-ticket, classify, search-help-center, resolve-or-escalate, identify-knowledge-gap, draft-reconstruction, source-review, publish-or-gate, record-change]
+  - id: product-release
+    steps: [register-source, content-review, rights-review, qa, commerce-routing, approval, publish, monitor]
+  - id: website-patch
+    steps: [detect-issue, create-work-item, branch, patch, test, review, approve, deploy, smoke-test, record-release]

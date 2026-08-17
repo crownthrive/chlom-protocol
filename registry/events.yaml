@@ -1,0 +1,25 @@
+version: 1
+events:
+  - rights.asset.registered
+  - rights.claim.submitted
+  - rights.claim.approved
+  - license.dla.created
+  - license.offer.approved
+  - license.grant.executed
+  - license.suspended
+  - license.revoked
+  - evidence.reference.created
+  - evidence.accessed
+  - approval.requested
+  - approval.approved
+  - approval.rejected
+  - revenue.payment.recorded
+  - revenue.allocation.calculated
+  - revenue.settlement.reconciled
+  - remedy.case.opened
+  - remedy.correction.appended
+  - remedy.appeal.filed
+  - remedy.case.closed
+  - record.version.superseded
+  - integration.delivery.failed
+  - integration.delivery.recovered

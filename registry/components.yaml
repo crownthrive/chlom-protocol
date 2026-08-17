@@ -1,0 +1,72 @@
+version: 2.0.0-alpha.1
+components:
+  - id: chlom-core
+    name: CHLOM Core
+    status: phase-2-foundation
+    maturity: build-now
+    functions: [rights, rules, roles, revenue, records, remedies]
+  - id: dail
+    name: Decentralized Autonomous Information Ledger
+    status: design-approved
+    maturity: build-next
+    description: Logical append-oriented institutional ledger for events, approvals, attestations, rights, sanctions, settlement, disputes and corrections. Public blockchain is not required.
+  - id: dla
+    name: Dynamic Licensing Asset
+    status: design-approved
+    maturity: build-next
+    description: Versioned machine-readable licensing object bound to an asset version, eligible rights, restrictions, policy packs, evidence readiness, offer state and verification state.
+  - id: licensing-stewardship
+    name: Licensing Stewardship / Issuer Authority
+    status: design-approved
+    maturity: build-next
+  - id: evidence-vault
+    name: Evidence Vault
+    status: design-approved
+    maturity: build-next
+    classification: restricted
+  - id: lex
+    name: CHLOM LEX
+    status: target-architecture
+    maturity: planned
+    description: Governed discovery and transaction layer for approved licensing offers. Historical sources describe tokenized exchange models; no public decentralized exchange is claimed active.
+  - id: ace
+    name: Adaptive Compliance Engine
+    status: target-architecture
+    maturity: research
+  - id: aie
+    name: Anomaly Intelligence Engine
+    status: target-architecture
+    maturity: research
+  - id: fingerprint-id
+    name: CHLOM Fingerprint ID
+    status: protected-design
+    maturity: restricted
+    public_details: false
+  - id: did
+    name: Decentralized Identity / Verifiable Identity Layer
+    status: target-architecture
+    maturity: planned
+  - id: zk
+    name: Zero-Knowledge Compliance Layer
+    status: target-architecture
+    maturity: research
+  - id: smart-treasury
+    name: Smart Treasury
+    status: target-architecture
+    maturity: planned
+  - id: token-economy
+    name: CHLOM Token Economy
+    status: historical-conflict-requires-adr
+    maturity: deferred
+  - id: dao
+    name: Decentralized Governance
+    status: target-architecture
+    maturity: deferred
+  - id: substrate-chain
+    name: Dedicated Substrate Network
+    status: target-architecture
+    maturity: deferred
+  - id: cross-chain
+    name: Cross-Chain Settlement and Attestation Mirror
+    status: target-architecture
+    maturity: deferred

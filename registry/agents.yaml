@@ -1,0 +1,30 @@
+version: 1
+agents:
+  - id: orchestrator
+    name: Chief-of-Staff / Orchestrator
+    may: [classify, route, summarize, create-work-items, request-approval]
+    may_not: [grant-rights, move-money, publish-without-gate, change-secrets]
+  - id: governance
+    name: Rights and Governance Agent
+    may: [validate-metadata, flag-conflicts, prepare-rights-review, prepare-corrections]
+    may_not: [issue-final-legal-opinion, autonomously-revoke-rights]
+  - id: publishing
+    name: Publishing Agent
+    may: [prepare-editions, manifests, metadata, preflight-reports]
+    may_not: [publish-unapproved-editions]
+  - id: commerce
+    name: Commerce Agent
+    may: [reconcile-products, inspect-payments, prepare-refunds, validate-entitlements]
+    may_not: [change-live-price-without-approval, issue-material-refund-without-gate]
+  - id: release
+    name: Website and Release Agent
+    may: [create-branch, patch, test, prepare-pr, smoke-test]
+    may_not: [bypass-required-review]
+  - id: support
+    name: Support Agent
+    may: [classify-ticket, retrieve-knowledge, draft-response, escalate]
+    may_not: [disclose-restricted-evidence]
+  - id: qa-security
+    name: QA and Security Agent
+    may: [test, scan, audit-permissions, validate-claims, recommend-hold]
+    may_not: [rotate-production-secret-without-approval]

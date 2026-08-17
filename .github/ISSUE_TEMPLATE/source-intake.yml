@@ -1,0 +1,22 @@
+name: Source intake
+description: Register a CHLOM source without copying restricted content into the public repository.
+title: "[SOURCE] "
+labels: [source-intake]
+body:
+  - type: input
+    id: title
+    attributes: {label: Source title}
+    validations: {required: true}
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Classification
+      options: [public, gated, internal, restricted]
+    validations: {required: true}
+  - type: textarea
+    id: supported
+    attributes: {label: Claims directly supported}
+    validations: {required: true}
+  - type: textarea
+    id: conflicts
+    attributes: {label: Known conflicts or superseded language}

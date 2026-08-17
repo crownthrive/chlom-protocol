@@ -1,0 +1,20 @@
+version: 1
+approval_gates:
+  - id: rights-grant
+    required_for: [issue-license, expand-license, adaptation-rights, character-rights, voice-rights]
+    approver: qualified-human
+  - id: enforcement
+    required_for: [suspend-license, revoke-license, sanction, final-dispute-decision]
+    approver: qualified-human
+  - id: live-economics
+    required_for: [change-live-price, revenue-split, payout-rule, treasury-rule]
+    approver: authorized-human
+  - id: publication
+    required_for: [publish-public-product, publish-restricted-excerpt, material-public-claim]
+    approver: authorized-human
+  - id: security
+    required_for: [rotate-production-secret, super-admin-change, destructive-migration]
+    approver: authorized-security-human
+  - id: protocol-launch
+    required_for: [deploy-token, launch-dao, deploy-mainnet, enable-public-bridge, custody-user-crypto]
+    approver: founder-plus-legal-security-review
