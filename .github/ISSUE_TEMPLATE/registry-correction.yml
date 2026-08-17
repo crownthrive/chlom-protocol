@@ -1,0 +1,17 @@
+name: Registry correction
+description: Correct a status, identity, source, relationship or governed record while preserving history.
+title: "[CORRECTION] "
+labels: [correction]
+body:
+  - type: input
+    id: record
+    attributes: {label: Record ID or path}
+    validations: {required: true}
+  - type: textarea
+    id: corrected
+    attributes: {label: Proposed correction}
+    validations: {required: true}
+  - type: textarea
+    id: source
+    attributes: {label: Governing source basis}
+    validations: {required: true}

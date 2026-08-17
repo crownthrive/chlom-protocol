@@ -1,0 +1,25 @@
+version: 2.0.0-alpha.1
+updated: 2026-08-17
+status: phase-2-foundation
+canonical_name: Compliance Hybrid Licensing and Ownership Model
+owner: CrownThrive LLC
+functions:
+  - id: rights
+    purpose: Govern assets, versions, provenance, authority, permissions, restrictions and chain of title.
+  - id: rules
+    purpose: Govern policy, eligibility, conditions, approvals, cultural integrity, privacy and risk.
+  - id: roles
+    purpose: Govern organizations, actors, credentials, standing, delegated authority and separation of duties.
+  - id: revenue
+    purpose: Govern offers, fees, allocations, royalties, holds, adjustments, settlement and reconciliation.
+  - id: records
+    purpose: Govern DAIL events, evidence references, approvals, agreements, versions, attestations and corrections.
+  - id: remedies
+    purpose: Govern disputes, holds, corrections, suspensions, revocations, appeals, reinstatement and closure evidence.
+principles:
+  - evidence-private-by-default
+  - correction-without-erasure
+  - human-authority-for-material-decisions
+  - source-before-claim
+  - useful-before-decentralized
+  - auditable-before-public

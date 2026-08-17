@@ -1,0 +1,54 @@
+version: 1
+sources:
+  - id: SRC-RECOVERY-MASTER
+    title: CHLOM Institutional Recovery Master Compendium v1.0
+    authority: current-recovery-baseline
+    classification: internal
+    location: google-drive-recovery-folder
+    use: Canonical Phase 2 recovery baseline; controlled excerpts only.
+  - id: SRC-HELP-CENTER
+    title: Help Center Structure
+    authority: recovered-structure
+    classification: internal
+    location: google-drive
+    use: Recovered title hierarchy and legacy descriptions; not proof every described feature was implemented.
+  - id: SRC-GOLD
+    title: CHLOM Internal Gold Paper
+    authority: historical-technical
+    classification: restricted
+    use: Formal architecture and proof corpus; never publish confidential implementation detail.
+  - id: SRC-WHITEPAPER
+    title: CHLOM White Paper
+    authority: historical-design
+    classification: public-or-controlled
+    use: Vision and proposed protocol architecture; not current implementation evidence.
+  - id: SRC-GENESIS
+    title: CHLOM Genesis Volume
+    authority: historical-design
+    classification: controlled
+    use: Target Layer-1, dual-economy and engine design.
+  - id: SRC-LEX
+    title: CHLOM LEX Concept Overview
+    authority: historical-design
+    classification: controlled
+    use: Licensing exchange vision; not evidence of a live decentralized exchange.
+  - id: SRC-DUALTOKEN
+    title: CHLOM Dual-Token Mainnet Launch Guide
+    authority: experimental
+    classification: controlled
+    use: EVM testbed proposal; token names and allocations require ADR/legal review.
+  - id: SRC-GITHUB-MASTER
+    title: CHLOM Master Document
+    authority: historical-formal-model
+    classification: public
+    location: docs/CHLOM_Master.md
+  - id: SRC-BLACKPAPER
+    title: CHLOM BlackPaper v1.3
+    authority: historical-formal-model
+    classification: public
+    location: docs/BlackPaper_v1.3.md
+  - id: SRC-TECH-WP
+    title: CHLOM Technical White Paper v1.0
+    authority: historical-technical
+    classification: public
+    location: docs/Technical_White_Paper_v1.0.md

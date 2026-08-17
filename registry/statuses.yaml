@@ -1,0 +1,18 @@
+statuses:
+  - id: concept
+  - id: research
+  - id: draft
+  - id: review
+  - id: prototype
+  - id: pilot
+  - id: active
+  - id: limited
+  - id: deprecated
+  - id: archived
+  - id: suspended
+  - id: revoked
+  - id: superseded
+rules:
+  active_requires_evidence: true
+  archived_remains_queryable: true
+  superseded_preserves_history: true

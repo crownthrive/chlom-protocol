@@ -1,0 +1,46 @@
+version: 1
+platforms:
+  - id: crownthrive
+    name: CrownThrive
+    role: ecosystem-governance-and-operations
+    chlom_use: organization, policy, rights, agreement and audit governance
+  - id: virality-music
+    name: Virality Music
+    role: music-publishing-transmedia-ip
+    chlom_use: rights ledger, provenance, participatory rights, licensing, product and correction records
+  - id: good-shit-only
+    name: Good Shit Only
+    role: commercial-rights-marketplace
+    chlom_use: governed rights listings, license grants, entitlement evidence and settlement records
+  - id: backroad-fm
+    name: Backroad FM
+    role: broadcast-discovery
+    chlom_use: programming permissions, sponsor rights, media-use provenance and public performance records
+  - id: go-flipbooks
+    name: Go Flipbooks
+    role: hosted-reader
+    chlom_use: edition authority, entitlements and reader-use records
+  - id: crownthrive-io
+    name: CrownThrive IO
+    role: digital-presence-and-api
+    chlom_use: tenant identity, scoped integrations and audit metadata
+  - id: sermon-toolkit
+    name: The Sermon Toolkit / KJV Visualized
+    role: faith-publishing-and-digital-products
+    chlom_use: edition rights, digital licensing, entitlements and church/institution permissions
+  - id: adluxe
+    name: AdLuxe Network
+    role: advertising
+    chlom_use: campaign permissions, sponsor agreements, placement evidence and revenue allocation
+  - id: crownlytics
+    name: CrownLytics
+    role: analytics
+    chlom_use: authorized measurement and audit evidence
+  - id: crownpulse
+    name: CrownPulse
+    role: signals-and-social-proof
+    chlom_use: governed event consumption and public-claim evidence
+  - id: mm-suites
+    name: Melanin Magic Suites
+    role: physical-venture-and-operator-model
+    chlom_use: operator roles, franchise/license terms, service permissions and controlled diligence

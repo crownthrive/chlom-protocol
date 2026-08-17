@@ -1,0 +1,18 @@
+version: 1
+phases:
+  - id: phase-2
+    name: Governed Registry and Institutional Recovery
+    status: in-progress
+    deliverables: [source-manifest, canonical-terminology, schemas, registries, help-center-recovery, validation-ci, phase-3-contracts]
+  - id: phase-3
+    name: CHLOM Core Services
+    status: next
+    deliverables: [orchestrator, event-gateway, approval-service, audit-log, rights-registry, policy-registry, role-registry, revenue-registry, remedy-case-service, API]
+  - id: phase-4
+    name: Controlled Ecosystem Integrations
+    status: planned
+    deliverables: [virality-music, gso, stripe, crownthrive-io, publishing, support, analytics]
+  - id: phase-5
+    name: Cryptographic and Decentralized Extensions
+    status: gated
+    deliverables: [public-attestations, verifiable-credentials, optional-zk, smart-contract-settlement, token-or-governance-modules-if-approved]
