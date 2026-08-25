@@ -1,0 +1,55 @@
+name: Integration Runtime Certification
+
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "registry/integrations.json"
+      - "scripts/integration_runtime_certifier.py"
+      - ".github/workflows/integration-runtime-certification.yml"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: integration-runtime-certification
+  cancel-in-progress: false
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Certify registered integration transport
+        id: certify
+        continue-on-error: true
+        run: python3 scripts/integration_runtime_certifier.py
+
+      - name: Commit certification ledger when changed
+        run: |
+          if git diff --quiet -- registry/integration-runtime-certification.json; then
+            echo "No certification state change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry/integration-runtime-certification.json
+          git commit -m "chore(mesh): refresh integration runtime certification"
+          git push
+
+      - name: Open degradation issue
+        if: steps.certify.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Integration mesh runtime degradation detected" \
+            --body "The CHLOM integration runtime certifier detected one or more unreachable registered integrations. Review the current workflow run and registry/integration-runtime-certification.json. This is a fail-closed transport degradation signal; it does not authorize bypassing provider controls or credentials.\n\nRun: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          exit 1
