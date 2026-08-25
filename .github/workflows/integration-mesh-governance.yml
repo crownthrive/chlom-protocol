@@ -1,0 +1,28 @@
+name: Integration Mesh Governance
+
+on:
+  push:
+    paths:
+      - "registry/integration_mesh_policy.json"
+      - "registry/integrations.json"
+      - "scripts/validate_integration_mesh.py"
+      - ".github/workflows/integration-mesh-governance.yml"
+  pull_request:
+    paths:
+      - "registry/integration_mesh_policy.json"
+      - "registry/integrations.json"
+      - "scripts/validate_integration_mesh.py"
+      - ".github/workflows/integration-mesh-governance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate governed integration registry
+        run: python scripts/validate_integration_mesh.py

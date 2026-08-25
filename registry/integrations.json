@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "ct.mesh.integrations.v1",
+  "integrations": [
+    {
+      "integration_id": "ct.integration.ofac.sdn",
+      "name": "U.S. Treasury OFAC SDN Advanced XML",
+      "owner_domain": "CHLOM_COMPLIANCE",
+      "type": "authoritative_public_data_feed",
+      "endpoint": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML",
+      "persistent_binding": true,
+      "credential_binding": {
+        "mode": "NONE_PUBLIC_SOURCE",
+        "secret_ref": null
+      },
+      "capabilities": {
+        "read": true,
+        "write": false,
+        "delete": false,
+        "admin": false
+      },
+      "health": {
+        "enabled": true,
+        "method": "GET",
+        "expected_content": "xml",
+        "workflow": ".github/workflows/ofac-sdn-monitor.yml"
+      },
+      "provenance": {
+        "authority": "U.S. Department of the Treasury, Office of Foreign Assets Control",
+        "content_fingerprint": "SHA-256",
+        "machine_state_file": "registry/ofac_sdn_feed_state.json"
+      },
+      "failure_policy": {
+        "fail_closed_for_compliance_consumers": true,
+        "automatic_reconnect": true,
+        "bypass_provider_controls": false
+      }
+    }
+  ]
+}

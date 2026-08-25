@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "ct.mesh.integration-policy.v1",
+  "status": "ACTIVE_GOVERNED_BASELINE",
+  "purpose": "Bind CrownThrive integrations into a persistent, observable, vault-backed control mesh without exposing credentials or granting blanket destructive authority.",
+  "defaults": {
+    "persistent_binding": true,
+    "health_monitoring": true,
+    "automatic_reconnect": true,
+    "credential_storage": "VAULT_ONLY",
+    "credential_material_in_git": false,
+    "fail_closed_on_unknown_credentials": true,
+    "audit_events": true,
+    "provenance_required": true,
+    "timeouts_required": true,
+    "retry_with_backoff": true,
+    "circuit_breaker": true,
+    "tls_required": true
+  },
+  "capability_model": {
+    "read": "ALLOW_WHEN_CERTIFIED",
+    "write": "ALLOW_WHEN_CERTIFIED_AND_SCOPED",
+    "delete": "ALLOW_ONLY_WHEN_EXPLICITLY_CERTIFIED_REVERSIBLE_OR_GOVERNED",
+    "admin": "DENY_BY_DEFAULT",
+    "credential_rotation": "ALLOW_VIA_VAULT_CONTROL_PLANE_ONLY"
+  },
+  "known_good_semantics": {
+    "definition": "An endpoint is known-good only while its latest machine health, authentication, provenance and contract checks pass.",
+    "never_implies": [
+      "public exposure",
+      "anonymous access",
+      "unbounded write access",
+      "unbounded delete access",
+      "permanent exemption from revalidation"
+    ]
+  },
+  "required_runtime_states": [
+    "BOUND",
+    "HEALTHY",
+    "DEGRADED",
+    "AUTH_REQUIRED",
+    "RATE_LIMITED",
+    "CONTRACT_DRIFT",
+    "QUARANTINED",
+    "DISABLED_BY_GOVERNANCE"
+  ],
+  "automation": {
+    "track_every_declared_integration": true,
+    "emit_heartbeat": true,
+    "record_last_success": true,
+    "record_last_failure": true,
+    "record_latency": true,
+    "record_http_status_class": true,
+    "record_contract_version": true,
+    "open_issue_on_repeated_failure": true,
+    "quarantine_on_auth_or_contract_anomaly": true
+  }
+}
