@@ -1,0 +1,23 @@
+{
+  "ledger_id": "ct.mesh.integration-onboarding.v1",
+  "as_of": "2026-08-25",
+  "policy": {
+    "registered_does_not_equal_runtime_certified": true,
+    "credential_values_must_never_be_committed": true,
+    "vault_reference_required_for_authenticated_integrations": true,
+    "delete_requires_explicit_certification": true,
+    "provider_controls_must_be_respected": true
+  },
+  "status": [
+    {"integration_id": "ct.integration.ofac.sdn", "state": "ACTIVE_VERIFIED"},
+    {"integration_id": "ct.integration.github", "state": "ACTIVE_SCOPED"},
+    {"integration_id": "ct.integration.mintlify", "state": "REGISTERED_REVALIDATE_RUNTIME"},
+    {"integration_id": "ct.integration.supabase.management", "state": "REGISTERED_REVALIDATE_RUNTIME"},
+    {"integration_id": "ct.integration.stripe", "state": "REGISTERED_REVALIDATE_RUNTIME"},
+    {"integration_id": "ct.integration.google.drive", "state": "REGISTERED_REVALIDATE_RUNTIME"},
+    {"integration_id": "ct.integration.google.gmail", "state": "REGISTERED_REVALIDATE_RUNTIME"},
+    {"integration_id": "ct.integration.microsoft.graph", "state": "REGISTERED_REVALIDATE_RUNTIME"},
+    {"integration_id": "ct.integration.crownthrive.io.mcp", "state": "REGISTERED_CONTRACT_VERIFICATION_REQUIRED"},
+    {"integration_id": "ct.integration.adserver.online", "state": "REGISTERED_CONTRACT_VERIFICATION_REQUIRED"}
+  ]
+}

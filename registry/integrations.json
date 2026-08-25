@@ -1,6 +1,14 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "registry_id": "ct.mesh.integrations.v1",
+  "integration_policy": {
+    "persistent_binding_default": true,
+    "vault_only_credentials": true,
+    "health_monitoring_required": true,
+    "automatic_reconnect_default": true,
+    "bypass_provider_controls": false,
+    "destructive_capabilities_require_explicit_certification": true
+  },
   "integrations": [
     {
       "integration_id": "ct.integration.ofac.sdn",
@@ -9,32 +17,129 @@
       "type": "authoritative_public_data_feed",
       "endpoint": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML",
       "persistent_binding": true,
-      "credential_binding": {
-        "mode": "NONE_PUBLIC_SOURCE",
-        "secret_ref": null
-      },
-      "capabilities": {
-        "read": true,
-        "write": false,
-        "delete": false,
-        "admin": false
-      },
-      "health": {
-        "enabled": true,
-        "method": "GET",
-        "expected_content": "xml",
-        "workflow": ".github/workflows/ofac-sdn-monitor.yml"
-      },
-      "provenance": {
-        "authority": "U.S. Department of the Treasury, Office of Foreign Assets Control",
-        "content_fingerprint": "SHA-256",
-        "machine_state_file": "registry/ofac_sdn_feed_state.json"
-      },
-      "failure_policy": {
-        "fail_closed_for_compliance_consumers": true,
-        "automatic_reconnect": true,
-        "bypass_provider_controls": false
-      }
+      "credential_binding": {"mode": "NONE_PUBLIC_SOURCE", "secret_ref": null},
+      "capabilities": {"read": true, "write": false, "delete": false, "admin": false},
+      "certification_status": "ACTIVE_VERIFIED",
+      "health": {"enabled": true, "method": "GET", "expected_content": "xml", "workflow": ".github/workflows/ofac-sdn-monitor.yml"},
+      "provenance": {"authority": "U.S. Department of the Treasury, Office of Foreign Assets Control", "content_fingerprint": "SHA-256", "machine_state_file": "registry/ofac_sdn_feed_state.json"},
+      "failure_policy": {"fail_closed_for_compliance_consumers": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.github",
+      "name": "GitHub",
+      "owner_domain": "INSTITUTIONAL_SOURCE_CONTROL",
+      "type": "source_control_ci_cd_api",
+      "endpoint": "https://api.github.com",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_OR_PROVIDER_OAUTH", "secret_ref": "vault://integrations/github/runtime"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "ACTIVE_SCOPED",
+      "health": {"enabled": true, "method": "GET", "expected_content": "json", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.mintlify",
+      "name": "Mintlify Admin, Index and MCP",
+      "owner_domain": "CHLOM_DOCUMENTATION",
+      "type": "documentation_knowledge_api",
+      "endpoint": "https://api.mintlify.com",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_CLIENT_CREDENTIALS", "secret_ref": "vault://integrations/mintlify/runtime"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": true},
+      "certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "provider_response", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.supabase.management",
+      "name": "Supabase Management API",
+      "owner_domain": "THRIVEBASE_DATA_CONTROL_PLANE",
+      "type": "database_platform_management_api",
+      "endpoint": "https://api.supabase.com/v1",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_TOKEN_OR_OAUTH", "secret_ref": "vault://integrations/supabase/management"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": true},
+      "certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "json", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.stripe",
+      "name": "Stripe",
+      "owner_domain": "COMMERCE_REVENUE",
+      "type": "payments_billing_api",
+      "endpoint": "https://api.stripe.com",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_SECRET_KEY", "secret_ref": "vault://integrations/stripe/runtime"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "provider_response", "workflow": null},
+      "failure_policy": {"fail_closed_for_financial_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.google.drive",
+      "name": "Google Drive API",
+      "owner_domain": "INSTITUTIONAL_KNOWLEDGE_REDUNDANCY",
+      "type": "document_storage_api",
+      "endpoint": "https://www.googleapis.com/drive/v3",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_OAUTH", "secret_ref": "vault://integrations/google/drive"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "json", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.google.gmail",
+      "name": "Gmail API",
+      "owner_domain": "INSTITUTIONAL_MESSAGING",
+      "type": "email_api",
+      "endpoint": "https://gmail.googleapis.com/gmail/v1",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_OAUTH", "secret_ref": "vault://integrations/google/gmail"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "json", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.microsoft.graph",
+      "name": "Microsoft Graph / Outlook",
+      "owner_domain": "INSTITUTIONAL_MESSAGING_CALENDAR",
+      "type": "productivity_api",
+      "endpoint": "https://graph.microsoft.com/v1.0",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_OAUTH", "secret_ref": "vault://integrations/microsoft/graph"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "json", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.crownthrive.io.mcp",
+      "name": "CrownThrive IO / MCP",
+      "owner_domain": "CROWNTHRIVE_INTEROPERABILITY",
+      "type": "internal_api_mcp_gateway",
+      "endpoint": "https://crownthrive.io",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_RUNTIME_IDENTITY", "secret_ref": "vault://integrations/crownthrive-io/mcp"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "REGISTERED_ENDPOINT_CONTRACT_PENDING_VERIFICATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "provider_response", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
+    },
+    {
+      "integration_id": "ct.integration.adserver.online",
+      "name": "AdServer Online",
+      "owner_domain": "ADLUXE_NETWORK",
+      "type": "advertising_delivery_api",
+      "endpoint": "https://adserver.online",
+      "persistent_binding": true,
+      "credential_binding": {"mode": "VAULT_PROVIDER_CREDENTIAL", "secret_ref": "vault://integrations/adserver-online/runtime"},
+      "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "certification_status": "REGISTERED_ENDPOINT_CONTRACT_PENDING_VERIFICATION",
+      "health": {"enabled": true, "method": "GET", "expected_content": "provider_response", "workflow": null},
+      "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
     }
   ]
 }
