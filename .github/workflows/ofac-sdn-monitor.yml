@@ -1,0 +1,58 @@
+name: OFAC SDN Feed Monitor
+
+on:
+  schedule:
+    # OFAC's list can change outside a predictable cadence; poll four times daily.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: ofac-sdn-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Monitor OFAC SDN Advanced XML
+        id: monitor
+        run: python scripts/ofac_sdn_monitor.py --state-file registry/ofac_sdn_feed_state.json
+
+      - name: Commit feed state when the source changes
+        if: steps.monitor.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry/ofac_sdn_feed_state.json
+          git commit -m "chore(compliance): record OFAC SDN feed change"
+          git push
+
+      - name: Open compliance watch issue on feed change
+        if: steps.monitor.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SDN_SHA256: ${{ steps.monitor.outputs.sha256 }}
+          PUBLISHED_DATE: ${{ steps.monitor.outputs.published_date }}
+        run: |
+          gh issue create \
+            --title "OFAC SDN feed changed — review required" \
+            --body "## OFAC SDN feed change detected
+
+The automated CHLOM monitor detected a new OFAC Specially Designated Nationals (SDN) Advanced XML dataset.
+
+- Source: https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML
+- Published date: ${PUBLISHED_DATE:-not reported}
+- SHA-256: ${SDN_SHA256}
+- Detection workflow: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+
+**Important:** This event is a compliance signal, not an automatic determination that a CrownThrive customer, person, transaction, or asset is sanctioned. Screening systems must evaluate the updated authoritative dataset under their applicable policies and human review controls."
