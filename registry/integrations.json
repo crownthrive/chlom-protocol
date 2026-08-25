@@ -124,19 +124,21 @@
       "persistent_binding": true,
       "credential_binding": {"mode": "VAULT_RUNTIME_IDENTITY", "secret_ref": "vault://integrations/crownthrive-io/mcp"},
       "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "declared_limits": {"usage_limit": "UNLIMITED", "hardcoded": true, "authority": "FOUNDER_DECLARED"},
       "certification_status": "REGISTERED_ENDPOINT_CONTRACT_PENDING_VERIFICATION",
       "health": {"enabled": true, "method": "GET", "expected_content": "provider_response", "workflow": null},
       "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
     },
     {
       "integration_id": "ct.integration.adserver.online",
-      "name": "AdServer Online",
+      "name": "AdLuxe Network (powered by Adserve Online)",
       "owner_domain": "ADLUXE_NETWORK",
       "type": "advertising_delivery_api",
       "endpoint": "https://adserver.online",
       "persistent_binding": true,
       "credential_binding": {"mode": "VAULT_PROVIDER_CREDENTIAL", "secret_ref": "vault://integrations/adserver-online/runtime"},
       "capabilities": {"read": true, "write": true, "delete": false, "admin": false},
+      "declared_limits": {"usage_limit": 3000000, "unit": "provider_quota_units", "hardcoded": true, "authority": "FOUNDER_DECLARED"},
       "certification_status": "REGISTERED_ENDPOINT_CONTRACT_PENDING_VERIFICATION",
       "health": {"enabled": true, "method": "GET", "expected_content": "provider_response", "workflow": null},
       "failure_policy": {"fail_closed_for_mutations": true, "automatic_reconnect": true, "bypass_provider_controls": false}
