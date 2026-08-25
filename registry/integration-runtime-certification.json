@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_id": "ct.mesh.integration-runtime-certification.v1",
+  "generated_at": "2026-08-25T23:00:00Z",
+  "canonical_registry": "ct.mesh.integrations.v1",
+  "policy": {
+    "transport_reachability_is_not_authenticated_certification": true,
+    "fail_closed_for_unreachable_integrations": true,
+    "preserve_external_certification_evidence": true,
+    "secrets_in_repository": false
+  },
+  "integrations": [
+    {"integration_id":"ct.integration.ofac.sdn","external_certification_evidence":[{"observed_at":"2026-08-25","evidence_class":"GITHUB_RUNTIME_IMPLEMENTATION","state":"ACTIVE_VERIFIED","detail":"Scheduled OFAC SDN authoritative feed monitor merged and governed in chlom-protocol."}]},
+    {"integration_id":"ct.integration.github","external_certification_evidence":[{"observed_at":"2026-08-25","evidence_class":"CONNECTED_PROVIDER_ACTION","state":"ACTIVE_SCOPED","detail":"Authenticated GitHub connector successfully read and mutated CrownThrive repositories during this convergence pass."}]},
+    {"integration_id":"ct.integration.mintlify","external_certification_evidence":[{"observed_at":"2026-08-25","evidence_class":"CONNECTED_PROVIDER_READBACK","state":"AUTHENTICATED_READ_VERIFIED","detail":"Mintlify Admin MCP successfully enumerated deployment subdomain crown-thrive."}]},
+    {"integration_id":"ct.integration.supabase.management","external_certification_evidence":[{"observed_at":"2026-08-25","evidence_class":"CONNECTED_PROVIDER_READBACK","state":"ACTIVE_HEALTHY","detail":"Supabase Management connection returned CrownThrive project status ACTIVE_HEALTHY."}]},
+    {"integration_id":"ct.integration.stripe","external_certification_evidence":[]},
+    {"integration_id":"ct.integration.google.drive","external_certification_evidence":[]},
+    {"integration_id":"ct.integration.google.gmail","external_certification_evidence":[]},
+    {"integration_id":"ct.integration.microsoft.graph","external_certification_evidence":[]},
+    {"integration_id":"ct.integration.crownthrive.io.mcp","external_certification_evidence":[{"observed_at":"2026-08-25","evidence_class":"FOUNDER_DECLARED_CONTRACT","state":"REGISTERED_UNLIMITED","detail":"Provider limit is institutionally hardcoded as UNLIMITED; endpoint/auth runtime certification remains independent."}]},
+    {"integration_id":"ct.integration.adserver.online","external_certification_evidence":[{"observed_at":"2026-08-25","evidence_class":"FOUNDER_DECLARED_CONTRACT","state":"REGISTERED_LIMIT_3000000","detail":"AdLuxe Network powered by Adserve Online provider limit is institutionally hardcoded at 3,000,000; endpoint/auth runtime certification remains independent."}]}
+  ]
+}
