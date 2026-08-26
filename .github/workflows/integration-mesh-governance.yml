@@ -31,7 +31,7 @@ jobs:
       - name: Validate governed integration registry
         run: python scripts/validate_integration_mesh.py
 
-      - name: Verify CHLOM node against canonical Penta repository mesh
+      - name: Verify CHLOM node against canonical Penta repository mesh and status
         shell: python
         run: |
           import json, urllib.request
@@ -40,12 +40,13 @@ jobs:
           node = json.loads(Path("federation/penta-mesh-node.v1.json").read_text())
           assert node.get("schema") == "ct.penta.repository-mesh-node.v1"
           assert node.get("repository") == "crownthrive1/chlom-protocol"
-          req = urllib.request.Request(
-              node["mesh_contract_url"],
-              headers={"User-Agent":"CHLOM-PentaMesh/1.0"},
-          )
-          with urllib.request.urlopen(req, timeout=30) as response:
-              mesh = json.load(response)
+
+          def fetch(url, agent):
+              req = urllib.request.Request(url, headers={"User-Agent": agent})
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  return json.load(response)
+
+          mesh = fetch(node["mesh_contract_url"], "CHLOM-PentaMesh/1.1")
           assert mesh.get("schema") == "ct.penta.repository-mesh.v1"
           assert mesh.get("protocol_registry") == "crownthrive1/chlom-protocol"
           repos = {x["repository"]: x for x in mesh.get("repositories", [])}
@@ -55,4 +56,12 @@ jobs:
           assert contract.get("node_manifest") == "federation/penta-mesh-node.v1.json"
           assert set(contract.get("roles", [])) == set(node.get("roles", []))
           assert node.get("capabilities", {}).get("canonical_integration_registry") is True
-          print("CHLOM Penta repository mesh node verified")
+          assert node.get("capabilities", {}).get("public_status_consumption") is True
+          assert mesh.get("interoperability", {}).get("public_mesh_status_url") == node["mesh_status_url"]
+
+          status = fetch(node["mesh_status_url"], "CHLOM-PentaStatus/1.0")
+          assert status.get("schema") == "ct.penta.repository-mesh.status.v1"
+          assert "crownthrive1/chlom-protocol" in status.get("repositories", {})
+          assert status.get("pentamail", {}).get("connected_owner_report_rail", {}).get("state") == "delivered"
+          assert status.get("pentamail", {}).get("unattended_repository_rail", {}).get("state") == "HOLD_UNBOUND"
+          print("CHLOM Penta mesh contract + status verified")
