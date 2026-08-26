@@ -2,16 +2,19 @@ name: Integration Mesh Governance
 
 on:
   push:
+    branches: [main]
     paths:
       - "registry/integration_mesh_policy.json"
       - "registry/integrations.json"
       - "scripts/validate_integration_mesh.py"
+      - "federation/penta-mesh-node.v1.json"
       - ".github/workflows/integration-mesh-governance.yml"
   pull_request:
     paths:
       - "registry/integration_mesh_policy.json"
       - "registry/integrations.json"
       - "scripts/validate_integration_mesh.py"
+      - "federation/penta-mesh-node.v1.json"
       - ".github/workflows/integration-mesh-governance.yml"
   workflow_dispatch:
 
@@ -23,6 +26,33 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Validate governed integration registry
         run: python scripts/validate_integration_mesh.py
+
+      - name: Verify CHLOM node against canonical Penta repository mesh
+        shell: python
+        run: |
+          import json, urllib.request
+          from pathlib import Path
+
+          node = json.loads(Path("federation/penta-mesh-node.v1.json").read_text())
+          assert node.get("schema") == "ct.penta.repository-mesh-node.v1"
+          assert node.get("repository") == "crownthrive1/chlom-protocol"
+          req = urllib.request.Request(
+              node["mesh_contract_url"],
+              headers={"User-Agent":"CHLOM-PentaMesh/1.0"},
+          )
+          with urllib.request.urlopen(req, timeout=30) as response:
+              mesh = json.load(response)
+          assert mesh.get("schema") == "ct.penta.repository-mesh.v1"
+          assert mesh.get("protocol_registry") == "crownthrive1/chlom-protocol"
+          repos = {x["repository"]: x for x in mesh.get("repositories", [])}
+          contract = repos["crownthrive1/chlom-protocol"]
+          assert contract.get("visibility") == "public"
+          assert contract.get("default_branch") == node.get("default_branch")
+          assert contract.get("node_manifest") == "federation/penta-mesh-node.v1.json"
+          assert set(contract.get("roles", [])) == set(node.get("roles", []))
+          assert node.get("capabilities", {}).get("canonical_integration_registry") is True
+          print("CHLOM Penta repository mesh node verified")
