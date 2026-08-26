@@ -28,10 +28,19 @@ jobs:
       - id: pick
         shell: bash
         run: |
-          mode='${{ github.event.inputs.mode }}'
-          if [[ -n "$mode" && "$mode" != auto ]]; then echo "mode=$mode" >> "$GITHUB_OUTPUT"; exit 0; fi
-          m=$(date -u +%M)
-          if (( 10#$m < 20 )); then mode=pr; elif (( 10#$m < 40 )); then mode=merge; else mode=closer; fi
+          requested='${{ github.event.inputs.mode }}'
+          schedule='${{ github.event.schedule }}'
+          if [[ -n "$requested" && "$requested" != auto ]]; then
+            mode="$requested"
+          elif [[ "$schedule" == '7 * * * *' ]]; then
+            mode=pr
+          elif [[ "$schedule" == '27 * * * *' ]]; then
+            mode=merge
+          elif [[ "$schedule" == '47 * * * *' ]]; then
+            mode=closer
+          else
+            mode=pr
+          fi
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
   run:
     needs: select
