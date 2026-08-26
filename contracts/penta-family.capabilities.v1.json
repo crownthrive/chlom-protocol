@@ -1,0 +1,23 @@
+{
+  "schema": "crownthrive.chlom.mesh.capability.v1",
+  "capability_id": "penta-family",
+  "architecture_version": "1.0.0",
+  "event_contract": "crownthrive.penta.event.v1",
+  "public_capabilities": [
+    "factual-lineage",
+    "default-deny-authority",
+    "controlled-update",
+    "backward-compatible-normalization",
+    "authority-aware-relay",
+    "continuity-certification"
+  ],
+  "public_event_types": [
+    "penta.truth.asserted",
+    "penta.authority.verdict",
+    "penta.update.applied",
+    "penta.relay.forwarded",
+    "penta.continuity.certified",
+    "penta.scribe.published"
+  ],
+  "private_repository_locations_disclosed": false
+}
