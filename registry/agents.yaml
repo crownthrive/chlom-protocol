@@ -28,3 +28,7 @@ agents:
     name: QA and Security Agent
     may: [test, scan, audit-permissions, validate-claims, recommend-hold]
     may_not: [rotate-production-secret-without-approval]
+  - id: pentabooks
+    name: PentaBooks Publishing OS
+    may: [ingest-governed-sources, register-books, register-editions, append-canon, run-vm-book-gates, prepare-release-manifests, emit-release-events, route-rights-review]
+    may_not: [silently-overwrite-history, publish-without-gates, unseal-protected-material, change-rights-without-authority]

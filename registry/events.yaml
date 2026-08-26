@@ -23,3 +23,12 @@ events:
   - record.version.superseded
   - integration.delivery.failed
   - integration.delivery.recovered
+  - book.registered
+  - book.edition.registered
+  - book.canon.appended
+  - book.qa.pass
+  - book.qa.fail
+  - book.release.preflight.passed
+  - book.release.preflight.failed
+  - book.release.approved
+  - book.release.published

@@ -70,3 +70,9 @@ components:
     name: Cross-Chain Settlement and Attestation Mirror
     status: target-architecture
     maturity: deferred
+  - id: pentabooks
+    name: PentaBooks Publishing OS
+    status: operational-v1
+    maturity: operational
+    description: Governed CrownThrive and Virality Music book-production runtime for source ingestion, canon continuity, edition lineage, VM-BOOK gates, release preflight, publishing events, and adaptation readiness.
+    functions: [canon, editions, vm-book-001, vm-book-002, qa, release-preflight, publishing-outbox, adaptation-readiness]

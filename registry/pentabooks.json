@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "system_id": "ct.pentabooks.v1",
+  "name": "PentaBooks",
+  "version": "1.0.0",
+  "status": "OPERATIONAL",
+  "owner": "CrownThrive LLC",
+  "imprint": "Virality Music by CrownThrive",
+  "creator_brand": "Kavonte Jones Sr.",
+  "runtime": {
+    "platform": "ThriveBase",
+    "control_service": "ct.pentabooks.control.v1",
+    "control_function": "penta-books-control",
+    "public_service": "ct.pentabooks.public.v1",
+    "public_function": "penta-books-public",
+    "public_mode": "GET_ONLY",
+    "client_table_access": "DENY_BY_DEFAULT"
+  },
+  "source_policy": {
+    "governing_sources": [
+      "https://virality-music.crownthrive.chatgpt.site",
+      "ChatGPT Work production artifacts",
+      "PentaBooks project sources",
+      "PentaBooks project chats"
+    ],
+    "corrections": "APPEND_AND_PRESERVE",
+    "silent_overwrite": false
+  },
+  "standards": ["VM-BOOK-001", "VM-BOOK-002"],
+  "canon_states": ["fixed", "open", "sealed", "disputed", "superseded"],
+  "bindings": [
+    "CHLOM",
+    "ThriveBase",
+    "Virality Music",
+    "ChatGPT Work",
+    "CrownLytics",
+    "CrownPulse",
+    "ThrivePush",
+    "GSO Rights Desk"
+  ],
+  "release_policy": {
+    "fail_closed": true,
+    "rights_clearance_required": true,
+    "accessibility_review_required": true,
+    "source_checksum_required": true,
+    "mandatory_standard_gates_required": true
+  }
+}

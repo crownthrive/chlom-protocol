@@ -8,6 +8,10 @@ platforms:
     name: Virality Music
     role: music-publishing-transmedia-ip
     chlom_use: rights ledger, provenance, participatory rights, licensing, product and correction records
+  - id: pentabooks
+    name: PentaBooks
+    role: governed-book-production-operating-system
+    chlom_use: source provenance, canon states, edition lineage, publication gates, rights review, correction history, release evidence and adaptation readiness
   - id: good-shit-only
     name: Good Shit Only
     role: commercial-rights-marketplace
