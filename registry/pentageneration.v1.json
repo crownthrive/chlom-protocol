@@ -1,0 +1,61 @@
+{
+  "registry_id": "ct.chlom.registry.pentageneration.v1",
+  "version": "1.0.0",
+  "system_id": "ct.pentageneration.v1",
+  "name": "PentaGeneration",
+  "owner": "CrownThrive, LLC",
+  "classification": "institutional_continuity_subsystem",
+  "purpose": "Seven-generation continuity, stewardship, institutional memory, succession readiness, lineage preservation, and continuity proofing across CrownThrive.",
+  "rights_rule": "PentaGeneration records lineage and continuity evidence; it does not itself transfer, assign, license, encumber, or extinguish CrownThrive rights.",
+  "authority": {
+    "model": "bounded",
+    "maximum": "D2/A2",
+    "manufactures_authority": false,
+    "destructive_actions": "require separate explicit governed authority",
+    "ownership_transfer": "never implied by a continuity handoff"
+  },
+  "generations": [
+    {"number": 1, "code": "G1-ORIGIN", "focus": "Origin & Founder Intent"},
+    {"number": 2, "code": "G2-TRANSFER", "focus": "Transfer Readiness"},
+    {"number": 3, "code": "G3-RESILIENCE", "focus": "Operational Resilience"},
+    {"number": 4, "code": "G4-CULTURE", "focus": "Cultural Continuity"},
+    {"number": 5, "code": "G5-ASSETS", "focus": "Rights, Capital & Asset Stewardship"},
+    {"number": 6, "code": "G6-ADAPTATION", "focus": "Adaptive Governance"},
+    {"number": 7, "code": "G7-LEGACY", "focus": "Legacy & Regeneration"}
+  ],
+  "protected_lineage_classes": [
+    "doctrine_and_canon",
+    "rights_and_ip",
+    "cultural_imprint",
+    "source_and_release_history",
+    "runtime_and_recovery_state",
+    "institutional_documentation",
+    "publishing_canon",
+    "provider_and_integration_bindings"
+  ],
+  "required_handoff_evidence": [
+    "canonical_source_proof",
+    "authority_map",
+    "asset_and_rights_lineage",
+    "operating_and_recovery_runbooks",
+    "archive_integrity_evidence",
+    "dependency_map",
+    "continuity_evaluation",
+    "unresolved_risk_register",
+    "correction_and_rollback_path"
+  ],
+  "runtime": {
+    "state_store": "ThriveBase",
+    "database_contract": "penta_generation_* v1",
+    "authenticated_service": "penta-generation",
+    "service_contract": "ct.pentageneration.v1",
+    "jwt_required": true
+  },
+  "evidence_policy": {
+    "corrections_append": true,
+    "silent_overwrite": false,
+    "historical_versions_retained": true,
+    "unknown_state_explicit": true,
+    "private_evidence_public_by_default": false
+  }
+}
