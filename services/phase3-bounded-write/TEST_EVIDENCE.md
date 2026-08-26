@@ -34,11 +34,24 @@ Current convergence state:
 - authorized operation allowlist: `["audits.create"]`
 - general provider writes: not implied
 
+## Partnero Phase 3 reversible canary
+
+A dedicated guarded runtime `partnero-phase3-write-canary` was deployed and iterated to v3. Its bounded design is synthetic customer create -> exact readback -> immediate delete, using an existing partner only as a referral identity. It explicitly performs no payout, transaction, balance, partner mutation, or real-customer email operation.
+
+Pre-mutation evidence:
+
+- v1 discovery call `/partners?limit=1` returned HTTP `422`; no mutation occurred.
+- v2 discovery call `/partners` succeeded far enough to inspect the response shape, but the assumed top-level partner `key` was absent; no mutation occurred.
+- v3 accepts Partnero's documented alternative partner references (`key`, `id`, or email) while keeping the synthetic customer email-free and requiring cleanup.
+- the v3 launch from SQL was not completed because the execution environment blocked secret-bearing invocation before provider execution. The provider therefore remains `candidate`, not `verified_write`.
+
+This is intentional fail-closed behavior: deployed canary software is not equivalent to a completed provider certificate.
+
 ## Remaining lanes
 
 No successful provider mutation evidence was found in the shared request-audit ledger for Adserver.Online, CrownLytics, Locticians, Partnero, Stripe, ThrivePush, ThriveTools OPT, or Reward Loyalty during this certification pass. Those services therefore remain candidate/blocked rather than receiving fabricated `write_verified` status.
 
-Partnero's one-time webhook binder reports that its historical binding completed and then sealed itself, but no durable create/readback/rollback mutation receipt exists in the shared request-audit ledger. It remains a Phase 3 candidate pending a new reversible canary with complete evidence.
+Partnero's historical one-time webhook binder reports that its binding completed and then sealed itself, but that older path does not supply a complete shared create/readback/rollback receipt sufficient for Phase 3 promotion.
 
 Locticians' sealed v3 certification is retained as read-certification evidence. Its current executable API runtime remains GET-only, so it is not promoted to provider-write authority.
 
