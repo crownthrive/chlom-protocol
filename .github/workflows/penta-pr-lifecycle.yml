@@ -1,0 +1,41 @@
+name: Penta PR Lifecycle
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+    - cron: '27 * * * *'
+    - cron: '47 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: pr, merge, closer, or auto
+        required: false
+        default: auto
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  checks: read
+  statuses: read
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.pick.outputs.mode }}
+    steps:
+      - id: pick
+        shell: bash
+        run: |
+          mode='${{ github.event.inputs.mode }}'
+          if [[ -n "$mode" && "$mode" != auto ]]; then echo "mode=$mode" >> "$GITHUB_OUTPUT"; exit 0; fi
+          m=$(date -u +%M)
+          if (( 10#$m < 20 )); then mode=pr; elif (( 10#$m < 40 )); then mode=merge; else mode=closer; fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+  run:
+    needs: select
+    uses: crownthrive1/CrownThrive-Support/.github/workflows/penta-pr-lifecycle-reusable.yml@main
+    with:
+      mode: ${{ needs.select.outputs.mode }}
+    secrets: inherit
