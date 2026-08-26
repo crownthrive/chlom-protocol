@@ -1,0 +1,32 @@
+{
+  "registry_id": "ct.pentaroute.registry.v3",
+  "phase": 3,
+  "contract_version": "v3",
+  "canonical_name": "PentaRoute",
+  "components": [
+    {"name":"PentaRoute","slug":"pentaroute","role":"routing_orchestrator"},
+    {"name":"PentaTun","slug":"pentatun","role":"runtime_execution"},
+    {"name":"PentaBeata","slug":"pentabeata","role":"heartbeat_and_liveness"},
+    {"name":"PentaFetch","slug":"pentafetch","role":"bounded_fetch"},
+    {"name":"PentaGet","slug":"pentaget","role":"http_get","method":"GET"},
+    {"name":"PentaHead","slug":"pentahead","role":"http_head","method":"HEAD"},
+    {"name":"PentaOptions","slug":"pentaoptions","role":"http_options","method":"OPTIONS"},
+    {"name":"PentaPost","slug":"pentapost","role":"http_post","method":"POST"},
+    {"name":"PentaPut","slug":"pentaput","role":"http_put","method":"PUT"},
+    {"name":"PentaPatch","slug":"pentapatch","role":"http_patch","method":"PATCH"},
+    {"name":"PentaDelete","slug":"pentadelete","role":"http_delete","method":"DELETE"}
+  ],
+  "guardrails": {
+    "registered_targets_only": true,
+    "exact_certified_mutation_path": true,
+    "max_auto_risk": "D2",
+    "d3_human_governance": true,
+    "uncertified_mutations": false,
+    "universal_delete": false
+  },
+  "heartbeat_schedule": "*/5 * * * *",
+  "proof": {
+    "pentaroute": "https://tzajnzshmtzjenqulehq.supabase.co/functions/v1/pentaroute",
+    "pentabeata": "https://tzajnzshmtzjenqulehq.supabase.co/functions/v1/pentabeata"
+  }
+}
