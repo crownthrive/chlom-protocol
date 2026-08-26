@@ -6,7 +6,7 @@
     {
       "system_key": "ct.penta.mail.v1",
       "canonical_name": "PentaMail",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "maturity": "production",
       "category": "communications",
       "runtime_ref": "edge:penta-mail",
@@ -20,10 +20,18 @@
         "recovery_alert",
         "release_notification",
         "governance_notification",
+        "pentahelp_escalation",
         "delivery_receipt",
         "private_reporting_bridge",
         "pentagreen_execution_failure_alert"
       ],
+      "rate_model": {
+        "canonical_service_id": "mailgun_relay",
+        "sender_lane_identity": true,
+        "pentamail_local_ceiling_per_minute": 60,
+        "ordinary_internal_local_ceiling_per_minute": 10,
+        "provider_and_monthly_budget_controls_preserved": true
+      },
       "guardrails": {
         "raw_secret_exposure": false,
         "arbitrary_recipient_send": false,
@@ -37,7 +45,7 @@
     {
       "system_key": "ct.penta.state-architecture-report.v1",
       "canonical_name": "State Architecture Report",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "maturity": "production",
       "category": "institutional_observability",
       "runtime_ref": "edge:penta-mail?action=state_architecture_report",
@@ -45,10 +53,12 @@
       "schedule": "0 * * * *",
       "change_ingestion": true,
       "private_reporting_bridge": true,
+      "pentahelp_snapshot": "public.penta_help_report_snapshot_v1",
       "canonical_evidence_store": "public.penta_state_architecture_reports_v1",
       "state_classes": [
         "PRODUCTION_HEALTHY",
-        "PRODUCTION_DEGRADED_CERTIFICATION",
+        "PRODUCTION_HEALTHY_GOVERNED_HOLDS",
+        "PRODUCTION_DEGRADED_EXECUTION",
         "CRITICAL"
       ],
       "authority_boundary": "read_observe_report_only"
@@ -63,7 +73,7 @@
     {
       "jobname": "penta-mail-outage-watch-v1",
       "schedule": "*/5 * * * *",
-      "purpose": "detect owner-visible outage/degradation transitions, including PentaGreen execution failure"
+      "purpose": "detect owner-visible outage/degradation transitions"
     },
     {
       "jobname": "penta-mail-outbox-dispatch-v1",
@@ -71,12 +81,20 @@
       "purpose": "deliver queued PentaMail notifications"
     }
   ],
-  "evidence": {
-    "initial_state_report_delivery": "verified_mailgun_http_200",
-    "hourly_clock_independent_delivery": "verified_mailgun_http_200",
-    "v1_0_1_corrected_report_delivery": "verified_mailgun_http_200",
-    "initial_outage_alert_delivery": "verified_mailgun_http_200",
-    "pentagreen_failure_alert_delivery": "verified_mailgun_http_200",
+  "report_v1_1_0": {
+    "pentahelp_integration": true,
+    "ttl_ttyl_visibility": true,
+    "nonproduction_system_routes": true,
+    "signed_help_receipts": true,
+    "provider_factory_route_backlog": true,
+    "current_vs_historical_certification_semantics": true,
+    "governed_holds_distinct_from_execution_failure": true,
+    "verified_mailgun_http_200": true,
     "private_delivery_identifiers": "retained_in_thrivebase_only"
+  },
+  "guardrails": {
+    "websites_deferred": true,
+    "d3_human_reserved": true,
+    "authority_manufacture": false
   }
 }
