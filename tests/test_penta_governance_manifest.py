@@ -36,6 +36,14 @@ class PentaGovernanceManifestTests(unittest.TestCase):
         self.assertTrue(democracy["conflict_disclosure"])
         self.assertTrue(democracy["recusal"])
 
+    def test_civic_enrollment_is_lifecycle_bound(self):
+        civic = self.manifest["democracy"]["civic_enrollment"]
+        self.assertEqual(set(civic["auto_enroll_subject_types"]), {"human", "agent"})
+        self.assertEqual(set(civic["excluded_subject_types"]), {"service", "governance_body"})
+        self.assertTrue(civic["lifecycle_synced"])
+        self.assertFalse(civic["membership_grants_authority"])
+        self.assertTrue(civic["ballot_eligibility_requires_snapshot"])
+
     def test_high_risk_requires_human_and_panel_controls(self):
         self.assertTrue(self.manifest["branches"]["legislative"]["d2_d3_human_ratification"])
         self.assertEqual(self.manifest["branches"]["judicial"]["d2_d3_minimum_non_recused_judges"], 3)
@@ -67,6 +75,8 @@ class PentaGovernanceManifestTests(unittest.TestCase):
         self.assertTrue(verification["provider_applied"])
         self.assertTrue(verification["d2_without_human_ratification_rejected"])
         self.assertTrue(verification["emergency_action_over_72_hours_rejected"])
+        self.assertTrue(verification["civic_enrollment_trigger_applied"])
+        self.assertTrue(verification["governance_bodies_do_not_auto_enroll"])
         self.assertTrue(verification["rls_verified"])
 
     def test_marks_are_asserted_not_falsely_registered(self):
@@ -81,6 +91,8 @@ class PentaGovernanceManifestTests(unittest.TestCase):
     def test_database_surface_count(self):
         self.assertEqual(self.manifest["database"]["table_count"], 17)
         self.assertEqual(len(self.manifest["database"]["tables"]), 17)
+        self.assertIn("penta_runtime.penta_sync_civic_membership_v1", self.manifest["database"]["functions"])
+        self.assertIn("penta_runtime.penta_prepare_ballot_eligibility_v1", self.manifest["database"]["functions"])
 
 
 if __name__ == "__main__":
