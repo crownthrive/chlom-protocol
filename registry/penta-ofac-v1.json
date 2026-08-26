@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "system_id": "ct.penta.ofac.v1",
+  "canonical_name": "PentaOFAC",
+  "phase": 3,
+  "state": "ACTIVE",
+  "version": "1.1.0",
+  "penta_loop": ["Discover", "Govern", "Execute", "Verify", "Preserve"],
+  "authority": {
+    "source_authority": "U.S. Department of the Treasury, Office of Foreign Assets Control",
+    "may": ["fetch authoritative public sanctions data", "validate transport and XML namespace", "compute SHA-256 fingerprints", "detect feed changes", "emit compliance signals", "route governed screening work", "preserve evidence"],
+    "may_not": ["manufacture sanctions authority", "declare a person or entity sanctioned solely from a feed-change event", "block or seize funds", "reject a customer automatically without an authorized downstream policy", "bypass CHLOM authority"]
+  },
+  "sources": [
+    {
+      "source_id": "sdn_advanced",
+      "scope": "SDN",
+      "url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML",
+      "format": "Advanced XML",
+      "fingerprint": "SHA-256"
+    },
+    {
+      "source_id": "consolidated_advanced",
+      "scope": "NON_SDN_CONSOLIDATED",
+      "url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_ADVANCED.XML",
+      "format": "Advanced XML",
+      "fingerprint": "SHA-256"
+    }
+  ],
+  "runtime": {
+    "edge_function": "https://tzajnzshmtzjenqulehq.supabase.co/functions/v1/penta-ofac",
+    "status_action": "?action=status",
+    "refresh_interval_minutes": 15,
+    "source_stagger_minutes": {"sdn_advanced": [2,17,32,47], "consolidated_advanced": [9,24,39,54]},
+    "rate_limit_minutes": 4
+  },
+  "evidence": {
+    "tables": ["public.penta_ofac_sources", "public.penta_ofac_snapshots", "public.penta_ofac_change_events", "public.penta_ofac_system_state"],
+    "status_rpc": "public.penta_ofac_status_v1()",
+    "change_disposition": "COMPLIANCE_SIGNAL_REVIEW_REQUIRED"
+  }
+}
