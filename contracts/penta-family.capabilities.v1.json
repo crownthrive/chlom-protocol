@@ -1,23 +1,40 @@
 {
-  "schema": "crownthrive.chlom.mesh.capability.v1",
+  "schema": "crownthrive.chlom.mesh.capability.v2",
   "capability_id": "penta-family",
-  "architecture_version": "1.0.0",
+  "architecture_version": "1.1.0",
   "event_contract": "crownthrive.penta.event.v1",
   "public_capabilities": [
     "factual-lineage",
-    "default-deny-authority",
-    "controlled-update",
+    "default-deny-request-bound-authority",
+    "verified-source-build",
+    "verified-snapshot-readback",
+    "controlled-monotonic-update",
+    "registered-reverse-rollback",
     "backward-compatible-normalization",
-    "authority-aware-relay",
-    "continuity-certification"
+    "signed-authority-aware-relay",
+    "durable-idempotent-relay",
+    "evidence-bound-continuity-certification"
   ],
   "public_event_types": [
     "penta.truth.asserted",
+    "penta.scribe.published",
     "penta.authority.verdict",
+    "penta.build.verified",
+    "penta.snapshot.verified",
     "penta.update.applied",
     "penta.relay.forwarded",
-    "penta.continuity.certified",
-    "penta.scribe.published"
+    "penta.continuity.certified"
   ],
-  "private_repository_locations_disclosed": false
+  "orchestration_order": [
+    "truth",
+    "authority",
+    "execution",
+    "interoperation",
+    "continuity"
+  ],
+  "verification_status": "6/6 standard CI PASS",
+  "runtime_distribution_status": "built-packaged-containerized-tested",
+  "external_live_deployment_claimed": false,
+  "private_repository_locations_disclosed": false,
+  "private_secret_material_disclosed": false
 }
