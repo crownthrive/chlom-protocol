@@ -1,0 +1,76 @@
+{
+  "contract": "ct.registry.pentamail.v1",
+  "institutional_phase": 3,
+  "canonical_runtime": "ThriveBase",
+  "systems": [
+    {
+      "system_key": "ct.penta.mail.v1",
+      "canonical_name": "PentaMail",
+      "version": "1.0.0",
+      "maturity": "production",
+      "category": "communications",
+      "runtime_ref": "edge:penta-mail",
+      "provider": "Mailgun",
+      "provider_domain": "relay.crownthrive.com",
+      "recipient_binding": "private_allowlisted_runtime_binding",
+      "capabilities": [
+        "state_architecture_report",
+        "priority_outbox",
+        "outage_alert",
+        "recovery_alert",
+        "release_notification",
+        "governance_notification",
+        "delivery_receipt"
+      ],
+      "guardrails": {
+        "raw_secret_exposure": false,
+        "arbitrary_recipient_send": false,
+        "authority_manufacture": false,
+        "provider_certification_manufacture": false,
+        "money_movement": false,
+        "universal_delete": false,
+        "d3_human_reserved": true
+      }
+    },
+    {
+      "system_key": "ct.penta.state-architecture-report.v1",
+      "canonical_name": "State Architecture Report",
+      "version": "1.0.0",
+      "maturity": "production",
+      "category": "institutional_observability",
+      "runtime_ref": "edge:penta-mail?action=state_architecture_report",
+      "cadence": "hourly",
+      "schedule": "0 * * * *",
+      "change_ingestion": true,
+      "canonical_evidence_store": "public.penta_state_architecture_reports_v1",
+      "state_classes": [
+        "PRODUCTION_HEALTHY",
+        "PRODUCTION_DEGRADED_CERTIFICATION",
+        "CRITICAL"
+      ],
+      "authority_boundary": "read_observe_report_only"
+    }
+  ],
+  "schedulers": [
+    {
+      "jobname": "penta-mail-state-architecture-hourly-v1",
+      "schedule": "0 * * * *",
+      "purpose": "compile and dispatch the State Architecture Report"
+    },
+    {
+      "jobname": "penta-mail-outage-watch-v1",
+      "schedule": "*/5 * * * *",
+      "purpose": "detect owner-visible outage/degradation transitions"
+    },
+    {
+      "jobname": "penta-mail-outbox-dispatch-v1",
+      "schedule": "*/5 * * * *",
+      "purpose": "deliver queued PentaMail notifications"
+    }
+  ],
+  "evidence": {
+    "initial_state_report_delivery": "verified_mailgun_http_200",
+    "initial_outage_alert_delivery": "verified_mailgun_http_200",
+    "private_delivery_identifiers": "retained_in_thrivebase_only"
+  }
+}
