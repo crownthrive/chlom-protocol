@@ -16,6 +16,26 @@
     "public_mode": "GET_ONLY",
     "client_table_access": "DENY_BY_DEFAULT"
   },
+  "penta_fabric": {
+    "agent_id": "ct.agent.gen61.penta.books",
+    "fabric_id": "ct.fabric.penta.v1",
+    "institutional_did": "did:chlom:agent:pentabooks",
+    "authority_ceiling": "A2",
+    "decision_ceiling": "D2",
+    "execution_mode": "candidate_only",
+    "independent_verifier_required": true,
+    "routes": [
+      "CHLOM -> PentaBooks",
+      "PentaBooks -> PentaMesh Router",
+      "PentaBooks -> PentaVault Custodian",
+      "PentaBooks -> Penta Independent Verifier",
+      "PentaBooks -> PentaRelease Packager",
+      "PentaBooks -> PentaWave Continuity"
+    ],
+    "provider_write": false,
+    "money_movement": false,
+    "rights_grant": false
+  },
   "source_policy": {
     "governing_sources": [
       "https://virality-music.crownthrive.chatgpt.site",
@@ -31,6 +51,12 @@
   "bindings": [
     "CHLOM",
     "ThriveBase",
+    "PentaFabric",
+    "PentaMesh Router",
+    "PentaVault Custodian",
+    "Penta Independent Verifier",
+    "PentaRelease Packager",
+    "PentaWave Continuity",
     "Virality Music",
     "ChatGPT Work",
     "CrownLytics",
