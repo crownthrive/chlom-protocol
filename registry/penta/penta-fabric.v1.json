@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.3.0",
+  "registry_id": "ct.registry.penta-fabric.v1",
+  "fabric_id": "ct.fabric.penta.v1",
+  "mesh_id": "ct.mesh.penta.v1",
+  "canonical_name": "PentaFabric",
+  "aliases": ["Pentafabric", "prenrafrabic"],
+  "generation": 61,
+  "state": "controlled_test",
+  "authority": {
+    "autonomy_ceiling": "A2",
+    "decision_ceiling": "D2",
+    "d3_human_reserved": true,
+    "self_approval": false,
+    "provider_write_inherited": false,
+    "money_movement_inherited": false,
+    "rights_grant_inherited": false
+  },
+  "nomenclature": {
+    "PentaFabric": "Canonical orchestration fabric",
+    "PentaAgentic": "Generation 61 agent family",
+    "PentaMesh": "Redundant interoperability and routing mesh",
+    "PentaEdge": "Authority, identity, least-data, and side-effect gate",
+    "PentaFederation": "Bounded federation governance and routing facade",
+    "PentaJobs": "Deadline-aware work and PentaFactory dispatch",
+    "PentaCrons": "Timezone-aware recurring schedule governance",
+    "PentaSpecter": "Bug and maintenance planning agent",
+    "PentaSecure": "Security finding and patch packaging agent",
+    "PentaVault": "Proprietary asset custody and lineage layer",
+    "PentaRelease": "Patch, hotfix, and release-impact packaging layer",
+    "PentaWave": "Versioned wave-continuity and handoff layer",
+    "PentaFactory": "Canonical CrownThrive framework/software production factory",
+    "PentaBooks": "Governed book-production specialist bound into Generation 61"
+  },
+  "layers": [
+    {"ordinal": 0, "name": "Founder and Reserved Authority", "boundary": "D3_HUMAN_RESERVED"},
+    {"ordinal": 1, "name": "CHLOM Rights and Governance", "boundary": "D2_MAX"},
+    {"ordinal": 2, "name": "PentaFabric Orchestration", "boundary": "D2_MAX"},
+    {"ordinal": 3, "name": "Cultural and Convergent Intelligence", "boundary": "D2_MAX"},
+    {"ordinal": 4, "name": "PentaMesh, PentaEdge, and PentaFederation", "boundary": "D2_MAX"},
+    {"ordinal": 5, "name": "PentaAgentic Generational Layer", "boundary": "D2_MAX"},
+    {"ordinal": 6, "name": "PentaJobs and PentaCrons", "boundary": "D2_MAX"},
+    {"ordinal": 7, "name": "PentaFactory and Distribution", "boundary": "D2_MAX"},
+    {"ordinal": 8, "name": "PentaSpecter and PentaSecure", "boundary": "D2_MAX"},
+    {"ordinal": 9, "name": "Vault, Evidence, Analytics, and Continuity", "boundary": "D2_MAX"}
+  ],
+  "agents": [
+    {"agent_id":"ct.agent.gen61.penta.verifier","did":"did:chlom:agent:penta_verifier"},
+    {"agent_id":"ct.agent.gen61.penta.books","did":"did:chlom:agent:pentabooks"},
+    {"agent_id":"ct.agent.gen61.penta.crons","did":"did:chlom:agent:pentacron_governor"},
+    {"agent_id":"ct.agent.gen61.penta.edge","did":"did:chlom:agent:pentaedge_guard"},
+    {"agent_id":"ct.agent.gen61.penta.federation","did":"did:chlom:agent:pentafederation_governor"},
+    {"agent_id":"ct.agent.gen61.penta.jobs","did":"did:chlom:agent:pentajob_orchestrator"},
+    {"agent_id":"ct.agent.gen61.penta.mesh","did":"did:chlom:agent:pentamesh_router"},
+    {"agent_id":"ct.agent.gen61.penta.release","did":"did:chlom:agent:penta_release_packager"},
+    {"agent_id":"ct.agent.gen61.penta.secure","did":"did:chlom:agent:pentasecure"},
+    {"agent_id":"ct.agent.gen61.penta.specter","did":"did:chlom:agent:pentaspecter"},
+    {"agent_id":"ct.agent.gen61.penta.vault","did":"did:chlom:agent:pentavault_custodian"},
+    {"agent_id":"ct.agent.gen61.penta.continuity","did":"did:chlom:agent:penta_continuity"}
+  ],
+  "proprietary_assets": [
+    {"asset_id":"ct.asset.penta.alg.agentic-handoff.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"6d7119a546f677c8a013cec807fb14896092923496966d34a84d6cd3539ba526"},
+    {"asset_id":"ct.asset.penta.alg.edge-authority.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"10e2f5148886452165b9893d84f02e02008c49c98a68a4030f421b267bfd0455"},
+    {"asset_id":"ct.asset.penta.alg.jobs-dispatch.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"07aa337dcc3de58ff9c84cf3a8bee2066bf364a9b99b0cc5c2d33800d585fb69"},
+    {"asset_id":"ct.asset.penta.alg.maintenance-orchestrator.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"d1a408beb14418818c9aa17aca898d4aac537ec2a3c2645ccf2c38aecd7a43d7"},
+    {"asset_id":"ct.asset.penta.alg.maintenance-window.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"96f9afeabb3bd6ffbe3578447b209aa788678b60812cf61da4cb50d4eb62c21c"},
+    {"asset_id":"ct.asset.penta.alg.mesh-redundancy.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"1c6c420780ec6462cead6640dd910c7748dc2b65385672a520ccc6bb43b3ff11"},
+    {"asset_id":"ct.asset.penta.alg.release-class.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"110a1fdcbc1c9e0e4372965f653505dd5df3148659add6ba04d334acff2a86a9"},
+    {"asset_id":"ct.asset.penta.alg.secure-release.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"49990b9482a4221f86584c5d951d60b7d26a62371c9f8ca68df76197fde9146a"},
+    {"asset_id":"ct.asset.penta.alg.specter-triage.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"a2a806990663cc05ea6358b329d666d552e86ed109fa15eb9aa92659227382a3"},
+    {"asset_id":"ct.asset.penta.alg.vault-custody.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"a026e3916f922dabd9cbb51cd8edfceebdda941b603d21d8aec2160e20bb3a1c"},
+    {"asset_id":"ct.asset.penta.alg.wave-continuity.v1","type":"algorithm","version":"1.0.0","public_reference_digest":"28af3f520ee8f2953f2dec4e7d5a2185474621894b14eda07132a97f67a457cb"},
+    {"asset_id":"ct.asset.penta.code.status.v1","type":"runtime_code","version":"1.0.0","public_reference_digest":"b872c67d9edac36450cec424daa619750b84512e8df076c300038dde09c95784"},
+    {"asset_id":"ct.asset.penta.code.control-api.v1","type":"edge_function_source","version":"1.0.1","historical":true,"public_reference_digest":"be98a1065b2b0fb68708872ff3d8b22cba600a12422289d1bdf7205ce5c4d13e","deployment_digest_sha256":"71f461e0b19b36057e48f01b028d88429041d7a334e27832a077499a617ae9d1"},
+    {"asset_id":"ct.asset.penta.code.mcp.v1","type":"edge_function_source","version":"1.0.1","historical":true,"public_reference_digest":"f66d8362c262a47727de2153e5dd079b861158d012b4493397cf5a51a32a89ea","deployment_digest_sha256":"a3fa09b1afcc705331a12283c164c265453998691dd912d234fe5459a481c554"},
+    {"asset_id":"ct.asset.penta.code.control-api.v3","type":"source_code_custody_receipt","version":"1.1.0","current":true,"public_reference_digest":"8e2d065f5156fa67d3c184c799532ce341b6e0017f3f4e84b411d02fa793a38b","deployment_digest_sha256":"3fee494dabfba2525b5a503123e9e9b4f4e156cc235a7e927430759557689c26"},
+    {"asset_id":"ct.asset.penta.code.mcp.v3","type":"source_code_custody_receipt","version":"1.1.0","current":true,"public_reference_digest":"53e939efa132132fc9293ad2a7322cc2a5be1e1b77d4d0ea0fb815a3d4dfaadd","deployment_digest_sha256":"10ae2d66397571634f7dda682b3d0de55af58cc3eb1d4b33a16d902eae2307b0"},
+    {"asset_id":"ct.asset.penta.code.factory-worker.v1","type":"source_code_custody_receipt","version":"1.0.0","current":true,"public_reference_digest":"02a6de5843cff5568e9834f27a32d1b68e599ae7aeb359cc096a91fa8b0a1a9a","deployment_digest_sha256":"63353fa9cc5859122bc5cd03a8acdaa9cc38f690eca60694916ff55862e8d896","source_body_location":"supabase_edge_function_source_storage","vault_body_copy_state":"blocked_by_platform_safety_boundary"},
+    {"asset_id":"ct.asset.penta.code.factory-generator.v1","type":"source_code_custody_receipt","version":"1.0.0","current":true,"public_reference_digest":"cab963b55199e5b8d597ee5a9c089cb49b368570cbb07a3441fa305f502ae3d6","deployment_digest_sha256":"4311467881abdebe0b2a78e4dc3ee05ecccfc91eabeb96b63a1721adb3b0a215","source_body_location":"supabase_edge_function_source_storage","vault_body_copy_state":"blocked_by_platform_safety_boundary"}
+  ],
+  "implementation_boundary": {
+    "classification": "PUBLIC_CONTRACT_RESTRICTED_IMPLEMENTATION",
+    "protected_source_locations": ["Supabase Vault", "ThriveBase private runtime", "Supabase Edge Function protected source storage"],
+    "public_body_allowed": false,
+    "repository_projection": "contract, interface, stable ID, DID, version, deployment digest, public-reference digest, and custody state only"
+  },
+  "maintenance": {
+    "timezone": "America/New_York",
+    "start_local": "02:00",
+    "deadline_local": "05:00",
+    "strict_window_minutes": 180,
+    "new_work_after_deadline": false,
+    "scheduler_family": "PentaCrons",
+    "chlom_maintenance_preflight_required": true,
+    "latest_reconciliation": {
+      "scheduler_duplicate_findings": 3,
+      "worker_authorization_findings": 1,
+      "resolution": "recovered_without_patch",
+      "generic_factory_candidates_released": 0,
+      "generic_factory_candidates_disposition": "hold_superseded_recovered",
+      "open_jobs_after_reconciliation": 0
+    }
+  },
+  "interfaces": [
+    {"system_id":"ct.system.penta-control-api.v1","provider":"Supabase Edge Functions","deployment_version":3,"service_version":"1.1.0","auth":"JWT","state":"controlled_test","federation_embedded":true,"deployment_digest_sha256":"3fee494dabfba2525b5a503123e9e9b4f4e156cc235a7e927430759557689c26","invocation_verification":"pending_independent_authenticated_verification"},
+    {"system_id":"ct.system.penta-mcp.v1","provider":"Supabase Edge Functions","deployment_version":3,"service_version":"1.1.0","protocol":"2026-07-28","auth":"JWT","state":"controlled_test","federation_embedded":true,"deployment_digest_sha256":"10ae2d66397571634f7dda682b3d0de55af58cc3eb1d4b33a16d902eae2307b0","invocation_verification":"pending_independent_authenticated_verification"}
+  ],
+  "factory_runtime": {
+    "canonical_name": "PentaFactory",
+    "compatibility_project_key": "crownthrive-os-v2-factory",
+    "compatibility_contract": "ct.pentaframework-factory.v1",
+    "worker_deployment_version": 11,
+    "generator_deployment_version": 6,
+    "worker_identity_readback": "PentaFactory™",
+    "worker_identity_readback_http_status": 200
+  },
+  "distribution": {
+    "parent": "crownthrive1/chlom-protocol",
+    "children": ["crownthrive1/CrownThrive-Support", "crownthrive1/CrownThrive-CIE"],
+    "factory_canonical_name": "PentaFactory",
+    "factory_compatibility_project_key": "crownthrive-os-v2-factory",
+    "required_lanes": ["discover", "architect", "generate", "security", "test", "package", "deploy", "assurance"]
+  }
+}

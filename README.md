@@ -37,6 +37,18 @@ artifacts/            retained formal/research artifacts
 ## Public / private boundary
 The source recovery package classifies major CHLOM materials as internal or restricted. This public repository therefore stores source metadata and reconciled public-safe abstractions, not confidential documents, raw evidence, secrets, Fingerprint implementation details or private economic logic.
 
+## PentaFabric Generation 61
+
+CHLOM is the rights, authority, evidence, identity, and compliance layer beneath the controlled-test **PentaFabric** orchestration family. PentaFabric coordinates PentaAgentic, PentaMesh, PentaEdge, PentaJobs, PentaCrons, PentaSpecter, PentaSecure, PentaVault, PentaRelease, PentaWave, and the canonical **PentaFactory** production system without manufacturing CHLOM or D3 authority.
+
+Public-safe architecture and machine contracts are maintained in:
+
+- `docs/architecture/PENTA_FABRIC.md`
+- `registry/penta/penta-fabric.v1.json`
+- `services/penta/penta-interface-contract.v1.json`
+
+Protected algorithm and deployed interface-source bodies remain in Vault/private ThriveBase custody. Repository records expose stable IDs, DIDs, versions, deployment digests, and public-reference digests only.
+
 ## Validation
 ```bash
 python -m pip install -r requirements-dev.txt

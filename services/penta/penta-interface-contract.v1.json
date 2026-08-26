@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.1.0",
+  "contract_id": "ct.contract.penta.interfaces.v1",
+  "fabric_id": "ct.fabric.penta.v1",
+  "state": "controlled_test",
+  "authority": {
+    "autonomy_ceiling": "A2",
+    "decision_ceiling": "D2",
+    "d3_human_reserved": true,
+    "self_approval": false
+  },
+  "control_api": {
+    "system_id": "ct.system.penta-control-api.v1",
+    "service_version": "1.0.1",
+    "provider": "Supabase Edge Functions",
+    "authentication": "JWT required",
+    "deployment_version": 2,
+    "deployment_digest_sha256": "71f461e0b19b36057e48f01b028d88429041d7a334e27832a077499a617ae9d1",
+    "vault_source_asset_id": "ct.asset.penta.code.control-api.v1",
+    "vault_public_reference_digest": "be98a1065b2b0fb68708872ff3d8b22cba600a12422289d1bdf7205ce5c4d13e",
+    "actions": [
+      {"name":"status","side_effect":"read_only","authority":"D0"},
+      {"name":"maintenance_tick","side_effect":"bounded_reversible","authority":"D2","force_allowed":false,"chlom_maintenance_preflight":true},
+      {"name":"trigger_wave","side_effect":"queue_compile_candidate","authority":"D2","activation_requested":false}
+    ]
+  },
+  "mcp": {
+    "system_id": "ct.system.penta-mcp.v1",
+    "service_version": "1.0.1",
+    "protocol_version": "2026-07-28",
+    "transport_profile": "stateless_remote",
+    "authentication": "JWT required",
+    "deployment_version": 2,
+    "deployment_digest_sha256": "a3fa09b1afcc705331a12283c164c265453998691dd912d234fe5459a481c554",
+    "vault_source_asset_id": "ct.asset.penta.code.mcp.v1",
+    "vault_public_reference_digest": "f66d8362c262a47727de2153e5dd079b861158d012b4493397cf5a51a32a89ea",
+    "methods": ["server/discover", "tools/list", "tools/call"],
+    "tools": [
+      {"name":"penta_status","side_effect":"read_only","authority":"D0"},
+      {"name":"penta_maintenance_tick","side_effect":"bounded_reversible","authority":"D2","force_allowed":false,"chlom_maintenance_preflight":true},
+      {"name":"penta_trigger_wave","side_effect":"queue_compile_candidate","authority":"D2","activation_requested":false}
+    ]
+  },
+  "restricted_implementation": {
+    "repository_body_included": false,
+    "custody": "Supabase Vault / ThriveBase restricted runtime",
+    "classification": "PUBLIC_CONTRACT_RESTRICTED_IMPLEMENTATION"
+  },
+  "verification": {
+    "provider_deployment_state": "ACTIVE",
+    "authenticated_end_to_end_invocation": "pending_independent_verification",
+    "production_certification": false
+  },
+  "non_effects": {
+    "provider_write_authority": false,
+    "money_movement_authority": false,
+    "rights_grant_authority": false,
+    "public_activation_authority": false,
+    "d3_authority": false
+  }
+}
