@@ -1,1 +1,76 @@
-All rights reserved. Proprietary to CrownThrive, LLC.
+CROWNTHRIVE / CHLOM PROPRIETARY REPOSITORY LICENSE AND MACHINE-USE NOTICE
+Version 3.0.0 — Effective 2026-08-26
+
+Copyright © 2026 CrownThrive, LLC. All rights reserved.
+
+This repository is publicly viewable for institutional transparency, interoperability, documentation, research orientation, support, and governed collaboration. Public visibility is not an open-source, open-content, patent, trademark, model-training, data-mining, commercial-use, certification, or derivative-work license unless a specific file, dependency, package, or authorized written agreement expressly states otherwise.
+
+1. COVERED MATERIAL
+
+“CHLOM Material” includes CrownThrive-specific original or controlled material in this repository, including CHLOM architecture, PentaFabric materials, Dynamic Licensing Asset (DLA) materials, Decentralized Autonomous Information Ledger (DAIL) materials, schemas, registries, taxonomies, ontologies, policies, integration contracts, certification methods, service designs, workflows, agents, factories, prompts, evaluations, source reconciliations, research papers, diagrams, software, configuration, datasets/compilations, evidence structures, licensing structures, and other CrownThrive-specific institutional knowledge, except material expressly identified as third-party or separately licensed.
+
+2. OWNERSHIP AND NO GENERAL LICENSE
+
+CrownThrive Material remains proprietary to CrownThrive, LLC or otherwise controlled under the applicable rights record. Repository access, cloning capability, indexing, caching, search, review, or technical interoperability does not transfer ownership and does not grant a general license to reproduce, redistribute, modify, adapt, sublicense, sell, host, white-label, commercialize, competitively replicate, or create derivative systems from CHLOM Material.
+
+No trademark, certification, patent, database, compilation, trade-dress, confidential-method, or trade-secret license is granted by public access.
+
+3. MACHINE, AI, ML, LLM, RETRIEVAL, AND DATA USE
+
+Unless separately authorized or independently permitted by applicable law, no permission is granted to use protected CHLOM Material for commercial foundation-model or application-model training; fine-tuning; continued pretraining; distillation; reinforcement learning; synthetic-data generation; corpus construction; embedding/vector databases intended to reproduce or substitute for CHLOM; systematic automated extraction; protected prompt/evaluation reconstruction; protected taxonomy/ontology reconstruction; or creation of a substantially substitutive commercial knowledge or governance product.
+
+Ordinary search indexing, accessibility processing, security research, fair use/fair dealing, and other rights that cannot lawfully be restricted remain governed by applicable law.
+
+4. APIS, MCP, SCHEMAS, AGENTS, AND INTEROPERABILITY
+
+Publication of an API, MCP, schema, event contract, provider adapter, certification interface, example, SDK concept, or machine-readable record describes an interface or interoperability surface. It does not license the underlying CrownThrive implementation, private data, protected methods, Marks, private evaluations, economic logic, or governance authority.
+
+Technical capability is not institutional permission. A successful call, provider response, service credential, workflow permission, or repository permission does not expand the user's authorized purpose or create CrownThrive ownership, licensing, certification, payment, or sovereign authority.
+
+5. CERTIFICATION AND GOVERNANCE
+
+No person or system may represent a third-party implementation, fork, adaptation, provider integration, model, dataset, service, or product as “CHLOM-certified,” “CrownThrive-certified,” approved, endorsed, or governed by CrownThrive without an authorized CrownThrive record for that exact claim.
+
+Operation-level certification does not create provider-wide authority. Historical, candidate, controlled-test, held, or archived records do not become current certification merely because they remain publicly accessible.
+
+6. PROTECTED METHODS AND CONFIDENTIAL MATERIAL
+
+Public-safe architecture is intended to support understanding and interoperability without surrendering rights in non-public implementation details, proprietary calibration, private evaluation corpora, private economic logic, restricted evidence, security-sensitive information, or other confidential material.
+
+Accidental public exposure of restricted CrownThrive material does not grant a right to retain, exploit, republish, train on, or commercialize that material. Suspected exposure should be reported through the repository SECURITY process when available or to contact@crownthrive.com.
+
+7. TRADEMARKS AND BRAND USE
+
+No trademark or service-mark license is granted. CrownThrive, CHLOM, PentaFabric, DLA, DAIL, product/framework names, logos, source identifiers, and other CrownThrive Marks may not be used in a manner likely to cause confusion as to source, sponsorship, affiliation, ownership, certification, endorsement, or partnership.
+
+Use of “™” identifies a claimed source identity and does not represent verified registration. Use of “®” requires a current verified registration applicable to the relevant mark, owner, goods/services, and territory.
+
+8. CONTRIBUTIONS
+
+Do not submit material without authority to submit it. Submission does not automatically create joint ownership, compensation, royalty, equity, confidentiality, partnership, employment, certification, governance authority, or rights in unrelated CrownThrive Material. CrownThrive may require a contributor license agreement, assignment, NDA, invention assignment, data/model license, media release, contractor agreement, or other written instrument before protected or commercial incorporation.
+
+9. THIRD-PARTY AND SEPARATELY LICENSED MATERIAL
+
+Third-party software, standards, provider APIs, libraries, media, and other third-party materials remain subject to their own terms. If a specific CrownThrive file or package carries an express separate license, that file/package license controls that identified material to its stated extent and does not automatically license unrelated repository content.
+
+10. COMMERCIAL, ENTERPRISE, OEM, DATA, AND RESEARCH RIGHTS
+
+Commercial reuse, enterprise integration beyond an expressly granted interoperability scope, OEM/white-label deployment, managed certification, protected data/model use, redistribution, commercial training, or other exploitation requires an authorized written CrownThrive license when not independently permitted by law.
+
+Permission requests: contact@crownthrive.com.
+
+11. HISTORICAL AND ARCHIVED MATERIAL
+
+Historical, superseded, deprecated, recovered, or archived material remains protected to the extent applicable. Archive status preserves lineage; it does not waive rights or establish present-day availability, certification, provider state, registration, or authority.
+
+12. NO WARRANTY OR LEGAL-STATUS OVERSTATEMENT
+
+To the maximum extent permitted by applicable law, publicly provided CHLOM Material is provided without warranties regarding fitness, merchantability, non-infringement, uninterrupted availability, or correctness for a particular use except where a binding agreement expressly provides otherwise.
+
+This notice communicates repository-use boundaries. It does not itself prove copyright/trademark registration, patent issuance, trade-secret status, chain of title, contract formation, or enforceability in every jurisdiction, and it does not replace qualified legal advice or negotiated agreements.
+
+13. RESERVATION OF RIGHTS
+
+All rights not expressly granted are reserved by CrownThrive, LLC.
+
+Contact: contact@crownthrive.com

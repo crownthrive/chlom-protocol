@@ -1,0 +1,10 @@
+{
+  "release_id": "ct.chlom.repo.v3.0.0",
+  "tag": "v3.0.0",
+  "target": "main",
+  "title": "CHLOM V3.0.0 — Phase 3 Governed Protocol",
+  "package": "releases/v3.0.0",
+  "release_state": "requested",
+  "draft": false,
+  "prerelease": false
+}
