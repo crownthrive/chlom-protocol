@@ -1,0 +1,117 @@
+{
+  "contract": "ct.registry.penta-help.v1",
+  "institutional_phase": 3,
+  "canonical_runtime": "ThriveBase",
+  "metaprotocol": {
+    "system_key": "penta.help.metaprotocol",
+    "canonical_name": "PentaHelp Metaprotocol",
+    "version": "1.0.4",
+    "maturity": "production",
+    "stages": [
+      "ASK",
+      "TRIAGE",
+      "HELP",
+      "TEST_OR_BUILD",
+      "INDEPENDENT_CERTIFY",
+      "LIAISE",
+      "RESOLVE_OR_ESCALATE"
+    ],
+    "all_pentas_can_ask": true,
+    "generic_idle_wait_prohibited": true,
+    "ttl_enabled": true,
+    "ttyl_enabled": true,
+    "d3_human_reserved": true
+  },
+  "systems": [
+    {
+      "system_key": "penta.helper",
+      "canonical_name": "PentaHelper",
+      "runtime_version": "1.0.3",
+      "maturity": "production",
+      "runtime_ref": "edge:penta-helper",
+      "clock": "* * * * *",
+      "max_batch_per_cycle": 2,
+      "database_backpressure": true,
+      "capabilities": [
+        "raise_help",
+        "scan_waiting_blocked_failed",
+        "bounded_readback_test",
+        "credential_readiness_reconcile",
+        "generic_pentafactory_productionization",
+        "bounded_self_repair",
+        "factory_provider_backlog_reconcile",
+        "restore_readiness_reconcile",
+        "signed_help_receipt"
+      ]
+    },
+    {
+      "system_key": "penta.liaison",
+      "canonical_name": "PentaLiaison",
+      "runtime_version": "1.0.0",
+      "maturity": "production",
+      "runtime_ref": "edge:penta-liaison",
+      "capabilities": [
+        "dependency_route",
+        "provider_route",
+        "repository_workflow_route",
+        "package_plan_route",
+        "human_governance_route",
+        "ttl_ttyl_escalation"
+      ]
+    }
+  ],
+  "separation_of_duties": {
+    "evidence_generation": ["PentaHelper", "PentaTest"],
+    "software_generation": ["PentaBuild", "PentaFactory"],
+    "independent_evaluation": ["PentaCertify"],
+    "dependency_routing": ["PentaLiaison"],
+    "authority_and_lineage": ["CHLOM", "DAIL"],
+    "self_approval": false
+  },
+  "production_promotion": {
+    "package_alone_sufficient": false,
+    "health_endpoint_alone_sufficient": false,
+    "semantic_functional_or_provider_evidence_required": true,
+    "sha256_receipts": true,
+    "append_only_help_receipts": true,
+    "provider_readback_required_for_provider_mutation": true,
+    "d3_auto_promotion": false
+  },
+  "backlog_policy": {
+    "delete_history": false,
+    "aggregate_current_dependency_by_route": true,
+    "stale_claim_recovery": true,
+    "superseded_job_disposition": "HOLD_SUPERSEDED_BY_NEWER_FACTORY_RUN",
+    "website_projection_disposition": "HOLD_DEFERRED_TO_PROJECTION_WAVE",
+    "liaison_threads_terminalize_with_request": true
+  },
+  "current_convergence": {
+    "production_systems_at_v1_1_report": 52,
+    "nonproduction_systems_at_v1_1_report": [
+      {
+        "system_key": "penta.merge",
+        "state": "TESTING_ROUTED",
+        "provider": "GitHub",
+        "native_clock": ":27",
+        "required_evidence": "exact governed merge plus provider readback"
+      },
+      {
+        "system_key": "penta.closer",
+        "state": "TESTING_ROUTED",
+        "provider": "GitHub",
+        "native_clock": ":47/deadline",
+        "required_evidence": "exact terminal disposition plus provider readback"
+      }
+    ],
+    "note": "This is a time-scoped evidence statement, not a permanent maturity cap. Later provider receipts may supersede it."
+  },
+  "guardrails": {
+    "authority_manufacture": false,
+    "credential_manufacture": false,
+    "raw_secret_exposure": false,
+    "universal_delete": false,
+    "money_movement_without_authority": false,
+    "d3_human_reserved": true,
+    "websites_deferred": true
+  }
+}
