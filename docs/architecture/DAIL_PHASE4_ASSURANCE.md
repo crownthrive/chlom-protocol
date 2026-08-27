@@ -56,9 +56,9 @@ DAIL evidence is evidence in context. A hash, event, receipt, signature, externa
 
 The public-safe hot evidence is recorded in:
 
-- crownthrive1/CrownThrive-Support/runtime/chlom-mesh-control/PRODUCTION_RECEIPT_2026-08-26_v1.md;
-- crownthrive1/CrownThrive-Support/developers/manifests/chlom-mesh-failover.v1.json;
-- crownthrive1/CrownThrive-Support/runtime/melanated-institutionalization/RECEIPT_2026-08-26_wave2.json.
+- crownthrive1/CrownThrive-OS/runtime/chlom-mesh-control/PRODUCTION_RECEIPT_2026-08-26_v1.md;
+- crownthrive1/CrownThrive-OS/developers/manifests/chlom-mesh-failover.v1.json;
+- crownthrive1/CrownThrive-OS/runtime/melanated-institutionalization/RECEIPT_2026-08-26_wave2.json.
 
 The public-safe, machine-readable receipt for the current hot repair and bounded cold drill is [artifacts/receipts/dail-phase4-assurance-production-evidence-2026-08-26.v1.json](../../artifacts/receipts/dail-phase4-assurance-production-evidence-2026-08-26.v1.json).
 

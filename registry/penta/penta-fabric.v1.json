@@ -116,7 +116,7 @@
   },
   "distribution": {
     "parent": "crownthrive1/chlom-protocol",
-    "children": ["crownthrive1/CrownThrive-Support", "crownthrive1/CrownThrive-CIE"],
+    "children": ["crownthrive1/CrownThrive-OS", "crownthrive1/CrownThrive-CIE"],
     "factory_canonical_name": "PentaFactory",
     "factory_compatibility_project_key": "crownthrive-os-v2-factory",
     "required_lanes": ["discover", "architect", "generate", "security", "test", "package", "deploy", "assurance"]

@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "repository": "crownthrive1/chlom-protocol",
   "default_branch": "main",
-  "mesh_contract_url": "https://raw.githubusercontent.com/crownthrive1/CrownThrive-Support/main/federation/penta-mesh.v1.json",
-  "mesh_status_url": "https://raw.githubusercontent.com/crownthrive1/CrownThrive-Support/main/federation/penta-mesh.status.v1.json",
+  "mesh_contract_url": "https://raw.githubusercontent.com/crownthrive1/CrownThrive-OS/main/federation/penta-mesh.v1.json",
+  "mesh_status_url": "https://raw.githubusercontent.com/crownthrive1/CrownThrive-OS/main/federation/penta-mesh.status.v1.json",
   "protocol_registry": "crownthrive1/chlom-protocol",
   "roles": ["chlom-protocol", "integration-registry", "governance-contracts", "penta-mesh-node"],
   "capabilities": {

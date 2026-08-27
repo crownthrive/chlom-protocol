@@ -17,7 +17,7 @@ class PentaFederationManifestTests(unittest.TestCase):
         self.assertEqual(self.data["parent_federation"], "CrownThrive Federation")
         self.assertEqual(
             self.data["canonical_repository_parent"]["repo_id"],
-            "ct.repo.crownthrive-support",
+            "ct.repo.CrownThrive-OS",
         )
 
     def test_release_state_is_not_overstated(self):

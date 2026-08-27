@@ -10,7 +10,7 @@ create table if not exists public.penta_federation_system_state (
   version text not null,
   status text not null,
   parent_federation text not null default 'CrownThrive Federation',
-  canonical_repo_parent text not null default 'ct.repo.crownthrive-support',
+  canonical_repo_parent text not null default 'ct.repo.CrownThrive-OS',
   authority_ceiling text not null default 'D2/A2',
   charter jsonb not null default '{}'::jsonb,
   last_verified_at timestamptz not null default now(),
@@ -88,7 +88,7 @@ insert into public.penta_federation_system_state(
   '1.0.0',
   'controlled_test',
   'CrownThrive Federation',
-  'ct.repo.crownthrive-support',
+  'ct.repo.CrownThrive-OS',
   'D2/A2',
   jsonb_build_object(
     'role','bounded federation governance and routing facade',

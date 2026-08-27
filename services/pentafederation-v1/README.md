@@ -6,7 +6,7 @@ PentaFederation is the governed Penta-facing federation facade for CrownThrive F
 
 - System: `ct.penta.federation.v1`
 - Parent: CrownThrive Federation
-- Canonical repository parent: `ct.repo.crownthrive-support`
+- Canonical repository parent: `ct.repo.CrownThrive-OS`
 - Canonical state: `institutional_federation`
 - Canonical repository transport: `repository-federation-bus`
 - Authority ceiling: A2 / D2

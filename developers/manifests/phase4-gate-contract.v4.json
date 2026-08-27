@@ -4,7 +4,7 @@
   "contract_version": "4.0.0",
   "repository": "crownthrive1/chlom-protocol",
   "authority_source": {
-    "repository": "crownthrive1/CrownThrive-Support",
+    "repository": "crownthrive1/CrownThrive-OS",
     "path": "developers/manifests/phase4-gate-contract.v4.json",
     "required_status_context": "CrownThrive governed merge gate"
   },

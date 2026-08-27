@@ -54,8 +54,8 @@
   },
   "documented_hot_evidence": {
     "as_of": "2026-08-26T23:47:21Z",
-    "production_receipt": "crownthrive1/CrownThrive-Support/runtime/chlom-mesh-control/PRODUCTION_RECEIPT_2026-08-26_v1.md",
-    "failover_boundary": "crownthrive1/CrownThrive-Support/developers/manifests/chlom-mesh-failover.v1.json",
+    "production_receipt": "crownthrive1/CrownThrive-OS/runtime/chlom-mesh-control/PRODUCTION_RECEIPT_2026-08-26_v1.md",
+    "failover_boundary": "crownthrive1/CrownThrive-OS/developers/manifests/chlom-mesh-failover.v1.json",
     "public_mesh_status": {
       "edge_function_version": 4,
       "state": "PASS",

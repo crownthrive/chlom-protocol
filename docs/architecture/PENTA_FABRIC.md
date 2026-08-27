@@ -95,7 +95,7 @@ Parent source authority: `crownthrive1/chlom-protocol`.
 
 Governed child projections include:
 
-- `crownthrive1/CrownThrive-Support`
+- `crownthrive1/CrownThrive-OS`
 - `crownthrive1/CrownThrive-CIE`
 
 PentaFactory uses the existing compatible project key `crownthrive-os-v2-factory` and required lanes `discover`, `architect`, `generate`, `security`, `test`, `package`, `deploy`, and `assurance` until a separately governed machine-ID migration replaces that compatibility key.

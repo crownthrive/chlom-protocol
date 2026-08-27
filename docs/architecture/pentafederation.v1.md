@@ -6,7 +6,7 @@
 **Runtime control plane:** ThriveBase  
 **Governance plane:** CHLOM™  
 **Canonical parent:** CrownThrive Federation  
-**Canonical repository parent:** `ct.repo.crownthrive-support` (`crownthrive1/CrownThrive-Support`)  
+**Canonical repository parent:** `ct.repo.CrownThrive-OS` (`crownthrive1/CrownThrive-OS`)  
 **State:** controlled test; runtime deployed and verified, production promotion remains governed by the parent PentaFabric/federation release gate.
 
 ## Purpose
@@ -40,7 +40,7 @@ D3 Founder / reserved human authority
 ## Federation identity
 
 - Parent federation identity: **CrownThrive Federation**.
-- Canonical repository parent: **CrownThrive-Support**.
+- Canonical repository parent: **CrownThrive-OS**.
 - Penta system ID: `ct.penta.federation.v1`.
 - Gen-61 governor: `ct.agent.gen61.penta.federation`.
 - Institutional DID: `did:chlom:agent:pentafederation_governor`.

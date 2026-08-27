@@ -7,8 +7,8 @@
   "owner": "CrownThrive LLC",
   "parent_federation": "CrownThrive Federation",
   "canonical_repository_parent": {
-    "repo_id": "ct.repo.crownthrive-support",
-    "repository": "crownthrive1/CrownThrive-Support"
+    "repo_id": "ct.repo.CrownThrive-OS",
+    "repository": "crownthrive1/CrownThrive-OS"
   },
   "role": "BOUNDED_FEDERATION_GOVERNANCE_AND_ROUTING_FACADE",
   "runtime": {
