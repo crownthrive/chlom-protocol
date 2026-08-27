@@ -44,7 +44,7 @@ jobs:
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
   run:
     needs: select
-    uses: crownthrive1/CrownThrive-Support/.github/workflows/penta-pr-lifecycle-reusable.yml@main
+    uses: crownthrive1/CrownThrive-OS/.github/workflows/penta-pr-lifecycle-reusable.yml@main
     with:
       mode: ${{ needs.select.outputs.mode }}
     secrets: inherit
