@@ -1,0 +1,488 @@
+{
+  "schema": "ct.chlom.dail.phase4-assurance.v1",
+  "schema_version": "1.0.0",
+  "manifest_id": "ct.manifest.dail-phase4-assurance.v1",
+  "effective_date": "2026-08-26",
+  "owner": "CrownThrive LLC",
+  "source_of_truth": "CrownThrive OS",
+  "production_evidence_receipt": "artifacts/receipts/dail-phase4-assurance-production-evidence-2026-08-26.v1.json",
+  "canonical_identity": {
+    "component_id": "dail",
+    "system_id": "ct.system.dail",
+    "name": "Decentralized Autonomous Information Ledger",
+    "chlom_function": "records",
+    "database_namespace": "chlom_runtime",
+    "event_relation": "chlom_runtime.dail_events",
+    "append_function": "chlom_runtime.append_dail_event",
+    "verification_function": "chlom_runtime.verify_dail_chain"
+  },
+  "phase_boundary": {
+    "current_institutional_phase": 3,
+    "current_stage": "EXECUTE",
+    "target_institutional_phase": 4,
+    "target_stage": "VERIFY",
+    "phase4_state": "HOLD",
+    "phase4_activation_authorized": false,
+    "automatic_activation": false,
+    "transition_authority": "separate canonical CrownThrive OS phase-transition record",
+    "rule": "Passing this component gate may establish DAIL Phase 4 readiness, but it cannot independently advance CrownThrive into Phase 4."
+  },
+  "current_state": {
+    "hot_runtime_state": "PRODUCTION_HOT_BOUNDED",
+    "hot_status_route_state": "PASS",
+    "hot_status_route_scope": "read-only public CHLOM mesh aggregate status",
+    "authenticated_control_route_state": "HOLD_AUTHORITY_AND_ACTOR_BOUND_IDEMPOTENCY_REQUIRED",
+    "authenticated_control_route_execution_effect": "NONE",
+    "hot_scope": "restricted append-oriented institutional ledger plus a read-only public status route; the authenticated public control-request route is fail-closed",
+    "hot_claim_ceiling": "bounded internal production evidence; not unrestricted public ledger authority",
+    "cold_state": "LEDGER_LINEAGE_RECOVERY_VERIFIED",
+    "cold_assurance_state": "BOUNDED_COLD_ASSURANCE_ONLY",
+    "cold_scope": "ledger_lineage",
+    "cold_claim_ceiling": "payload-free lineage reconstruction in an isolated non-production target; not a full data, database, PITR, failover, or failback certification",
+    "source_recovery_state": "BOUNDED_CONTROLS_DEPLOYED__COMPLETE_SOURCE_CUSTODY_INCOMPLETE",
+    "phase4_assurance_state": "HOLD",
+    "evidence_custody_verified": true,
+    "ledger_lineage_checkpoint_verified": true,
+    "ledger_lineage_recovery_drill_verified": true,
+    "full_data_bearing_dail_export_verified": false,
+    "isolated_postgresql_17_data_restore_verified": false,
+    "rpo_rto_verified": false,
+    "infrastructure_failover_verified": false,
+    "failback_verified": false,
+    "external_anchor_verified": false,
+    "independent_phase4_conformance_verified": false
+  },
+  "documented_hot_evidence": {
+    "as_of": "2026-08-26T23:47:21Z",
+    "production_receipt": "crownthrive1/CrownThrive-Support/runtime/chlom-mesh-control/PRODUCTION_RECEIPT_2026-08-26_v1.md",
+    "failover_boundary": "crownthrive1/CrownThrive-Support/developers/manifests/chlom-mesh-failover.v1.json",
+    "public_mesh_status": {
+      "edge_function_version": 4,
+      "state": "PASS",
+      "get_probes": 3,
+      "get_status": 200,
+      "post_status": 405,
+      "database_status_rpc_execute_roles": {
+        "application_runtime": ["service_role"],
+        "administrative": ["postgres"],
+        "public_or_end_user": []
+      },
+      "response_contract": "exact_aggregate_allowlist_v1",
+      "database_response_treated_as_untrusted": true,
+      "binding_or_source_references_exposed": false,
+      "interpretation": "The public-safe GET route is operational, read-only, fail-closed, and aggregate-only; this does not grant public append, control, or direct database authority."
+    },
+    "authenticated_control_route": {
+      "edge_function_version": 2,
+      "state": "HOLD_AUTHORITY_AND_ACTOR_BOUND_IDEMPOTENCY_REQUIRED",
+      "verify_jwt": true,
+      "database_call_performed": false,
+      "request_body_parsed_or_persisted": false,
+      "execution_effect": "NONE",
+      "anonymous_probe": "HTTP_401_MISSING_AUTHORIZATION",
+      "invalid_jwt_probe": "HTTP_401_INVALID_JWT_FORMAT",
+      "authenticated_hold_response_verified": false,
+      "authenticated_request_acceptance_verified": false,
+      "production_readback_scope": "deployment metadata plus anonymous and invalid-token gateway rejection; no valid-JWT function-level response",
+      "interpretation": "The prior raw RPC/error projection was replaced with an explicit fail-closed hold. Authentication alone does not authorize CHLOM actions; no public control request is accepted until principal-to-action/target authority and actor/request-bound idempotency are deployed and verified."
+    },
+    "bounded_readbacks": [
+      {
+        "checked_events": 2063,
+        "failure_count": 0,
+        "scope": "CHLOM mesh production receipt"
+      },
+      {
+        "checked_events": 2227,
+        "failure_count": 0,
+        "scope": "later controlled-test route activation readback"
+      },
+      {
+        "observed_at": "2026-08-26T23:47:21Z",
+        "checked_events": 2756,
+        "head_event_hash": "3e942b3f6d851dd9c56bc507eeee40c8bd10d70ff16600deb1ebd98dc85f034c",
+        "failure_count": 0,
+        "integrity_state": "pass_with_documented_legacy_correction",
+        "scope": "post-repair production-hot and post-drill chain readback"
+      }
+    ],
+    "interpretation": "These dated receipts evidence a functioning bounded hot ledger. They do not prove a current data-bearing cold restore, infrastructure failover, independent Phase 4 conformance, or institutional Phase 4 activation."
+  },
+  "cold_evidence_boundary": {
+    "verified": [
+      "restricted evidence-custody readback",
+      "bounded repository and corpus recovery",
+      "backup package integrity and parse checks",
+      "encrypted recovery-capsule round-trip",
+      "payload-free ledger-lineage snapshot from a frozen production prefix",
+      "byte-exact private Google Drive package readback",
+      "isolated non-production lineage reconstruction",
+      "manifest, package, component, parse, and physical-link verification",
+      "tamper-injection rejection",
+      "provider-exit readback for the lineage artifact",
+      "post-drill production-hot route and chain unchanged"
+    ],
+    "not_verified": [
+      "complete encrypted export of DAIL event rows and required dependencies",
+      "point-in-time recovery of the DAIL data plane",
+      "isolated PostgreSQL 17 data-bearing restore",
+      "hot-to-cold failover",
+      "cold-to-hot failback",
+      "Phase 4 RPO/RTO predicate requiring three independent data-plane drills",
+      "independent external anchor continuity"
+    ],
+    "state": "LEDGER_LINEAGE_RECOVERY_VERIFIED",
+    "assurance_state": "BOUNDED_COLD_ASSURANCE_ONLY",
+    "scope": "ledger_lineage"
+  },
+  "ledger_lineage_checkpoint": {
+    "checkpoint_id": "89fd5b43-2b65-483c-a700-90c4a8951612",
+    "receipt_sha256": "679d52d82b9974b3e506c79448cf96152b4d4179680d97dfa3c5a9568196c0d1",
+    "source_event_count": 2746,
+    "source_max_sequence_id": 3042,
+    "source_head_event_hash": "e7621d81b9b7eb5622a42a93add1c995f2533aceed4734af1c714354956e2f99",
+    "package": {
+      "storage_provider": "google_drive",
+      "visibility": "private",
+      "object_id": "1nB3RTe_8gtLESuD8PURD7TogCr-X_Hn_",
+      "sha256": "48b0f0decd4bd48890f2d3567b663db09af460f9e5cac0ce996b97deb38d9b37"
+    },
+    "manifest": {
+      "storage_provider": "google_drive",
+      "visibility": "private",
+      "object_id": "1gKgWKG7AR-hpNV1iFKGP-n9XNicvfAdQ",
+      "sha256": "36bfb643150504ff2ba46612ffbb4aea2bc8c81e04508dab1075f1be0f17c564"
+    },
+    "contains_event_payloads": false,
+    "contains_actor_or_entity_identifiers": false
+  },
+  "ledger_lineage_recovery_drill": {
+    "drill_id": "1746cdda-db6d-4d3a-a747-927c59b00061",
+    "scope": "ledger_lineage",
+    "target_class": "isolated_non_production",
+    "result": "PASS",
+    "rpo_seconds": 419,
+    "rto_seconds_recorded": 1,
+    "rto_seconds_measured": 0.13059,
+    "restored_event_count": 2746,
+    "restored_max_sequence_id": 3042,
+    "restored_head_event_hash": "e7621d81b9b7eb5622a42a93add1c995f2533aceed4734af1c714354956e2f99",
+    "exact_provider_readback_verified": true,
+    "manifest_hash_verified": true,
+    "package_hash_verified": true,
+    "component_hashes_verified": true,
+    "structured_data_parse_verified": true,
+    "physical_chain_linkage_verified": true,
+    "tamper_injection_rejected": true,
+    "external_snapshot_anchor_required": true,
+    "hardened_verifier_replay_verified_at": "2026-08-27T00:08:33.078719Z",
+    "hardened_verifier_source_sha256": "27a747da79a69830e86bbd497af30a9add4413ce43b8ba66d7e62bf14cd0cb19",
+    "provider_exit_path_verified_for_lineage_artifact": true,
+    "production_hot_route_unchanged": true,
+    "full_data_restore_verified": false,
+    "production_failover_verified": false,
+    "failback_verified": false
+  },
+  "source_and_recovery_work": {
+    "state": "BOUNDED_CONTROLS_DEPLOYED__COMPLETE_SOURCE_CUSTODY_INCOMPLETE",
+    "artifacts": [
+      {
+        "path": "migrations/20260826_dail_phase4_assurance_v1.sql",
+        "role": "additive cold-checkpoint and isolated-recovery receipt controls",
+        "production_apply_verified": true,
+        "production_readback_verified": true,
+        "claim_ceiling": "deployed bounded assurance controls; does not replace or independently certify the hot append and verification functions"
+      },
+      {
+        "path": "migrations/20260826_chlom_mesh_status_service_role_hardening_v1.sql",
+        "role": "application-service-role database status RPC hardening with postgres retained as the administrative owner role",
+        "production_apply_verified": true,
+        "production_readback_verified": true,
+        "claim_ceiling": "least-privilege repair for the public-safe status path; no public write or control authority"
+      },
+      {
+        "path": "migrations/20260826_dail_checkpoint_receipt_link_index_v1.sql",
+        "role": "covering index for the append-only checkpoint receipt-chain foreign key",
+        "production_apply_verified": true,
+        "production_readback_verified": true,
+        "claim_ceiling": "performance hardening only; no new data route, recovery claim, or phase activation"
+      },
+      {
+        "path": "migrations/20260827_dail_hash_delimiter_hardening_v1.sql",
+        "role": "validated rejection of ambiguous pipe delimiters in production event-hash input fields",
+        "production_apply_verified": true,
+        "production_readback_verified": true,
+        "claim_ceiling": "input-domain hardening for the unchanged deployed v1.1.0 hash formula; not a new hash scheme or retroactive full-row integrity anchor"
+      },
+      {
+        "path": "supabase/functions/chlom-mesh-status/index.ts",
+        "role": "public-safe read-only CHLOM mesh status edge function",
+        "deployed_version": 4,
+        "production_readback_verified": true,
+        "claim_ceiling": "bounded aggregate public status only"
+      },
+      {
+        "path": "supabase/functions/chlom-mesh-control/index.ts",
+        "role": "JWT-gated fail-closed CHLOM public control-route hold",
+        "deployed_version": 2,
+        "production_deployment_metadata_readback_verified": true,
+        "production_unauthenticated_gateway_rejection_readback_verified": true,
+        "production_authenticated_hold_response_readback_verified": false,
+        "production_authenticated_action_acceptance_verified": false,
+        "claim_ceiling": "anonymous and invalid-token gateway rejection plus source/deployment parity only; no authenticated function-level hold response or action request is accepted or certified"
+      },
+      {
+        "path": "tests/test_dail_phase4_migration.py",
+        "role": "static migration safety and authority-boundary tests",
+        "claim_ceiling": "source validation only"
+      },
+      {
+        "path": "services/dail_v1/",
+        "role": "portable reference implementation for deterministic append, correction, idempotency, chain verification, and sanitized receipt export",
+        "claim_ceiling": "reference conformance only; sanitized receipt materialization is not a PostgreSQL data-plane restore"
+      },
+      {
+        "path": "tests/test_dail_v1.py",
+        "role": "portable runtime and receipt-export tests",
+        "claim_ceiling": "local deterministic evidence only"
+      },
+      {
+        "path": "scripts/verify_dail_lineage_snapshot.py",
+        "role": "payload-free lineage snapshot and isolated-reconstruction verifier",
+        "source_sha256": "27a747da79a69830e86bbd497af30a9add4413ce43b8ba66d7e62bf14cd0cb19",
+        "external_snapshot_anchor_required": true,
+        "claim_ceiling": "externally anchored ledger-lineage recovery verification only; not a database restore"
+      }
+    ],
+    "existing_hot_runtime_source_complete": false,
+    "bounded_assurance_controls_production_apply_verified": true,
+    "bounded_assurance_controls_production_readback_verified": true,
+    "complete_production_source_custody_verified": false
+  },
+  "activation_logic": {
+    "operator": "AND",
+    "required_predicate_count": 10,
+    "currently_met_predicate_count": 0,
+    "current_result": "HOLD",
+    "deny_or_unknown_fails_closed": true,
+    "documentation_only_cannot_pass": true,
+    "same_component_self_certification_prohibited": true
+  },
+  "activation_predicates": [
+    {
+      "id": "dail.phase4.hot-api",
+      "name": "Hot API and ledger operation assurance",
+      "required": true,
+      "current_state": "PARTIAL_BOUNDED_HOT_PASS__FULL_PREDICATE_INCOMPLETE",
+      "met": false,
+      "acceptance": {
+        "required_surfaces": [
+          "authenticated append",
+          "event readback",
+          "chain-status readback",
+          "correction append",
+          "health and version"
+        ],
+        "isolated_load_event_count_min": 10000,
+        "isolated_load_p95_latency_ms_max": 500,
+        "isolated_load_unexpected_error_count_max": 0,
+        "production_safe_canary_unique_events_min": 100,
+        "idempotent_retry_duplicate_count_max": 0,
+        "conflicting_retry_fail_closed_rate": 1.0,
+        "final_chain_failure_count_max": 0,
+        "required_observation_window_hours": 24,
+        "independent_readback_required": true
+      }
+    },
+    {
+      "id": "dail.phase4.source-custody",
+      "name": "Complete reproducible source custody",
+      "required": true,
+      "current_state": "PARTIAL_BOUNDED_SOURCE_CONTROLS_DEPLOYED",
+      "met": false,
+      "acceptance": {
+        "required_inventory": [
+          "tables",
+          "indexes",
+          "constraints",
+          "triggers",
+          "functions",
+          "grants",
+          "RLS and FORCE RLS state",
+          "schedulers",
+          "extensions",
+          "configuration dependencies"
+        ],
+        "unresolved_source_gap_count_max": 0,
+        "production_to_source_digest_mismatch_count_max": 0,
+        "clean_postgresql_17_build_required": true,
+        "independent_custody_readback_required": true
+      }
+    },
+    {
+      "id": "dail.phase4.independent-conformance",
+      "name": "Independent full-chain conformance",
+      "required": true,
+      "current_state": "HOLD_LINEAGE_PREFIX_VERIFIED__FULL_INDEPENDENT_CONFORMANCE_UNVERIFIED",
+      "met": false,
+      "acceptance": {
+        "separate_verifier_implementation_required": true,
+        "separate_verifier_principal_required": true,
+        "checked_event_count_must_equal_source_count": true,
+        "sequence_gap_count_max": 0,
+        "hash_failure_count_max": 0,
+        "previous_link_failure_count_max": 0,
+        "replay_failure_count_max": 0,
+        "correction_lineage_failure_count_max": 0,
+        "verification_required_before_and_after_restore": true
+      }
+    },
+    {
+      "id": "dail.phase4.encrypted-data-export",
+      "name": "Encrypted data-bearing cold export",
+      "required": true,
+      "current_state": "HOLD_NO_FULL_DAIL_DATA_EXPORT__LINEAGE_ONLY",
+      "met": false,
+      "acceptance": {
+        "full_dail_rows_required": true,
+        "required_dependencies_included": true,
+        "approved_authenticated_encryption_required": true,
+        "plaintext_manifest_sha256_required": true,
+        "ciphertext_sha256_required": true,
+        "schema_sha256_required": true,
+        "source_event_count_required": true,
+        "source_head_hash_required": true,
+        "off_provider_failure_domains_min": 2,
+        "independent_download_and_decryption_readback_required": true,
+        "raw_secret_material_in_manifest": false
+      }
+    },
+    {
+      "id": "dail.phase4.isolated-pg17-restore",
+      "name": "Isolated PostgreSQL 17 data-plane restore",
+      "required": true,
+      "current_state": "HOLD_FULL_DATA_RESTORE_NOT_PERFORMED__LINEAGE_ONLY",
+      "met": false,
+      "acceptance": {
+        "target": "fresh network-isolated PostgreSQL 17 instance",
+        "source_database_connectivity_during_restore": false,
+        "event_count_delta_max": 0,
+        "sequence_boundary_delta_max": 0,
+        "head_hash_match_required": true,
+        "chain_failure_count_max": 0,
+        "schema_object_gap_count_max": 0,
+        "rls_grant_trigger_negative_tests_required": true,
+        "append_idempotency_correction_tests_required": true,
+        "signed_or_attested_restore_receipt_required": true
+      }
+    },
+    {
+      "id": "dail.phase4.rpo-rto",
+      "name": "Measured recovery objectives",
+      "required": true,
+      "current_state": "HOLD_ONE_BOUNDED_LINEAGE_DRILL__THREE_DATA_PLANE_DRILLS_REQUIRED",
+      "met": false,
+      "acceptance": {
+        "rpo_seconds_max": 900,
+        "rto_seconds_max": 3600,
+        "successful_drills_min": 3,
+        "measurement_window_days_max": 30,
+        "event_loss_beyond_rpo_max": 0,
+        "authority_or_correction_loss_max": 0,
+        "independent_timing_evidence_required": true
+      }
+    },
+    {
+      "id": "dail.phase4.failover-failback",
+      "name": "Fenced failover and failback",
+      "required": true,
+      "current_state": "HOLD_PRODUCTION_FAILOVER_AND_FAILBACK_NOT_CERTIFIED",
+      "met": false,
+      "acceptance": {
+        "successful_primary_outage_drills_min": 3,
+        "writer_fencing_required": true,
+        "split_brain_interval_seconds_max": 0,
+        "duplicate_event_count_max": 0,
+        "sequence_gap_count_max": 0,
+        "failover_append_readback_required": true,
+        "failback_reconciliation_required": true,
+        "post_failback_chain_failure_count_max": 0,
+        "rollback_or_abort_path_verified": true
+      }
+    },
+    {
+      "id": "dail.phase4.external-anchoring",
+      "name": "Independent external head anchoring",
+      "required": true,
+      "current_state": "HOLD_NO_EXTERNAL_ANCHOR__LINEAGE_PROVIDER_EXIT_ONLY",
+      "met": false,
+      "acceptance": {
+        "raw_event_or_evidence_body_exported": false,
+        "anchor_contains": [
+          "ledger identity",
+          "sequence",
+          "head hash",
+          "timestamp",
+          "signature or attestation",
+          "version"
+        ],
+        "independent_anchor_failure_domains_min": 2,
+        "anchor_interval_seconds_max": 3600,
+        "consecutive_verified_anchors_min": 24,
+        "tamper_detection_test_required": true,
+        "provider_exit_readback_required": true
+      }
+    },
+    {
+      "id": "dail.phase4.ci",
+      "name": "Required continuous-integration assurance",
+      "required": true,
+      "current_state": "PARTIAL_LOCAL_TESTS_ONLY",
+      "met": false,
+      "acceptance": {
+        "required_checks": [
+          "registry validation",
+          "full unit test discovery",
+          "portable DAIL conformance",
+          "migration safety",
+          "schema and privilege drift",
+          "isolated restore",
+          "secret scan",
+          "dependency and static security scan"
+        ],
+        "consecutive_protected_main_passes_min": 3,
+        "required_check_bypass_count_max": 0,
+        "clean_checkout_reproduction_required": true,
+        "artifact_hash_and_retention_required": true
+      }
+    },
+    {
+      "id": "dail.phase4.security",
+      "name": "Independent security and least-privilege certification",
+      "required": true,
+      "current_state": "PARTIAL_SERVICE_ROLE_HARDENING_VERIFIED__NO_PHASE4_CERTIFICATE",
+      "met": false,
+      "acceptance": {
+        "threat_model_current_required": true,
+        "independent_reviewer_required": true,
+        "open_critical_findings_max": 0,
+        "open_high_findings_max": 0,
+        "forced_rls_for_restricted_relations_required": true,
+        "anon_authenticated_direct_write_grants_max": 0,
+        "security_definer_empty_search_path_required": true,
+        "privilege_escalation_negative_tests_required": true,
+        "secret_and_sensitive_payload_leak_tests_required": true,
+        "backup_key_separation_required": true,
+        "incident_pause_and_recovery_runbook_test_required": true
+      }
+    }
+  ],
+  "non_claims": [
+    "This manifest does not activate institutional Phase 4.",
+    "This manifest does not certify a cold standby or production failover route.",
+    "Ledger-lineage recovery verification is not a data-bearing DAIL restore.",
+    "A sanitized receipt export is not a PostgreSQL data-plane backup.",
+    "A DAIL hash, event, anchor, or receipt does not manufacture legal truth, rights, ownership, provider authority, or D3 authority.",
+    "External anchoring does not require a public blockchain."
+  ]
+}

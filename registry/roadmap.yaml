@@ -1,18 +1,45 @@
-version: 1
+version: 3.0.0
+updated: 2026-08-26
+canonical_lifecycle: [Discover, Govern, Execute, Verify, Preserve]
+current_institutional_phase: phase-3
+current_stage: Execute
+target_institutional_phase: phase-4
+target_stage: Verify
+target_state: HOLD
+phase_transition_rule: Passing component tests or DAIL assurance predicates does not independently activate an institutional phase. A separate CrownThrive OS phase-transition record is required.
 phases:
+  - id: phase-1
+    name: Discover
+    status: historical-consolidated
+    deliverables: [source-discovery, canonical-identity-discovery, provider-and-evidence-mapping]
   - id: phase-2
-    name: Governed Registry and Institutional Recovery
-    status: in-progress
-    deliverables: [source-manifest, canonical-terminology, schemas, registries, help-center-recovery, validation-ci, phase-3-contracts]
+    name: Govern
+    status: historical-consolidated
+    deliverables: [canonical-terminology, rights-rules-roles-governance, evidence-boundaries, phase-3-contracts]
   - id: phase-3
-    name: CHLOM Core Services
-    status: next
-    deliverables: [orchestrator, event-gateway, approval-service, audit-log, rights-registry, policy-registry, role-registry, revenue-registry, remedy-case-service, API]
+    name: Execute
+    status: current
+    deliverables: [governed-core-services, production-hot-bounded-dail, bounded-api-mcp, append-only-corrections, source-and-recovery-reconstruction, provider-readback]
+    dail_state:
+      hot: PRODUCTION_HOT_BOUNDED
+      hot_status_route: PASS
+      hot_status_route_scope: read-only-public-aggregate-status
+      authenticated_control_route: HOLD_AUTHORITY_AND_ACTOR_BOUND_IDEMPOTENCY_REQUIRED
+      authenticated_control_route_execution_effect: NONE
+      cold: LEDGER_LINEAGE_RECOVERY_VERIFIED
+      cold_assurance: BOUNDED_COLD_ASSURANCE_ONLY
+      cold_scope: ledger-lineage-only
+      source_recovery: BOUNDED_CONTROLS_DEPLOYED__COMPLETE_SOURCE_CUSTODY_INCOMPLETE
+      full_data_restore_certified: false
+      pitr_restore_certified: false
+      infrastructure_failover_certified: false
   - id: phase-4
-    name: Controlled Ecosystem Integrations
-    status: planned
-    deliverables: [virality-music, gso, stripe, crownthrive-io, publishing, support, analytics]
+    name: Verify
+    status: target-hold
+    gate_manifest: developers/manifests/dail-phase4-assurance.v1.json
+    deliverables: [hot-api-assurance, complete-source-custody, independent-conformance, encrypted-data-export, isolated-postgresql-17-restore, rpo-rto-proof, failover-failback-proof, external-anchoring, required-ci, independent-security-review]
+    activation_authorized: false
   - id: phase-5
-    name: Cryptographic and Decentralized Extensions
-    status: gated
-    deliverables: [public-attestations, verifiable-credentials, optional-zk, smart-contract-settlement, token-or-governance-modules-if-approved]
+    name: Preserve
+    status: future
+    deliverables: [provider-portability, succession, durable-rights-custody, archive-lineage, seven-generation-continuity]

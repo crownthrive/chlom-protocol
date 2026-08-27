@@ -44,15 +44,18 @@ jobs:
           SDN_SHA256: ${{ steps.monitor.outputs.sha256 }}
           PUBLISHED_DATE: ${{ steps.monitor.outputs.published_date }}
         run: |
+          cat > /tmp/ofac-sdn-change.md <<EOF
+          ## OFAC SDN feed change detected
+
+          The automated CHLOM monitor detected a new OFAC Specially Designated Nationals (SDN) Advanced XML dataset.
+
+          - Source: https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML
+          - Published date: ${PUBLISHED_DATE:-not reported}
+          - SHA-256: ${SDN_SHA256}
+          - Detection workflow: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+
+          **Important:** This event is a compliance signal, not an automatic determination that a CrownThrive customer, person, transaction, or asset is sanctioned. Screening systems must evaluate the updated authoritative dataset under their applicable policies and human review controls.
+          EOF
           gh issue create \
             --title "OFAC SDN feed changed — review required" \
-            --body "## OFAC SDN feed change detected
-
-The automated CHLOM monitor detected a new OFAC Specially Designated Nationals (SDN) Advanced XML dataset.
-
-- Source: https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML
-- Published date: ${PUBLISHED_DATE:-not reported}
-- SHA-256: ${SDN_SHA256}
-- Detection workflow: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
-
-**Important:** This event is a compliance signal, not an automatic determination that a CrownThrive customer, person, transaction, or asset is sanctioned. Screening systems must evaluate the updated authoritative dataset under their applicable policies and human review controls."
+            --body-file /tmp/ofac-sdn-change.md
