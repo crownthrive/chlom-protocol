@@ -33,21 +33,55 @@ function configuredRpcChains() {
   ).map((chain) => chain.toLowerCase().replaceAll('_', '-'));
 }
 
+function configurationHolds({
+  apiTokenConfigured,
+  googleAnalyticsConfigured,
+  rpcChains,
+  governanceState,
+  ecacConfigured
+}) {
+  const holds = [];
+  if (!apiTokenConfigured) holds.push('CHLOM_API_TOKEN');
+  if (!googleAnalyticsConfigured && rpcChains.length === 0) {
+    holds.push('CHAIN_OR_ANALYTICS_PROVIDER');
+  }
+  if (governanceState !== 'promoted') holds.push('CHLOM_GOVERNANCE_STATE');
+  if (!ecacConfigured) holds.push('CHLOM_ECAC_DIGEST');
+  return holds;
+}
+
 export default function handler(request, response) {
   const environment = process.env.VERCEL_ENV || 'local';
+  const providerReadback = environment !== 'local';
   const rpcChains = configuredRpcChains();
   const googleAnalyticsConfigured = GOOGLE_CONFIGURATION.every((key) =>
     Boolean(process.env[key])
   );
   const apiTokenConfigured = Boolean(process.env.CHLOM_API_TOKEN);
-  const ready =
-    apiTokenConfigured && (googleAnalyticsConfigured || rpcChains.length > 0);
+  const governanceState = process.env.CHLOM_GOVERNANCE_STATE || 'hold';
+  const ecacConfigured = Boolean(process.env.CHLOM_ECAC_DIGEST);
+  const dataPlaneReady =
+    apiTokenConfigured &&
+    (googleAnalyticsConfigured || rpcChains.length > 0) &&
+    governanceState === 'promoted' &&
+    ecacConfigured;
+  const holds = configurationHolds({
+    apiTokenConfigured,
+    googleAnalyticsConfigured,
+    rpcChains,
+    governanceState,
+    ecacConfigured
+  });
 
   response.setHeader('Cache-Control', 'no-store, max-age=0');
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
   response.setHeader('X-Content-Type-Options', 'nosniff');
   response.setHeader('X-Frame-Options', 'DENY');
   response.setHeader('Referrer-Policy', 'no-referrer');
+  response.setHeader(
+    'X-CHLOM-Readiness',
+    dataPlaneReady ? 'READY' : 'CONFIGURATION_HOLD'
+  );
 
   if (!['GET', 'HEAD'].includes(request.method)) {
     return response.status(405).json({
@@ -59,27 +93,45 @@ export default function handler(request, response) {
   }
 
   const payload = {
-    schema: 'ct.chlom.chain-evidence-fabric.health.v1',
+    schema: 'ct.chlom.chain-evidence-fabric.health.v2',
     service: 'chlom-protocol',
     role: 'rights_rules_roles_revenue_records_remedies_authority',
-    status: ready ? 'READY' : 'CONFIGURATION_HOLD',
+    status: providerReadback ? 'OPERATIONAL' : 'BINDING_REQUIRED',
+    operating_mode: dataPlaneReady
+      ? 'FULL_GOVERNED_DATA_PLANE'
+      : 'GOVERNANCE_CONTROL_PLANE_ONLY',
     release: environment === 'production' ? 'production' : 'candidate',
     environment,
-    provider_state: environment === 'local'
-      ? 'BINDING_REQUIRED'
-      : `BOUND_${environment.toUpperCase()}`,
+    provider_state: providerReadback
+      ? `BOUND_${environment.toUpperCase()}`
+      : 'BINDING_REQUIRED',
     project_id: 'prj_HewLgMjUiVBNCl0FADFbSggSp2QN',
     repository: 'crownthrive1/chlom-protocol',
     build_sha: process.env.VERCEL_GIT_COMMIT_SHA || 'local-candidate',
     deployment_id: process.env.VERCEL_DEPLOYMENT_ID || null,
+    readiness_status: dataPlaneReady ? 'READY' : 'CONFIGURATION_HOLD',
     readiness: {
       apiTokenConfigured,
       googleAnalyticsConfigured,
       googleAnalyticsLocation: process.env.GCP_BIGQUERY_LOCATION || 'US',
       configuredRpcChains: rpcChains,
-      governanceState: process.env.CHLOM_GOVERNANCE_STATE || 'hold',
+      governanceState,
       chainWriteEnabled: process.env.CHLOM_CHAIN_WRITE_ENABLED === 'true',
-      ecacConfigured: Boolean(process.env.CHLOM_ECAC_DIGEST)
+      ecacConfigured,
+      holds
+    },
+    capability_states: {
+      governance_and_rights: 'OPERATIONAL',
+      provider_liveness: providerReadback ? 'OPERATIONAL' : 'HOLD',
+      authenticated_api: apiTokenConfigured ? 'BOUND' : 'GATED',
+      rpc_read_lane: rpcChains.length > 0 ? 'BOUND' : 'GATED',
+      blockchain_analytics: googleAnalyticsConfigured ? 'BOUND' : 'GATED',
+      chain_broadcast:
+        process.env.CHLOM_CHAIN_WRITE_ENABLED === 'true' &&
+        governanceState === 'promoted' &&
+        ecacConfigured
+          ? 'BOUND_GOVERNED'
+          : 'GATED'
     },
     boundaries: {
       privateKeysAccepted: false,
@@ -105,18 +157,19 @@ export default function handler(request, response) {
       'mcp-streamable-http'
     ],
     endpoints: {
+      health: '/health',
       rest: ['/api/v1/rpc', '/api/v1/analytics', '/api/v1/attest'],
       mcp: '/api/mcp'
     },
-    provider_readback: environment !== 'local',
+    provider_readback: providerReadback,
     write_state: 'GATED',
     pass_manufactured: false,
     observed_at: new Date().toISOString()
   };
 
   if (request.method === 'HEAD') {
-    return response.status(ready ? 200 : 503).end();
+    return response.status(providerReadback ? 200 : 503).end();
   }
 
-  return response.status(ready ? 200 : 503).json(payload);
+  return response.status(providerReadback ? 200 : 503).json(payload);
 }
