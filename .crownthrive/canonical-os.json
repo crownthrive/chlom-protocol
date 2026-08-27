@@ -1,0 +1,13 @@
+{
+  "$schema": "https://crownthrive.com/schemas/crownthrive-os-repository-identity-v1.json",
+  "schema_version": "1.0.0",
+  "brand": "CrownThrive OS",
+  "component_repository": "crownthrive1/chlom-protocol",
+  "canonical_control_repository": "crownthrive1/CrownThrive-OS",
+  "canonical_url": "https://github.com/crownthrive1/CrownThrive-OS",
+  "institutional_role": "federated-component-bound-to-canonical-control",
+  "binding": "required",
+  "redirect_policy": "compatibility-only-not-authority",
+  "reference_policy": "all-live-references-must-use-canonical-identity",
+  "effective_date": "2026-08-27"
+}
