@@ -26,6 +26,7 @@ export default function handler(request, response) {
       service: 'chlom-protocol',
       status: 'WRITE_GATED',
       passManufactured: false,
+      pass_manufactured: false,
       error: { code: 'METHOD_NOT_ALLOWED', message: 'Only GET and HEAD are supported.' },
     });
   }
@@ -39,42 +40,66 @@ export default function handler(request, response) {
     readiness.chainWriteEnabled &&
     readiness.governanceState === 'promoted' &&
     readiness.ecacConfigured;
+  const readinessStatus = dataPlaneReady ? 'READY' : 'CONFIGURATION_HOLD';
+  const operatingMode = dataPlaneReady
+    ? 'FULL_GOVERNED_DATA_PLANE'
+    : 'GOVERNANCE_CONTROL_PLANE_ONLY';
+  const providerState = providerReadback
+    ? `BOUND_${environment.toUpperCase()}`
+    : 'BINDING_REQUIRED';
+  const projectId = 'prj_HewLgMjUiVBNCl0FADFbSggSp2QN';
+  const buildSha = process.env.VERCEL_GIT_COMMIT_SHA || 'local-candidate';
+  const deploymentId = process.env.VERCEL_DEPLOYMENT_ID || null;
+  const observedAt = new Date().toISOString();
+  const capabilityStates = {
+    governanceAndRights: 'OPERATIONAL',
+    providerLiveness: providerReadback ? 'OPERATIONAL' : 'HOLD',
+    authenticatedApi: readiness.apiTokenConfigured ? 'BOUND' : 'GATED',
+    rpcReadLane: readiness.configuredRpcChains.length > 0 ? 'BOUND' : 'GATED',
+    blockchainAnalytics: readiness.googleAnalyticsConfigured ? 'BOUND' : 'GATED',
+    chainBroadcast: chainBroadcastBound ? 'BOUND_GOVERNED' : 'GATED',
+  };
 
-  response.setHeader('X-CHLOM-Readiness', dataPlaneReady ? 'READY' : 'CONFIGURATION_HOLD');
+  response.setHeader('X-CHLOM-Readiness', readinessStatus);
 
   const payload = {
     ok: true,
     schema: 'ct.chlom.chain-evidence-fabric.health.v2',
     runtimeSchema: CHLOM_RUNTIME_SCHEMA,
     service: 'CHLOM Chain Evidence Fabric',
+    canonicalService: 'chlom-protocol',
     role: 'rights_rules_roles_revenue_records_remedies_authority',
-    version: '1.1.0',
+    version: '1.1.1',
     status: providerReadback ? 'OPERATIONAL' : 'BINDING_REQUIRED',
-    readinessStatus: dataPlaneReady ? 'READY' : 'CONFIGURATION_HOLD',
-    operatingMode: dataPlaneReady
-      ? 'FULL_GOVERNED_DATA_PLANE'
-      : 'GOVERNANCE_CONTROL_PLANE_ONLY',
+    readinessStatus,
+    readiness_status: readinessStatus,
+    operatingMode,
+    operating_mode: operatingMode,
     release: environment === 'production' ? 'production' : 'candidate',
     environment,
-    providerState: providerReadback
-      ? `BOUND_${environment.toUpperCase()}`
-      : 'BINDING_REQUIRED',
-    projectId: 'prj_HewLgMjUiVBNCl0FADFbSggSp2QN',
+    providerState,
+    provider_state: providerState,
+    projectId,
+    project_id: projectId,
     repository: 'crownthrive1/chlom-protocol',
-    buildSha: process.env.VERCEL_GIT_COMMIT_SHA || 'local-candidate',
-    deploymentId: process.env.VERCEL_DEPLOYMENT_ID || null,
-    observedAt: new Date().toISOString(),
+    buildSha,
+    build_sha: buildSha,
+    deploymentId,
+    deployment_id: deploymentId,
+    observedAt,
+    observed_at: observedAt,
     readiness: {
       ...readiness,
       holds,
     },
-    capabilityStates: {
-      governanceAndRights: 'OPERATIONAL',
-      providerLiveness: providerReadback ? 'OPERATIONAL' : 'HOLD',
-      authenticatedApi: readiness.apiTokenConfigured ? 'BOUND' : 'GATED',
-      rpcReadLane: readiness.configuredRpcChains.length > 0 ? 'BOUND' : 'GATED',
-      blockchainAnalytics: readiness.googleAnalyticsConfigured ? 'BOUND' : 'GATED',
-      chainBroadcast: chainBroadcastBound ? 'BOUND_GOVERNED' : 'GATED',
+    capabilityStates,
+    capability_states: {
+      governance_and_rights: capabilityStates.governanceAndRights,
+      provider_liveness: capabilityStates.providerLiveness,
+      authenticated_api: capabilityStates.authenticatedApi,
+      rpc_read_lane: capabilityStates.rpcReadLane,
+      blockchain_analytics: capabilityStates.blockchainAnalytics,
+      chain_broadcast: capabilityStates.chainBroadcast,
     },
     boundaries: {
       privateKeysAccepted: false,
@@ -101,8 +126,11 @@ export default function handler(request, response) {
       mcp: '/api/mcp',
     },
     providerReadback,
+    provider_readback: providerReadback,
     writeState: 'GATED',
+    write_state: 'GATED',
     passManufactured: false,
+    pass_manufactured: false,
   };
 
   if (request.method === 'HEAD') {
