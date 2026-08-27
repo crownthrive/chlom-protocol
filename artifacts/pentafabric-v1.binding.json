@@ -1,0 +1,58 @@
+{
+  "schema": "crownthrive.chlom.pentafabric.v1",
+  "version": "1.0.0",
+  "status": "HOTFIX_CANDIDATE",
+  "penta_event_contract": "crownthrive.penta.event.v1",
+  "fabric_schema": "crownthrive.pentafabric.v1",
+  "governance": {
+    "required": true,
+    "fail_closed": true,
+    "binding": "crownthrive.chlom.pentafabric.v1",
+    "required_fields": [
+      "mesh.chlom.intent_id",
+      "mesh.chlom.binding",
+      "mesh.chlom.rights_scope"
+    ],
+    "policy_refs_supported": true,
+    "oracle_cookie_supported": true
+  },
+  "routing": {
+    "canonical_layer": "interoperation",
+    "delivery_type": "penta.relay.forwarded",
+    "delivery_status": "DELIVERED",
+    "hot_provider": "vercel",
+    "evidence_provider": "supabase",
+    "kernel": "crownthrive1/PRIVATE-PentaOS"
+  },
+  "integrity": {
+    "preferred": "HMAC-SHA256",
+    "minimum_runtime": "SHA-256 digest with Vercel build provenance",
+    "secret_policy": "external runtime secret only; never commit key material"
+  },
+  "evidence": {
+    "ledger": "public.pentafabric_events",
+    "append_only": true,
+    "rls": true,
+    "immutable_update_delete": true,
+    "idempotent_key": "penta_id"
+  },
+  "receipts": {
+    "schema": "ct.penta.receipt.20260827.v1",
+    "required": [
+      "penta_id",
+      "trace_id",
+      "protocol",
+      "lane",
+      "route",
+      "provider",
+      "delivered_at"
+    ]
+  },
+  "release": {
+    "name": "PentaFabric v1",
+    "hotfix": true,
+    "requires_runtime_self_test": true,
+    "requires_chlom_binding": true,
+    "requires_persistence_evidence": true
+  }
+}
