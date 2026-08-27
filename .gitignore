@@ -22,3 +22,7 @@ node_modules/
 .DS_Store
 .env.*
 .env.local
+.next/
+.vercel/
+coverage/
+npm-debug.log*

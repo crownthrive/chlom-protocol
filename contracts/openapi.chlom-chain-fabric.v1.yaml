@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: CHLOM Chain Evidence Fabric API
+  version: 1.0.0
+  description: >-
+    Governed blockchain RPC, Google Blockchain Analytics, evidence-envelope,
+    and anchor-intent API. Technical reachability does not create CHLOM authority.
+servers:
+  - url: https://chlom-protocol.vercel.app
+paths:
+  /api/health:
+    get:
+      operationId: getHealth
+      responses:
+        "200":
+          description: Runtime ready
+        "503":
+          description: Runtime is deployed but required provider configuration is incomplete
+  /api/v1/rpc:
+    post:
+      operationId: governedRpc
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [chain, method]
+              properties:
+                chain:
+                  type: string
+                method:
+                  type: string
+                params:
+                  type: array
+                  items: {}
+      responses:
+        "200":
+          description: CHLOM evidence envelope
+        "403":
+          description: Method or authority denied
+  /api/v1/analytics:
+    post:
+      operationId: queryBlockchainAnalytics
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Google Blockchain Analytics evidence envelope
+        "400":
+          description: Unsupported chain or query template
+  /api/v1/attest:
+    post:
+      operationId: prepareEvidenceAnchor
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Non-broadcast evidence anchor intent
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,76 @@
+{
+  "schema": "ct.chlom.api-registry.v1",
+  "version": "1.0.0",
+  "state": "IMPLEMENTED_CONFIGURATION_HOLD",
+  "runtime": {
+    "provider": "vercel",
+    "project": "chlom-protocol",
+    "production_url": "https://chlom-protocol.vercel.app",
+    "node": "24.x",
+    "framework": "nextjs"
+  },
+  "authority": {
+    "default": "read_only",
+    "arbitrary_rpc_endpoints": false,
+    "arbitrary_sql": false,
+    "private_key_custody": false,
+    "chain_broadcast": {
+      "default": false,
+      "requires": [
+        "CHLOM_CHAIN_WRITE_ENABLED=true",
+        "CHLOM_GOVERNANCE_STATE=promoted",
+        "exact x-chlom-ecac-digest"
+      ]
+    }
+  },
+  "rest": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "auth": "public",
+      "risk": "D0"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/rpc",
+      "auth": "bearer",
+      "risk": "D1_D2"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/analytics",
+      "auth": "bearer",
+      "risk": "D1"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attest",
+      "auth": "bearer",
+      "risk": "D1"
+    }
+  ],
+  "mcp": {
+    "path": "/api/mcp",
+    "transport": "streamable_http_stateless",
+    "spec": "2026-07-28_with_2025_fallback",
+    "auth": "bearer",
+    "tools": [
+      "chlom_provider_status",
+      "chlom_chain_read",
+      "chlom_verify_transaction",
+      "chlom_query_blockchain_analytics",
+      "chlom_prepare_evidence_anchor"
+    ]
+  },
+  "providers": {
+    "rpc_priority": [
+      "quicknode",
+      "custom",
+      "google-blockchain-rpc-deprecated",
+      "alchemy",
+      "infura"
+    ],
+    "google_blockchain_rpc_sunset": "2026-12-15",
+    "durable_google_lane": "bigquery_blockchain_analytics"
+  }
+}
