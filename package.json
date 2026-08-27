@@ -1,34 +1,19 @@
 {
   "name": "@crownthrive/chlom-chain-evidence-fabric",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Governed provider-neutral blockchain RPC, Google Blockchain Analytics, evidence, API, and MCP runtime for CHLOM.",
+  "type": "module",
+  "description": "Governed provider-neutral blockchain RPC, Google Blockchain Analytics, evidence, REST, and MCP runtime for CHLOM.",
   "engines": {
     "node": "24.x"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
-    "certify": "npm run typecheck && npm test && npm run build"
+    "build": "node scripts/build-static.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "certify": "npm test && npm run build"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "2.0.0",
     "@vercel/oidc": "3.8.0",
-    "google-auth-library": "11.0.2",
-    "mcp-handler": "2.1.0",
-    "next": "16.3.2",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "zod": "4.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^24.0.0",
-    "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0",
-    "tsx": "4.20.0",
-    "typescript": "7.0.2"
+    "google-auth-library": "11.0.2"
   }
 }

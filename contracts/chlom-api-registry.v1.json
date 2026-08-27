@@ -1,13 +1,14 @@
 {
   "schema": "ct.chlom.api-registry.v1",
-  "version": "1.0.0",
-  "state": "IMPLEMENTED_CONFIGURATION_HOLD",
+  "version": "1.1.0",
+  "state": "PRODUCTION_CONTROL_PLANE_OPERATIONAL_DATA_PLANE_CONFIGURATION_HOLD",
   "runtime": {
     "provider": "vercel",
     "project": "chlom-protocol",
     "production_url": "https://chlom-protocol.vercel.app",
     "node": "24.x",
-    "framework": "nextjs"
+    "framework": "vercel_functions_plus_static_control_surface",
+    "output_directory": "public"
   },
   "authority": {
     "default": "read_only",
@@ -16,6 +17,7 @@
     "private_key_custody": false,
     "chain_broadcast": {
       "default": false,
+      "mcp_exposed": false,
       "requires": [
         "CHLOM_CHAIN_WRITE_ENABLED=true",
         "CHLOM_GOVERNANCE_STATE=promoted",
@@ -33,18 +35,21 @@
     {
       "method": "POST",
       "path": "/api/v1/rpc",
+      "implementation_path": "/api/rpc",
       "auth": "bearer",
       "risk": "D1_D2"
     },
     {
       "method": "POST",
       "path": "/api/v1/analytics",
+      "implementation_path": "/api/analytics",
       "auth": "bearer",
       "risk": "D1"
     },
     {
       "method": "POST",
       "path": "/api/v1/attest",
+      "implementation_path": "/api/attest",
       "auth": "bearer",
       "risk": "D1"
     }
@@ -52,8 +57,15 @@
   "mcp": {
     "path": "/api/mcp",
     "transport": "streamable_http_stateless",
-    "spec": "2026-07-28_with_2025_fallback",
+    "latest_spec": "2026-07-28",
+    "legacy_fallback": "2025-11-25",
     "auth": "bearer",
+    "origin_validation": true,
+    "required_modern_headers": [
+      "MCP-Protocol-Version",
+      "Mcp-Method",
+      "Mcp-Name for tools/call"
+    ],
     "tools": [
       "chlom_provider_status",
       "chlom_chain_read",
@@ -71,6 +83,13 @@
       "infura"
     ],
     "google_blockchain_rpc_sunset": "2026-12-15",
-    "durable_google_lane": "bigquery_blockchain_analytics"
+    "durable_google_lane": "bigquery_blockchain_analytics",
+    "google_authentication": "vercel_oidc_workload_identity_federation"
+  },
+  "evidence": {
+    "schema": "ct.chlom.chain-evidence.v1",
+    "dail_projection": true,
+    "database_persistence_claimed": false,
+    "anchor_broadcast_claimed": false
   }
 }

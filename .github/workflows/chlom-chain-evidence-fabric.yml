@@ -3,27 +3,27 @@ name: CHLOM Chain Evidence Fabric Certification
 on:
   pull_request:
     paths:
-      - "app/**"
-      - "lib/chlom/**"
+      - "api/**"
+      - "lib/runtime/**"
+      - "public/**"
+      - "scripts/build-static.mjs"
+      - "tests/runtime.test.mjs"
       - "contracts/chlom-api-registry.v1.json"
       - "contracts/openapi.chlom-chain-fabric.v1.yaml"
-      - "tests/chain-fabric.test.ts"
       - "package.json"
-      - "tsconfig.json"
-      - "next.config.ts"
       - "vercel.json"
       - ".github/workflows/chlom-chain-evidence-fabric.yml"
   push:
     branches: [main]
     paths:
-      - "app/**"
-      - "lib/chlom/**"
+      - "api/**"
+      - "lib/runtime/**"
+      - "public/**"
+      - "scripts/build-static.mjs"
+      - "tests/runtime.test.mjs"
       - "contracts/chlom-api-registry.v1.json"
       - "contracts/openapi.chlom-chain-fabric.v1.yaml"
-      - "tests/chain-fabric.test.ts"
       - "package.json"
-      - "tsconfig.json"
-      - "next.config.ts"
       - "vercel.json"
       - ".github/workflows/chlom-chain-evidence-fabric.yml"
   workflow_dispatch:
@@ -47,13 +47,18 @@ jobs:
         with:
           node-version: 24
           package-manager-cache: false
-      - name: Install
+      - name: Install exact runtime dependencies
         run: npm install --no-audit --no-fund
-      - name: Typecheck, test, and build
+      - name: Test and build
         run: npm run certify
-      - name: Verify fail-closed defaults
+      - name: Verify authority and deployment boundaries
         run: |
-          test "$(node -p "require('./contracts/chlom-api-registry.v1.json').authority.private_key_custody")" = "false"
-          test "$(node -p "require('./contracts/chlom-api-registry.v1.json').authority.chain_broadcast.default")" = "false"
-          grep -q "GOOGLE_BLOCKCHAIN_RPC" .env.example
-          grep -q "2026-12-15" .env.example
+          node -e "const p=require('./package.json'); if(p.engines.node!=='24.x') process.exit(1)"
+          grep -q '"outputDirectory": "public"' vercel.json
+          grep -q 'CHLOM_CHAIN_WRITE_ENABLED=false' .env.example
+          grep -q '2026-12-15' .env.example
+          grep -q 'server/discover' lib/runtime/mcp.js
+          grep -q 'MCP-Protocol-Version' api/mcp.js
+          test ! -e app/page.tsx
+          test ! -e next.config.ts
+          test ! -e tsconfig.json

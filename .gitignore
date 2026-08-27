@@ -26,3 +26,4 @@ node_modules/
 .vercel/
 coverage/
 npm-debug.log*
+public/build.json

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: CHLOM Chain Evidence Fabric API
-  version: 1.0.0
+  version: 1.1.0
   description: >-
     Governed blockchain RPC, Google Blockchain Analytics, evidence-envelope,
     and anchor-intent API. Technical reachability does not create CHLOM authority.
@@ -13,9 +13,9 @@ paths:
       operationId: getHealth
       responses:
         "200":
-          description: Runtime ready
+          description: Provider runtime is operational; inspect X-CHLOM-Readiness and readinessStatus for data-plane readiness
         "503":
-          description: Runtime is deployed but required provider configuration is incomplete
+          description: Provider binding/readback is unavailable
   /api/v1/rpc:
     post:
       operationId: governedRpc
@@ -27,6 +27,7 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties: false
               required: [chain, method]
               properties:
                 chain:
@@ -35,27 +36,73 @@ paths:
                   type: string
                 params:
                   type: array
+                  maxItems: 64
                   items: {}
       responses:
         "200":
           description: CHLOM evidence envelope
         "403":
           description: Method or authority denied
+        "503":
+          description: Provider or API perimeter not configured
   /api/v1/analytics:
     post:
       operationId: queryBlockchainAnalytics
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [chain, template]
+              properties:
+                chain:
+                  type: string
+                template:
+                  type: string
+                  enum: [latest_block, transaction_evidence, address_activity, contract_logs]
+                transactionHash:
+                  type: string
+                address:
+                  type: string
+                lookbackDays:
+                  type: integer
+                  minimum: 1
+                  maximum: 31
+                limit:
+                  type: integer
+                  minimum: 1
+                  maximum: 250
       responses:
         "200":
           description: Google Blockchain Analytics evidence envelope
         "400":
-          description: Unsupported chain or query template
+          description: Unsupported chain, query template, or parameters
+        "503":
+          description: Google Cloud federation or billing project not configured
   /api/v1/attest:
     post:
       operationId: prepareEvidenceAnchor
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [evidenceDigest, targetChain]
+              properties:
+                evidenceDigest:
+                  type: string
+                  pattern: "^[0-9a-f]{64}$"
+                targetChain:
+                  type: string
+                  enum: [base, base-sepolia, ethereum]
       responses:
         "200":
           description: Non-broadcast evidence anchor intent
