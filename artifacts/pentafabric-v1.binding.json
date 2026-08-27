@@ -1,7 +1,7 @@
 {
   "schema": "crownthrive.chlom.pentafabric.v1",
   "version": "1.0.0",
-  "status": "HOTFIX_CANDIDATE",
+  "status": "PRODUCTION",
   "penta_event_contract": "crownthrive.penta.event.v1",
   "fabric_schema": "crownthrive.pentafabric.v1",
   "governance": {
@@ -14,27 +14,39 @@
       "mesh.chlom.rights_scope"
     ],
     "policy_refs_supported": true,
-    "oracle_cookie_supported": true
+    "oracle_cookie_supported": true,
+    "universal_active_component_binding": true,
+    "future_active_component_enforcement": true
   },
   "routing": {
     "canonical_layer": "interoperation",
     "delivery_type": "penta.relay.forwarded",
     "delivery_status": "DELIVERED",
     "hot_provider": "vercel",
-    "evidence_provider": "supabase",
+    "hot_endpoint": "/penta",
+    "evidence_provider": "supabase-edge",
+    "evidence_edge_function": "pentafabric-ingest",
     "kernel": "crownthrive1/PRIVATE-PentaOS"
   },
   "integrity": {
-    "preferred": "HMAC-SHA256",
-    "minimum_runtime": "SHA-256 digest with Vercel build provenance",
-    "secret_policy": "external runtime secret only; never commit key material"
+    "private_kernel_preferred": "HMAC-SHA256",
+    "production_hot_path_content_integrity": "SHA-256",
+    "production_hot_path_transport_attestation": "VERCEL_OIDC_RS256",
+    "production_hot_path_workload_scope": "exact team + project + production environment",
+    "build_provenance_required": true,
+    "secret_policy": "No shared Vercel-to-Supabase secret is required on the public hot path; private or secret-bound transports may use HMAC-SHA256. Never commit key material."
   },
   "evidence": {
     "ledger": "public.pentafabric_events",
     "append_only": true,
     "rls": true,
     "immutable_update_delete": true,
-    "idempotent_key": "penta_id"
+    "idempotent_key": "penta_id",
+    "ingest_authentication": "VERCEL_OIDC_RS256",
+    "certification_penta_id": "penta_17b420e9-8d79-4903-a455-2c13c4acc931",
+    "certification_trace_id": "ptrace_81e24763-f843-4143-a7d3-eebe916a3375",
+    "certification_protocol": "PentaFabricOIDCCertification",
+    "certification_result": "PERSISTED"
   },
   "receipts": {
     "schema": "ct.penta.receipt.20260827.v1",
@@ -46,13 +58,26 @@
       "route",
       "provider",
       "delivered_at"
-    ]
+    ],
+    "transport_assurance": "VERCEL_OIDC_RS256"
   },
   "release": {
     "name": "PentaFabric v1",
     "hotfix": true,
-    "requires_runtime_self_test": true,
-    "requires_chlom_binding": true,
-    "requires_persistence_evidence": true
+    "state": "PRODUCTION",
+    "runtime_self_test": "PASS",
+    "persistence_evidence": "PASS",
+    "universal_output_contract": "PASS",
+    "active_components_bound": 66,
+    "active_components_total": 66,
+    "fabric_cycle": "HEALTHY",
+    "fabric_lifecycle": "PRODUCTION",
+    "private_kernel_merge_sha": "08b1d8c59dbedd13cd01b8f0e566aa1dc4f97909",
+    "os_packet_hotfix_merge_sha": "3fb903404ceb1a92f0191bf5e810c70b04fce0d9",
+    "os_oidc_evidence_merge_sha": "d7b73ffea81066bb283fe179a12e05ff68b9c0dd",
+    "os_oidc_context_merge_sha": "d20171a1df2909aaf8b0e1779bd4962ad6b0f8b6",
+    "production_deployment_id": "dpl_G5d8DGnif4KrbRcXVmvoari3jJuf",
+    "production_build_sha": "d20171a1df2909aaf8b0e1779bd4962ad6b0f8b6",
+    "production_verified_at": "2026-08-27T23:15:16Z"
   }
 }
