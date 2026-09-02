@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crownthrive.com/schemas/pentabooks/canon-fact-v2.json",
+  "title": "PentaBooks Canon Fact v2",
+  "type": "object",
+  "required": ["fact_key", "fact_value", "status", "source_ref"],
+  "properties": {
+    "fact_key": { "type": "string", "minLength": 1 },
+    "fact_value": {},
+    "status": {
+      "enum": [
+        "CANON_CONFIRMED",
+        "SOURCE_CLAIM",
+        "DISPUTED",
+        "PROTECTED",
+        "SEALED",
+        "OPEN",
+        "SUPERSEDED",
+        "CORRECTED"
+      ]
+    },
+    "source_ref": { "type": "string", "minLength": 1 },
+    "source_locator": { "type": ["string", "null"] },
+    "supersedes": { "type": ["string", "null"] }
+  }
+}

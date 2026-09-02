@@ -1,0 +1,104 @@
+{
+  "schema_version": "2.0.0",
+  "system_id": "ct.pentabooks.v2",
+  "name": "PentaBooks",
+  "version": "2.0.0",
+  "status": "OPERATIONAL_CANDIDATE_FACTORY",
+  "owner": "CrownThrive LLC",
+  "imprint": "Virality Music by CrownThrive",
+  "creator_brand": "Kavonte Jones Sr.",
+  "extends": "ct.pentabooks.v1",
+  "runtime": {
+    "platform": "ThriveBase",
+    "control_service": "ct.pentabooks.control.v1",
+    "factory_service": "ct.pentabooks.factory.v2",
+    "event_outbox": "penta_book_events",
+    "client_table_access": "DENY_BY_DEFAULT"
+  },
+  "penta_fabric": {
+    "agent_id": "ct.agent.gen61.penta.books",
+    "institutional_did": "did:chlom:agent:pentabooks",
+    "authority_ceiling": "A2",
+    "decision_ceiling": "D2",
+    "execution_mode": "candidate_only",
+    "provider_write": false,
+    "money_movement": false,
+    "rights_grant": false,
+    "independent_verifier_required": true
+  },
+  "rotation_contract": {
+    "minimum_complete_books": 2,
+    "target_digital_products": 10,
+    "completion": "creative_and_production_candidate_not_publication"
+  },
+  "source_policy": {
+    "governing_sources": [
+      "https://virality-music.crownthrive.chatgpt.site",
+      "approved ChatGPT Work production artifacts",
+      "PentaBooks project sources",
+      "PentaBooks project chats",
+      "outside primary research labeled as research"
+    ],
+    "corrections": "APPEND_AND_PRESERVE",
+    "silent_overwrite": false
+  },
+  "canon_states": [
+    "CANON_CONFIRMED",
+    "SOURCE_CLAIM",
+    "DISPUTED",
+    "PROTECTED",
+    "SEALED",
+    "OPEN",
+    "SUPERSEDED",
+    "CORRECTED"
+  ],
+  "cie_axes": [
+    "Place",
+    "People",
+    "Language",
+    "Object",
+    "Ritual",
+    "Sound",
+    "Power and Conflict",
+    "Care and Value",
+    "Boundary and Protection",
+    "Future and Legacy"
+  ],
+  "standards": [
+    "VM-BOOK-001",
+    "VM-BOOK-002",
+    "EPUB-3.3",
+    "EPUB-A11Y-1.1",
+    "WCAG-2.2-AA-TARGET",
+    "OFFICIAL-EPUBCHECK-BEFORE-RELEASE"
+  ],
+  "bindings": [
+    "CHLOM",
+    "ThriveBase",
+    "Virality Music",
+    "ChatGPT Work",
+    "PentaGreen",
+    "CrownLytics",
+    "CrownPulse",
+    "ThrivePush",
+    "GSO Rights Desk",
+    "Google Drive"
+  ],
+  "release_policy": {
+    "fail_closed": true,
+    "rights_clearance_required": true,
+    "accessibility_review_required": true,
+    "source_checksum_required": true,
+    "mandatory_standard_gates_required": true,
+    "provider_readback_required": true,
+    "commerce_safe_hold_respected": true
+  },
+  "pilot": {
+    "rotation_id": "ct.pentabooks.rotation.2026-09-02.01",
+    "complete_books": 2,
+    "digital_products": 10,
+    "state": "SAFE_HOLD_CANDIDATE",
+    "manifest_sha256": null,
+    "known_canon_collision": "Two current V4 sources claim TrapOpera Book Seven"
+  }
+}
