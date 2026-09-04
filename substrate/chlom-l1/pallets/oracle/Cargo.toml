@@ -1,0 +1,19 @@
+[package]
+name = "pallet-chlom-oracle"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+codec.workspace = true
+scale-info.workspace = true
+frame-support.workspace = true
+frame-system.workspace = true
+sp-runtime.workspace = true
+chlom-primitives.workspace = true
+
+[features]
+default = ["std"]
+std = ["codec/std", "scale-info/std", "frame-support/std", "frame-system/std", "sp-runtime/std", "chlom-primitives/std"]

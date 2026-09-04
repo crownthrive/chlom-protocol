@@ -1,0 +1,23 @@
+[package]
+name = "chlom-runtime-integration-tests"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+codec = { workspace = true, features = ["std"] }
+frame-support = { workspace = true, features = ["std"] }
+frame-system = { workspace = true, features = ["std"] }
+sp-runtime = { workspace = true, features = ["std"] }
+sp-io = { workspace = true, features = ["std"] }
+chlom-primitives = { workspace = true, features = ["std"] }
+pallet-chlom-authority = { workspace = true, features = ["std"] }
+pallet-chlom-identity = { workspace = true, features = ["std"] }
+pallet-chlom-rights = { workspace = true, features = ["std"] }
+pallet-chlom-licensing = { workspace = true, features = ["std"] }
+pallet-chlom-settlement = { workspace = true, features = ["std"] }
+pallet-chlom-tokenization = { workspace = true, features = ["std"] }
+pallet-chlom-oracle = { workspace = true, features = ["std"] }
+pallet-chlom-checkpoint = { workspace = true, features = ["std"] }

@@ -1,0 +1,48 @@
+{
+  "contract": "ct.chlom.provider-migration-custody-manifest.v1",
+  "provider": "Supabase",
+  "project_id": "tzajnzshmtzjenqulehq",
+  "captured_at": "2026-09-04T03:55:00Z",
+  "hash_algorithm": "SHA-256",
+  "canonical_provider_table": "supabase_migrations.schema_migrations",
+  "migrations": [
+    {
+      "version": "20260904033305",
+      "name": "chlom_dail_compact_verification_v4",
+      "sql_sha256": "71cfc446f8f2615e19fd11d34068b42fc43b514a943240eae568a03977d5387a",
+      "sql_bytes": 41572
+    },
+    {
+      "version": "20260904033622",
+      "name": "chlom_dail_v4_identity_sequence_gap_tolerance",
+      "sql_sha256": "2a204b88bb99e5ec01ccff5162c22f014c5d28010f8862e24639676a051b043d",
+      "sql_bytes": 26139
+    },
+    {
+      "version": "20260904034456",
+      "name": "chlom_protocol_canonical_records_v1",
+      "sql_sha256": "ed48b47aaf0d1c00278681b3a96134b80207bffc7e0e0fa98b309b116a98684a",
+      "sql_bytes": 35365
+    },
+    {
+      "version": "20260904034912",
+      "name": "chlom_protocol_operations_v1",
+      "sql_sha256": "8a13adbaf449374f0d32d6ca2a5e553821f2630c1a2b0ef90fdd6038a841a671",
+      "sql_bytes": 62730
+    },
+    {
+      "version": "20260904035121",
+      "name": "chlom_protocol_corpus_requirements_and_canary_v1",
+      "sql_sha256": "e50e198928451dd2688bd18b0612593e1bd099f601838803faecf873eacb50f8",
+      "sql_bytes": 38291
+    },
+    {
+      "version": "20260904035209",
+      "name": "chlom_dail_append_return_sequence_v1",
+      "sql_sha256": "09335c05a9ac4add9080890c11e9be4f5279ab8701f3b49248d61130cf7ca681",
+      "sql_bytes": 2865
+    }
+  ],
+  "custody_state": "PROVIDER_APPLIED_HASH_BOUND_SOURCE_EXPORT_PENDING",
+  "note": "This manifest binds exact provider-applied versions, byte counts and SQL hashes. Exact plaintext migration export must match these hashes before SOURCE_EXPORT_PENDING can be closed. The provider migration table remains the source of applied truth until that export is committed and independently verified."
+}

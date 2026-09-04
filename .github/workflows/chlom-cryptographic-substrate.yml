@@ -1,0 +1,62 @@
+name: CHLOM Cryptographic Substrate
+
+on:
+  push:
+    branches:
+      - "feat/chlom-cryptographic-substrate-*"
+    paths:
+      - "substrate/chlom-l1/**"
+      - "ops/custody/CHLOM_PRODUCTION_MIGRATION_MANIFEST_20260903.json"
+      - "scripts/validate_chlom_substrate_manifest.py"
+      - ".github/workflows/chlom-cryptographic-substrate.yml"
+  pull_request:
+    paths:
+      - "substrate/chlom-l1/**"
+      - "ops/custody/CHLOM_PRODUCTION_MIGRATION_MANIFEST_20260903.json"
+      - "scripts/validate_chlom_substrate_manifest.py"
+      - ".github/workflows/chlom-cryptographic-substrate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chlom-cryptographic-substrate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-contract:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install registry validator dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir PyYAML==6.0.2 jsonschema==4.25.1
+      - name: Validate existing CHLOM registry
+        run: python scripts/validate_registry.py
+      - name: Run existing CHLOM unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate cryptographic substrate manifest
+        run: python scripts/validate_chlom_substrate_manifest.py
+
+  frame-workspace:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    env:
+      CARGO_NET_GIT_FETCH_WITH_CLI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust and Wasm target
+        run: |
+          rustup toolchain install stable --profile minimal --component rust-src --component rustfmt --component clippy
+          rustup default stable
+          rustup target add wasm32-unknown-unknown
+      - name: Check all FRAME crates and integration runtime
+        working-directory: substrate/chlom-l1
+        run: cargo check --workspace --all-targets
+      - name: Execute primitives and composed runtime tests
+        working-directory: substrate/chlom-l1
+        run: cargo test --workspace
