@@ -1,0 +1,82 @@
+{
+  "contract": "ct.chlom.production-gateway-evidence.v1",
+  "observed_date": "2026-09-04",
+  "system": "CHLOM",
+  "canonical_expansion": "Compliance Hybrid Licensing and Ownership Model",
+  "authority": "CrownThrive, LLC",
+  "production_boundary": "INTERNAL_CONTROL_PLANE",
+  "gateway": {
+    "provider": "Supabase Edge Functions",
+    "project_id": "tzajnzshmtzjenqulehq",
+    "function_id": "9e5785d8-3ae6-49d3-8626-4ecc690784fa",
+    "slug": "chlom-control-plane-v1",
+    "status": "ACTIVE",
+    "provider_version": 1,
+    "verify_jwt": true,
+    "gateway_contract": "ct.chlom.authenticated-control-plane-gateway.v1",
+    "gateway_version": "1.0.0",
+    "deployment_sha256": "2031fc9cbcf59d7e500730e8d96a91a9fa7e3d448541da6c8aeabfcddf325ed2",
+    "unauthenticated_probe": {
+      "http_status": 401,
+      "result": "PASS_DENIED"
+    }
+  },
+  "database": {
+    "operator_subject_id": "ct.subject.founder.kavonte-jones-sr",
+    "operator_authority_class": "D3",
+    "operator_version": 1,
+    "api_operator_version_count": 1,
+    "api_dispatch_receipt_count": 1,
+    "api_idempotency_receipt_count": 1,
+    "gateway_canary_binding_count": 1
+  },
+  "canary": {
+    "canonical_asset_id": "ct.asset.canary.chlom-control-plane-gateway-v1.20260904",
+    "binding_id": "0d5b88d5-0087-4b88-b94c-8956bbf2fd8e",
+    "binding_record_sha256": "72cce8161603683e0193ade492f5dbacc2a33ad19e878572330800bf945fdf55",
+    "asset_dail_event_id": "a9cb095e-d130-4082-b989-4c51c9b55e49",
+    "asset_dail_event_hash": "093d6fddadc8b9419fb3b273920b27b44f6079a13fa37e25e0ecc69e7fdb1957",
+    "dispatch_request_id": "10cd18dc-91ca-4c3d-9ae2-7c08ccac8908",
+    "dispatch_receipt_id": "914008c3-72d0-4b87-8579-34939f18f2dd",
+    "idempotency_receipt_id": "0b78e916-091d-47c2-8a42-cbb6b73be1d5",
+    "dispatch_result_sha256": "e6cbcf90f400da42a2155341633e2f17d5f09a9a72c1a504eb71076c2924854b",
+    "receipt_dail_event_id": "0b14ddf8-2e52-40dd-bde3-bc84c809fc19",
+    "receipt_dail_event_hash": "fb587768a6ed6fe9e79cabae3199f943ab06fe6782ad40530608a1298044f411",
+    "first_execution_idempotent_replay": false,
+    "second_execution_idempotent_replay": true,
+    "same_binding_id_on_replay": true,
+    "same_dispatch_receipt_id_on_replay": true,
+    "duplicate_bindings_created": 0
+  },
+  "dail": {
+    "ok": true,
+    "integrity_state": "PASS_GLOBAL_COMPACT_CHAIN",
+    "sequence_span_lag": 0,
+    "verified_through_sequence_id": 2310790,
+    "current_head_sequence_id": 2310790,
+    "v4_segment_count": 136,
+    "base_checkpoint_id": "dfb2018c-7dba-4200-b8af-16951efd4cc8"
+  },
+  "explicitly_disabled": {
+    "external_money_movement": true,
+    "production_token_mint_confirmation": true,
+    "tokenomics_activation": true,
+    "validator_activation": true,
+    "public_chain_anchor_confirmation": true,
+    "legal_title_adjudication": true
+  },
+  "counts": {
+    "money_movement": 0,
+    "external_production_mint_confirmed": 0
+  },
+  "remaining_acceptance_predicates": [
+    "REAL_FOUNDER_SIGNED_SESSION_HTTPS_CANARY",
+    "INDEPENDENT_REPRODUCIBLE_RUNTIME_BUILD",
+    "PROVIDER_DIVERSE_VALIDATOR_NETWORK",
+    "PUBLIC_CHAIN_ANCHOR_PROVIDER_RECEIPT",
+    "EXTERNAL_PAYMENT_SETTLEMENT_PROVIDER_RECEIPTS",
+    "TOKEN_AND_NFT_TESTNET_THEN_BOUNDED_PRODUCTION_CANARIES",
+    "LEGAL_AND_GOVERNANCE_APPROVALS_FOR_PUBLIC_ECONOMIC_ACTIVATION"
+  ],
+  "truthful_statement": "CHLOM's authenticated internal production control plane and production gateway are deployed and operational. Its public blockchain network, external validator set, public-chain anchoring, token issuance, and money movement are not yet activated."
+}

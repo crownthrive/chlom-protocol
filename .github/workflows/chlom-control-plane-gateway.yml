@@ -1,0 +1,63 @@
+name: CHLOM Control Plane Gateway
+
+on:
+  pull_request:
+    paths:
+      - "supabase/functions/chlom-control-plane-v1/**"
+      - "migrations/20260904063134_chlom_api_access_registry_v1.sql"
+      - "migrations/20260904063147_chlom_api_capabilities_v1.sql"
+      - "migrations/20260904063223_chlom_api_dispatch_v1.sql"
+      - "migrations/20260904063240_chlom_founder_api_operator_v1.sql"
+      - "migrations/20260904064558_chlom_api_idempotent_dispatch_v2.sql"
+      - "evidence/chlom-control-plane-v1/**"
+      - "scripts/verify_chlom_control_plane_source.py"
+      - ".github/workflows/chlom-control-plane-gateway.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "supabase/functions/chlom-control-plane-v1/**"
+      - "migrations/20260904063134_chlom_api_access_registry_v1.sql"
+      - "migrations/20260904063147_chlom_api_capabilities_v1.sql"
+      - "migrations/20260904063223_chlom_api_dispatch_v1.sql"
+      - "migrations/20260904063240_chlom_founder_api_operator_v1.sql"
+      - "migrations/20260904064558_chlom_api_idempotent_dispatch_v2.sql"
+      - "evidence/chlom-control-plane-v1/**"
+      - "scripts/verify_chlom_control_plane_source.py"
+      - ".github/workflows/chlom-control-plane-gateway.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chlom-control-plane-gateway-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  source-contract:
+    name: verify authenticated gateway custody
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@v4
+
+      - name: Verify source, migration, and evidence contract
+        run: python3 scripts/verify_chlom_control_plane_source.py
+
+      - name: Reject committed credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE '(SUPABASE_SERVICE_ROLE_KEY[[:space:]]*=|sk_live_|sb_secret_|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY)' \
+            supabase/functions/chlom-control-plane-v1 \
+            migrations/20260904063134_chlom_api_access_registry_v1.sql \
+            migrations/20260904063147_chlom_api_capabilities_v1.sql \
+            migrations/20260904063223_chlom_api_dispatch_v1.sql \
+            migrations/20260904063240_chlom_founder_api_operator_v1.sql \
+            migrations/20260904064558_chlom_api_idempotent_dispatch_v2.sql \
+            evidence/chlom-control-plane-v1; then
+            echo "Credential-like material detected in CHLOM gateway custody paths." >&2
+            exit 1
+          fi
