@@ -3,7 +3,8 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
 const GATEWAY_CONTRACT = "ct.chlom.authenticated-control-plane-gateway.v1";
-const GATEWAY_VERSION = "1.0.0";
+const GATEWAY_VERSION = "1.1.0";
+const DISPATCHER_CONTRACT = "ct.chlom.authenticated-control-plane-dispatch.v3";
 const MAX_REQUEST_BYTES = 1_048_576;
 const MAX_RESPONSE_BYTES = 2_097_152;
 
@@ -58,6 +59,7 @@ function responseHeaders(origin: string | null, correlationId: string): Headers 
     "cross-origin-resource-policy": "same-site",
     "x-chlom-gateway-contract": GATEWAY_CONTRACT,
     "x-chlom-gateway-version": GATEWAY_VERSION,
+    "x-chlom-dispatcher-contract": DISPATCHER_CONTRACT,
     "x-correlation-id": correlationId,
     "vary": "Origin",
   });
@@ -66,7 +68,7 @@ function responseHeaders(origin: string | null, correlationId: string): Headers 
     headers.set("access-control-allow-credentials", "true");
     headers.set(
       "access-control-expose-headers",
-      "x-chlom-gateway-contract, x-chlom-gateway-version, x-correlation-id",
+      "x-chlom-gateway-contract, x-chlom-gateway-version, x-chlom-dispatcher-contract, x-correlation-id",
     );
   }
   return headers;
@@ -100,6 +102,7 @@ async function readJsonBounded(req: Request): Promise<Record<string, unknown>> {
     throw new Error("REQUEST_BODY_TOO_LARGE");
   }
   if (!req.body) return {};
+
   const reader = req.body.getReader();
   const chunks: Uint8Array[] = [];
   let size = 0;
@@ -122,12 +125,14 @@ async function readJsonBounded(req: Request): Promise<Record<string, unknown>> {
       // no-op
     }
   }
+
   const bytes = new Uint8Array(size);
   let offset = 0;
   for (const chunk of chunks) {
     bytes.set(chunk, offset);
     offset += chunk.byteLength;
   }
+
   let parsed: unknown;
   try {
     parsed = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
@@ -149,7 +154,8 @@ async function invokeDispatch(
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     throw new Error("GATEWAY_RUNTIME_NOT_CONFIGURED");
   }
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/chlom_api_dispatch_v2`, {
+
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/chlom_api_dispatch_v3`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -169,6 +175,7 @@ async function invokeDispatch(
   if (new TextEncoder().encode(text).byteLength > MAX_RESPONSE_BYTES) {
     throw new Error("UPSTREAM_RESPONSE_TOO_LARGE");
   }
+
   let data: unknown = null;
   if (text) {
     try {
@@ -257,8 +264,8 @@ Deno.serve(async (req: Request) => {
     if (!idempotencyKey) {
       return jsonResponse({ ok: false, code: "IDEMPOTENCY_KEY_REQUIRED" }, 400, origin, correlationId);
     }
-    if (idempotencyKey.length > 128) {
-      return jsonResponse({ ok: false, code: "IDEMPOTENCY_KEY_TOO_LONG" }, 400, origin, correlationId);
+    if (!/^[A-Za-z0-9._:-]{16,128}$/.test(idempotencyKey)) {
+      return jsonResponse({ ok: false, code: "IDEMPOTENCY_KEY_INVALID" }, 400, origin, correlationId);
     }
   }
 
@@ -288,6 +295,7 @@ Deno.serve(async (req: Request) => {
       {
         gateway_contract: GATEWAY_CONTRACT,
         gateway_version: GATEWAY_VERSION,
+        dispatcher_contract: DISPATCHER_CONTRACT,
         correlation_id: correlationId,
         external_execution_enabled: false,
         data: upstream.data,
