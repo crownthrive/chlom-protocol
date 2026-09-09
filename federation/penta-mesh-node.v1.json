@@ -1,0 +1,18 @@
+{
+  "schema": "ct.penta.repository-mesh-node.v1",
+  "version": "1.0.1",
+  "repository": "crownthrive1/chlom-protocol",
+  "default_branch": "main",
+  "mesh_contract_url": "https://raw.githubusercontent.com/crownthrive1/CrownThrive-OS/main/federation/penta-mesh.v1.json",
+  "mesh_status_url": "https://raw.githubusercontent.com/crownthrive1/CrownThrive-OS/main/federation/penta-mesh.status.v1.json",
+  "protocol_registry": "crownthrive1/chlom-protocol",
+  "roles": ["chlom-protocol", "integration-registry", "governance-contracts", "penta-mesh-node"],
+  "capabilities": {
+    "canonical_integration_registry": true,
+    "public_contract_attestation": true,
+    "public_status_consumption": true,
+    "governance_contracts": true,
+    "cross_repository_contract_validation": true
+  },
+  "authority_invariant": "Protocol, registry, and status publication do not manufacture execution authority for consuming repositories."
+}

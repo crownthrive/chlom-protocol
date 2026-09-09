@@ -10,3 +10,5 @@ workflows:
     steps: [register-source, content-review, rights-review, qa, commerce-routing, approval, publish, monitor]
   - id: website-patch
     steps: [detect-issue, create-work-item, branch, patch, test, review, approve, deploy, smoke-test, record-release]
+  - id: pentabooks-release
+    steps: [ingest-governing-source, register-book, register-edition, canon-review, rights-review, run-vm-book-gates, accessibility-review, checksum-source, release-preflight, founder-approval, publish, emit-outbox, monitor]

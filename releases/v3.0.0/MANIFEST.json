@@ -1,0 +1,32 @@
+{
+  "release_id": "ct.chlom.repo.v3.0.0",
+  "version": "3.0.0",
+  "tag": "v3.0.0",
+  "title": "CHLOM V3.0.0 — Phase 3 Governed Protocol",
+  "institutional_phase": "phase_3",
+  "release_type": "major_repository_generation",
+  "target_ref": "main",
+  "component_version_rule": "internal contracts, schemas, services, and APIs retain independent semantic versions",
+  "source_of_truth": "CrownThrive OS",
+  "governance": {
+    "silent_replacement_prohibited": true,
+    "historical_versions_preserved": true,
+    "component_versions_independent": true,
+    "phase_does_not_imply_provider_certification": true,
+    "hold_never_promoted_by_version_only": true,
+    "d3_human_reserved": true
+  },
+  "artifacts": [
+    "README.md",
+    "LICENSE",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "SUPPORT.md",
+    "TRADEMARKS.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/archive/README.md",
+    "releases/v3.0.0/RELEASE_NOTES.md"
+  ],
+  "requested_at": "2026-08-26T10:00:00-04:00"
+}

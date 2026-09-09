@@ -1,0 +1,213 @@
+{
+  "schema": "ct.chlom.dail.phase4-assurance-production-evidence.v1",
+  "schema_version": "1.0.0",
+  "receipt_id": "ct.receipt.dail.phase4-assurance-production-evidence.2026-08-26.v1",
+  "effective_date": "2026-08-26",
+  "last_updated_at": "2026-08-27T00:29:10Z",
+  "owner": "CrownThrive LLC",
+  "source_of_truth": "CrownThrive OS",
+  "component": {
+    "id": "dail",
+    "name": "Decentralized Autonomous Information Ledger",
+    "chlom_function": "records"
+  },
+  "phase_boundary": {
+    "current_institutional_phase": 3,
+    "current_stage": "EXECUTE",
+    "target_institutional_phase": 4,
+    "target_stage": "VERIFY",
+    "target_state": "HOLD",
+    "phase4_activation_authorized": false,
+    "institutional_phase4_activated": false
+  },
+  "hot_route": {
+    "state": "PASS",
+    "runtime_state": "PRODUCTION_HOT_BOUNDED",
+    "surface_scope": "read_only_public_aggregate_status",
+    "public_surface": "chlom-mesh-status",
+    "edge_function_version": 4,
+    "probe_results": {
+      "get_200_count": 3,
+      "post_405_count": 1
+    },
+    "database_status_rpc_privileges": {
+      "public_execute": false,
+      "anon_execute": false,
+      "authenticated_execute": false,
+      "service_role_execute": true,
+      "postgres_administrative_execute": true
+    },
+    "repair_verified": true,
+    "read_only_public_status": true,
+    "exact_aggregate_response_allowlist_verified": true,
+    "database_response_treated_as_untrusted": true,
+    "binding_or_source_references_exposed": false,
+    "public_append_authority": false,
+    "public_control_authority": false
+  },
+  "authenticated_control_route": {
+    "state": "HOLD_AUTHORITY_AND_ACTOR_BOUND_IDEMPOTENCY_REQUIRED",
+    "edge_function_version": 2,
+    "verify_jwt": true,
+    "database_call_performed": false,
+    "request_body_parsed_or_persisted": false,
+    "execution_effect": "NONE",
+    "anonymous_probe": "HTTP_401_MISSING_AUTHORIZATION",
+    "invalid_jwt_probe": "HTTP_401_INVALID_JWT_FORMAT",
+    "authenticated_hold_response_verified": false,
+    "authenticated_request_acceptance_verified": false,
+    "production_readback_scope": "deployment metadata plus anonymous and invalid-token gateway rejection; no valid-JWT function-level response",
+    "reason": "No accepted principal-to-action/target authority lease exists, and the legacy v1 global idempotency key is not bound to actor plus request digest."
+  },
+  "live_dail_readback": {
+    "observed_at": "2026-08-26T23:47:21Z",
+    "checked_events": 2756,
+    "head_event_hash": "3e942b3f6d851dd9c56bc507eeee40c8bd10d70ff16600deb1ebd98dc85f034c",
+    "failure_count": 0,
+    "integrity_state": "pass_with_documented_legacy_correction",
+    "result": "PASS"
+  },
+  "cold_route": {
+    "state": "LEDGER_LINEAGE_RECOVERY_VERIFIED",
+    "assurance_state": "BOUNDED_COLD_ASSURANCE_ONLY",
+    "scope": "ledger_lineage",
+    "target_class": "isolated_non_production",
+    "contains_event_payloads": false,
+    "contains_actor_or_entity_identifiers": false,
+    "full_data_or_database_restore": false,
+    "pitr_restore": false,
+    "production_failover": false,
+    "failback": false
+  },
+  "checkpoint": {
+    "checkpoint_id": "89fd5b43-2b65-483c-a700-90c4a8951612",
+    "receipt_sha256": "679d52d82b9974b3e506c79448cf96152b4d4179680d97dfa3c5a9568196c0d1",
+    "source_event_count": 2746,
+    "source_max_sequence_id": 3042,
+    "source_head_event_hash": "e7621d81b9b7eb5622a42a93add1c995f2533aceed4734af1c714354956e2f99"
+  },
+  "private_custody": {
+    "provider": "google_drive",
+    "visibility": "private",
+    "package": {
+      "object_id": "1nB3RTe_8gtLESuD8PURD7TogCr-X_Hn_",
+      "sha256": "48b0f0decd4bd48890f2d3567b663db09af460f9e5cac0ce996b97deb38d9b37"
+    },
+    "manifest": {
+      "object_id": "1gKgWKG7AR-hpNV1iFKGP-n9XNicvfAdQ",
+      "sha256": "36bfb643150504ff2ba46612ffbb4aea2bc8c81e04508dab1075f1be0f17c564"
+    },
+    "exact_byte_readback_verified": true,
+    "provider_exit_path_verified_for_lineage_artifact": true
+  },
+  "recovery_drill": {
+    "drill_id": "1746cdda-db6d-4d3a-a747-927c59b00061",
+    "scope": "ledger_lineage",
+    "target_class": "isolated_non_production",
+    "result": "PASS",
+    "rpo_seconds": 419,
+    "rto_seconds_recorded": 1,
+    "rto_seconds_measured": 0.13059,
+    "restored_event_count": 2746,
+    "restored_max_sequence_id": 3042,
+    "restored_head_event_hash": "e7621d81b9b7eb5622a42a93add1c995f2533aceed4734af1c714354956e2f99",
+    "verification": {
+      "manifest_hash": true,
+      "package_hash": true,
+      "component_hashes": true,
+      "structured_data_parse": true,
+      "physical_chain_linkage": true,
+      "external_snapshot_anchor": true,
+      "tamper_injection_rejected": true,
+      "production_hot_route_unchanged": true,
+      "hardened_verifier_replay": {
+        "verified_at": "2026-08-27T00:08:33.078719Z",
+        "source_sha256": "27a747da79a69830e86bbd497af30a9add4413ce43b8ba66d7e62bf14cd0cb19",
+        "result": "PASS",
+        "active_documented_correction_rows": 1
+      }
+    }
+  },
+  "deployment_evidence": {
+    "edge_function": {
+      "path": "supabase/functions/chlom-mesh-status/index.ts",
+      "deployed_version": 4,
+      "deployed_at": "2026-08-27T00:03:21.034Z",
+      "source_sha256": "72c1affe3a18521f5c104f0ab52233644cd7f11b778d3bc7afe3225dc6637df6",
+      "deployed_bundle_sha256": "7d49bc1bf19b8cf2ea895b07105a74dcc75b4a9ffc2e2598754b175f33857090",
+      "production_readback_verified": true
+    },
+    "control_edge_function": {
+      "path": "supabase/functions/chlom-mesh-control/index.ts",
+      "deployed_version": 2,
+      "deployed_at": "2026-08-27T00:28:49.277Z",
+      "source_sha256": "f2bb2870069d3cfb0ab3972c657a9e70a8de76d6de7d9608419830766bbffeab",
+      "deployed_bundle_sha256": "cf7a5768e925fbe969f0a160ef41c1f77d2d83a2c65310f2a8a7142d44a6ee78",
+      "verify_jwt": true,
+      "fail_closed_before_database_call": true,
+      "production_deployment_metadata_readback_verified": true,
+      "production_unauthenticated_gateway_rejection_readback_verified": true,
+      "production_authenticated_hold_response_readback_verified": false,
+      "production_authenticated_action_acceptance_verified": false
+    },
+    "assurance_migration": {
+      "path": "migrations/20260826_dail_phase4_assurance_v1.sql",
+      "source_sha256": "2749635f697895777684f247c8b9a8e256c5f25b1cc79cafc4dd31e4c3233ee1",
+      "production_apply_verified": true,
+      "production_readback_verified": true
+    },
+    "service_role_hardening_migration": {
+      "path": "migrations/20260826_chlom_mesh_status_service_role_hardening_v1.sql",
+      "source_sha256": "db19d2a583077f7baa2c5d9e1d816e353e4e6d0474d62285dd184b68e3d06d1b",
+      "production_apply_verified": true,
+      "privilege_readback_verified": true
+    },
+    "receipt_link_index_migration": {
+      "path": "migrations/20260826_dail_checkpoint_receipt_link_index_v1.sql",
+      "source_sha256": "04a132a66254b7fcd9d7155b116a6ede4197eeaf22f9cbc617841671426e328f",
+      "production_apply_verified": true,
+      "performance_advisor_unindexed_foreign_key_cleared": true
+    },
+    "hash_delimiter_hardening_migration": {
+      "path": "migrations/20260827_dail_hash_delimiter_hardening_v1.sql",
+      "source_sha256": "b067500674dae0f44c0dc6268a189af3d27a4b697a30b998edd5b18ae13f260a",
+      "production_apply_verified": true,
+      "validated_constraint_readback_verified": true,
+      "post_apply_chain_readback": {
+        "observed_at": "2026-08-27T00:02:09.625541Z",
+        "checked_events": 2761,
+        "head_event_hash": "15cb005688665fb9d4c2f709f2c31740d17b5d79f39fb04c09645cd9ddb8b7bb",
+        "failure_count": 0,
+        "result": "PASS"
+      }
+    },
+    "lineage_recovery_verifier": {
+      "path": "scripts/verify_dail_lineage_snapshot.py",
+      "source_sha256": "27a747da79a69830e86bbd497af30a9add4413ce43b8ba66d7e62bf14cd0cb19",
+      "external_snapshot_anchor_required": true,
+      "real_snapshot_replay_verified": true
+    }
+  },
+  "certification_boundary": {
+    "hot_status_route_working": true,
+    "authenticated_control_route_working": false,
+    "authenticated_control_route_fail_closed": true,
+    "bounded_lineage_cold_route_working": true,
+    "full_data_bearing_export_certified": false,
+    "isolated_postgresql_17_data_restore_certified": false,
+    "pitr_certified": false,
+    "production_failover_certified": false,
+    "failback_certified": false,
+    "phase4_readiness_certified": false,
+    "institutional_phase4_activated": false,
+    "decision": "HOLD"
+  },
+  "non_claims": [
+    "This receipt does not contain event payloads, actor identifiers, entity identifiers, secrets, or credentials.",
+    "A verified ledger-lineage route is not a complete DAIL data or database backup.",
+    "The isolated lineage drill is not a PostgreSQL 17 data-plane restore, PITR test, production failover, or failback.",
+    "One bounded lineage drill does not satisfy the Phase 4 RPO/RTO predicate.",
+    "The authenticated public control-request route is intentionally held and performs no database call; it is not a working action-request path.",
+    "This receipt does not activate institutional Phase 4."
+  ]
+}

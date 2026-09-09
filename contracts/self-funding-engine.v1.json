@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "contract_key": "CT-SFE-ENGINE-1.0.0",
+  "canonical_name": "Self-Funding Business Engine",
+  "owner": "CrownThrive, LLC",
+  "status": "implemented_gated",
+  "policy": {
+    "key": "CT-SFE-80-10-5-3-2",
+    "version": "1.0.0",
+    "allocation_bps": {
+      "PROVIDER": 8000,
+      "HQ_GROWTH_TECH": 1000,
+      "REGIONAL_LEADERSHIP": 500,
+      "NATIONAL_AD": 300,
+      "THRIVEFUND": 200
+    },
+    "total_bps": 10000,
+    "production_enabled": false
+  },
+  "settlement": {
+    "provider": "Stripe Connect",
+    "model": "separate_charges_and_transfers",
+    "platform_merchant_of_record": true,
+    "platform_owns_pricing": true,
+    "platform_owns_loss_liability": true,
+    "fraud_control": "Radar for Platforms"
+  },
+  "governance": {
+    "CHLOM": ["rights", "eligibility", "evidence", "commercial rules"],
+    "PentaGreen": ["authorized economic activation"],
+    "PentaCredentials": ["provider credential readiness"],
+    "PentaCertify": ["adapter and execution certification"],
+    "PentaBuild": ["build, package, version, maintain"],
+    "PentaRelease": ["controlled release"],
+    "rule": "PentaGreen may optimize within authority. It may never manufacture authority."
+  },
+  "hard_gates": [
+    "executed_contract",
+    "active_policy",
+    "provider_onboarding",
+    "transfer_capability",
+    "rights_pass",
+    "compliance_pass",
+    "idempotency",
+    "readback",
+    "reconciliation",
+    "refund_reversal",
+    "dispute_handling",
+    "rollback",
+    "production_authorization"
+  ],
+  "affiliate_ambassador_rule": "HQ-funded marketing economics are separate from the 80/10/5/3/2 allocation unless an active offer contract explicitly makes them transaction-funded.",
+  "secret_handling": "reference_only",
+  "runtime": "supabase:tzajnzshmtzjenqulehq:ct.self_funding",
+  "edge_function": "ct-self-funding-settlement",
+  "edge_function_version": 2,
+  "runtime_source": "runtime/self-funding-engine/v1/ct-self-funding-settlement/index.ts",
+  "implementation_certification": {
+    "standard": "PentaCertify/SFE-IMPLEMENTATION-1.0",
+    "risk_class": "D2",
+    "disposition": "certified",
+    "certification_id": "ct.assure.572d5af5213e7d82527ca344452980c5",
+    "certified_at": "2026-08-27T13:48:31.990623Z"
+  },
+  "production_money_movement": {
+    "disposition": "hold",
+    "risk_class": "D3",
+    "certification_id": "ct.assure.c797204a2422bacbacde073d7e15db78",
+    "reason": "D3 human governance and production authority remain unsatisfied"
+  },
+  "live_money_movement": "blocked_until_certified"
+}

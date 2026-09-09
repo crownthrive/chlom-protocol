@@ -1,0 +1,143 @@
+{
+  "schema": "crownthrive.chlom.pentafabric.v1",
+  "version": "1.0.0",
+  "status": "PRODUCTION",
+  "penta_event_contract": "crownthrive.penta.event.v1",
+  "fabric_schema": "crownthrive.pentafabric.v1",
+  "mesh_convergence_contract": "ct.penta.fabric.mesh-convergence.v1",
+  "governance": {
+    "required": true,
+    "fail_closed": true,
+    "binding": "crownthrive.chlom.pentafabric.v1",
+    "required_fields": [
+      "mesh.chlom.intent_id",
+      "mesh.chlom.binding",
+      "mesh.chlom.rights_scope"
+    ],
+    "policy_refs_supported": true,
+    "oracle_cookie_supported": true,
+    "universal_active_component_binding": true,
+    "future_active_component_enforcement": true,
+    "global_mesh_enforcement": true,
+    "all_penta_wire_services_must_be_mesh_bound": true,
+    "all_active_penta_components_must_be_output_bound": true,
+    "all_chlom_mesh_bindings_must_be_bound": true
+  },
+  "routing": {
+    "canonical_layer": "interoperation",
+    "delivery_type": "penta.relay.forwarded",
+    "delivery_status": "DELIVERED",
+    "hot_provider": "vercel",
+    "hot_endpoint": "/penta",
+    "mesh_adapter": "penta_wire_mesh",
+    "evidence_provider": "supabase",
+    "evidence_edge_function": "pentafabric-ingest",
+    "evidence_ledger": "public.pentafabric_events",
+    "kernel": "crownthrive1/PRIVATE-PentaOS"
+  },
+  "integrity": {
+    "private_kernel_preferred": "HMAC-SHA256",
+    "production_hot_path_content_integrity": "SHA-256",
+    "production_persistence_authentication_current": "SERVICE_ROLE",
+    "production_persistence_authentication_supported": [
+      "SERVICE_ROLE",
+      "VERCEL_OIDC_RS256"
+    ],
+    "oidc_workload_scope": "exact team + project + production environment",
+    "build_provenance_required": true,
+    "secret_policy": "Service-role credentials remain server-side only and are never exposed in Pentas or receipts. Vercel OIDC RS256 remains a supported asymmetric evidence-ingest path. Private or secret-bound transports may use HMAC-SHA256. Never commit key material."
+  },
+  "global_mesh": {
+    "state": "PASS",
+    "penta_mesh_state": "PRODUCTION",
+    "topology_bound": 4,
+    "topology_required": 4,
+    "core_chlom_bound": 4,
+    "core_chlom_required": 4,
+    "core_penta_wire_bound": 4,
+    "core_penta_wire_required": 4,
+    "repository_bindings": 3,
+    "repository_bindings_required": 3,
+    "provider_route_edges": 5,
+    "provider_route_edges_required": 5,
+    "penta_wire_services_total": 78,
+    "penta_wire_services_mesh_bound": 78,
+    "penta_wire_services_unmeshed": 0,
+    "penta_wire_exact_provider_holds": 0,
+    "active_penta_components": 66,
+    "penta_output_bound_components": 66,
+    "chlom_bindings_total": 14,
+    "chlom_bindings_bound": 14,
+    "chlom_holds": 0,
+    "chlom_degraded": 0,
+    "autonomous_reconcile_survival": "PASS",
+    "penta_wire_public_probe": {
+      "pass": 11,
+      "hold": 0,
+      "fail": 0,
+      "total": 11
+    }
+  },
+  "evidence": {
+    "ledger": "public.pentafabric_events",
+    "append_only": true,
+    "rls": true,
+    "immutable_update_delete": true,
+    "idempotent_key": "penta_id",
+    "initial_oidc_certification": {
+      "penta_id": "penta_17b420e9-8d79-4903-a455-2c13c4acc931",
+      "trace_id": "ptrace_81e24763-f843-4143-a7d3-eebe916a3375",
+      "protocol": "PentaFabricOIDCCertification",
+      "authentication": "VERCEL_OIDC_RS256",
+      "result": "PERSISTED"
+    },
+    "global_mesh_certification": {
+      "penta_id": "penta_377d6785-1e9d-4de4-a9c6-ad5ca2ce2041",
+      "trace_id": "ptrace_616b40af-2384-4d6e-94d9-70cde1321b58",
+      "protocol": "PentaGlobalMeshCertification",
+      "convergence_contract": "ct.penta.fabric.mesh-convergence.v1",
+      "result": "PERSISTED",
+      "authentication": "SERVICE_ROLE",
+      "os_merge_sha": "0e967b1821c584c03df3f17ddd80d6d0d8131dec",
+      "deployment_id": "dpl_72jhimBMfvP52gihVveDG5ir7cZL"
+    }
+  },
+  "receipts": {
+    "schema": "ct.penta.receipt.20260827.v1",
+    "required": [
+      "penta_id",
+      "trace_id",
+      "protocol",
+      "lane",
+      "route",
+      "provider",
+      "delivered_at"
+    ],
+    "server_side_persistence_assurance": true
+  },
+  "quality": {
+    "penta_wire_tool_contract_drift": 45,
+    "classification": "CONNECTED_SCHEMA_HARDENING_BACKLOG",
+    "connectivity_effect": "NONE",
+    "note": "tool_contract_drift represents tool/MCP schema hardening inside already mesh-bound services; it is not an unmeshed node or provider-route hold."
+  },
+  "release": {
+    "name": "PentaFabric v1",
+    "hotfix": true,
+    "state": "PRODUCTION",
+    "runtime_self_test": "PASS",
+    "persistence_evidence": "PASS",
+    "universal_output_contract": "PASS",
+    "global_mesh_convergence": "PASS",
+    "fabric_cycle": "HEALTHY",
+    "fabric_lifecycle": "PRODUCTION",
+    "private_kernel_merge_sha": "08b1d8c59dbedd13cd01b8f0e566aa1dc4f97909",
+    "os_packet_hotfix_merge_sha": "3fb903404ceb1a92f0191bf5e810c70b04fce0d9",
+    "os_oidc_evidence_merge_sha": "d7b73ffea81066bb283fe179a12e05ff68b9c0dd",
+    "os_oidc_context_merge_sha": "d20171a1df2909aaf8b0e1779bd4962ad6b0f8b6",
+    "os_global_mesh_merge_sha": "0e967b1821c584c03df3f17ddd80d6d0d8131dec",
+    "production_deployment_id": "dpl_72jhimBMfvP52gihVveDG5ir7cZL",
+    "production_build_sha": "0e967b1821c584c03df3f17ddd80d6d0d8131dec",
+    "production_verified_at": "2026-08-27T23:56:32Z"
+  }
+}

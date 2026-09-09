@@ -1,0 +1,35 @@
+{
+  "service": "crownthrive-services-stack",
+  "service_id": "ct.mcp.crownthrive-services-stack",
+  "supabase_function_id": "f1823189-70ed-4dd5-babd-93c7bfc517a3",
+  "deployment_version": 7,
+  "service_version": "0.1.1",
+  "status": "ACTIVE",
+  "verify_jwt": true,
+  "mcp_protocol": "2026-07-28",
+  "deployment_sha256": "9ceba73d6afe6a822c83ea920f918a9011c157ce0f27ac4707f825d8957c84ff",
+  "startup_resource_policy": {
+    "external_startup_file_read": false,
+    "widget_packaging": "INLINE",
+    "widget_resource_uri": "ui://crownthrive/services-stack-dashboard.html",
+    "expected_widget_bytes": 672
+  },
+  "interface_contract": {
+    "tool_count": 12,
+    "resource_count": 1,
+    "provider_write_enabled": false,
+    "destructive_authority_exposed": false
+  },
+  "verification": {
+    "provider_side_pg_net_request_id": 265,
+    "verified_at": "2026-08-26T02:09:33.120Z",
+    "http_status": 200,
+    "timed_out": false,
+    "healthy": true,
+    "tools_list_http_status": 200,
+    "resources_list_http_status": 200,
+    "resources_read_http_status": 200,
+    "returned_widget_bytes": 672,
+    "public_proof": "https://tzajnzshmtzjenqulehq.supabase.co/functions/v1/crownthrive-services-stack-proof"
+  }
+}

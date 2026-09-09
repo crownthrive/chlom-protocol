@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "chlom-chain-evidence": {
+      "url": "https://chlom-protocol.vercel.app/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${CHLOM_API_TOKEN}"
+      }
+    },
+    "vercel": {
+      "url": "https://mcp.vercel.com"
+    }
+  }
+}

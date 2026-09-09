@@ -1,0 +1,49 @@
+{
+  "contract": "ct.chlom.substrate-runtime-candidate.v1",
+  "generated_at": "2026-09-04T04:05:00Z",
+  "repository": "crownthrive1/chlom-protocol",
+  "branch": "feat/chlom-cryptographic-substrate-20260903",
+  "polkadot_sdk": {
+    "repository": "paritytech/polkadot-sdk",
+    "tag": "polkadot-stable2506-7"
+  },
+  "doctrine": {
+    "name": "Compliance Hybrid Licensing and Ownership Model",
+    "principle": "Rights before tokens. Rights inside tokens. Rights survive tokens.",
+    "dail": "Decentralized Autonomous Information Ledger",
+    "dla": "Dynamic Licensing Asset"
+  },
+  "pallets": [
+    "authority",
+    "identity",
+    "rights",
+    "licensing",
+    "settlement",
+    "tokenization",
+    "oracle",
+    "checkpoint"
+  ],
+  "production": {
+    "thrivebase_control_plane": true,
+    "dail_compact_verifier_v4": true,
+    "frame_source_materialized": true,
+    "live_validator_network": false,
+    "production_wasm_deployed": false,
+    "public_external_nft_mint": false,
+    "chlom_coin_issued": false,
+    "chm_governance_token_issued": false,
+    "native_external_money_movement": false
+  },
+  "required_before_l1_activation": [
+    "reproducible Wasm build and artifact hash",
+    "runtime benchmarks and weight generation",
+    "genesis specification and supply/allocation legal approval",
+    "validator identity, key ceremony, rotation and recovery",
+    "network topology and independent provider readback",
+    "security audit and adversarial tests",
+    "cold restart, state recovery and fork-choice certification",
+    "governance and emergency authority ratification",
+    "privacy, sanctions, tax, securities and consumer-protection review",
+    "external anchor and token provider receipts"
+  ]
+}

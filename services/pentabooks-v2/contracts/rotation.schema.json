@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crownthrive.com/schemas/pentabooks/rotation-v2.json",
+  "title": "PentaBooks Rotation v2",
+  "type": "object",
+  "required": ["rotation_id", "products"],
+  "properties": {
+    "rotation_id": { "type": "string", "minLength": 1 },
+    "products": {
+      "type": "array",
+      "minItems": 10,
+      "items": { "$ref": "product.schema.json" }
+    },
+    "canon_collisions": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

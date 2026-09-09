@@ -1,0 +1,64 @@
+name: CHLOM Chain Evidence Fabric Certification
+
+on:
+  pull_request:
+    paths:
+      - "api/**"
+      - "lib/runtime/**"
+      - "public/**"
+      - "scripts/build-static.mjs"
+      - "tests/runtime.test.mjs"
+      - "contracts/chlom-api-registry.v1.json"
+      - "contracts/openapi.chlom-chain-fabric.v1.yaml"
+      - "package.json"
+      - "vercel.json"
+      - ".github/workflows/chlom-chain-evidence-fabric.yml"
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - "lib/runtime/**"
+      - "public/**"
+      - "scripts/build-static.mjs"
+      - "tests/runtime.test.mjs"
+      - "contracts/chlom-api-registry.v1.json"
+      - "contracts/openapi.chlom-chain-fabric.v1.yaml"
+      - "package.json"
+      - "vercel.json"
+      - ".github/workflows/chlom-chain-evidence-fabric.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chlom-chain-evidence-fabric-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Install exact runtime dependencies
+        run: npm install --no-audit --no-fund
+      - name: Test and build
+        run: npm run certify
+      - name: Verify authority and deployment boundaries
+        run: |
+          node -e "const p=require('./package.json'); if(p.engines.node!=='24.x') process.exit(1)"
+          grep -q '"outputDirectory": "public"' vercel.json
+          grep -q 'CHLOM_CHAIN_WRITE_ENABLED=false' .env.example
+          grep -q '2026-12-15' .env.example
+          grep -q 'server/discover' lib/runtime/mcp.js
+          grep -q 'MCP-Protocol-Version' api/mcp.js
+          test ! -e app/page.tsx
+          test ! -e next.config.ts
+          test ! -e tsconfig.json

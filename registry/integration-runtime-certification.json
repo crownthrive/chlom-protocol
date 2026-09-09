@@ -1,0 +1,236 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_id": "ct.mesh.integration-runtime-certification.v1",
+  "generated_at": "2026-09-09T12:52:09Z",
+  "canonical_registry": "ct.mesh.integrations.v1",
+  "policy": {
+    "transport_reachability_is_not_authenticated_certification": true,
+    "fail_closed_for_unreachable_integrations": true,
+    "preserve_external_certification_evidence": true,
+    "secrets_in_repository": false
+  },
+  "integrations": [
+    {
+      "integration_id": "ct.integration.ofac.sdn",
+      "name": "U.S. Treasury OFAC SDN Advanced XML",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 200,
+        "content_type": "text/xml",
+        "classification": "REACHABLE_2XX",
+        "error": null
+      },
+      "registered_certification_status": "ACTIVE_VERIFIED",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [
+        {
+          "observed_at": "2026-08-25",
+          "evidence_class": "GITHUB_RUNTIME_IMPLEMENTATION",
+          "state": "ACTIVE_VERIFIED",
+          "detail": "Scheduled OFAC SDN authoritative feed monitor merged and governed in chlom-protocol."
+        }
+      ],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.github",
+      "name": "GitHub",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://api.github.com",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "classification": "REACHABLE_2XX",
+        "error": null
+      },
+      "registered_certification_status": "ACTIVE_SCOPED",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [
+        {
+          "observed_at": "2026-08-25",
+          "evidence_class": "CONNECTED_PROVIDER_ACTION",
+          "state": "ACTIVE_SCOPED",
+          "detail": "Authenticated GitHub connector successfully read and mutated CrownThrive repositories during this convergence pass."
+        }
+      ],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.mintlify",
+      "name": "Mintlify Admin, Index and MCP",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://api.mintlify.com",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 401,
+        "content_type": "application/json; charset=utf-8",
+        "classification": "REACHABLE_AUTH_REQUIRED",
+        "error": "Unauthorized"
+      },
+      "registered_certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [
+        {
+          "observed_at": "2026-08-25",
+          "evidence_class": "CONNECTED_PROVIDER_READBACK",
+          "state": "AUTHENTICATED_READ_VERIFIED",
+          "detail": "Mintlify Admin MCP successfully enumerated deployment subdomain crown-thrive."
+        }
+      ],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.supabase.management",
+      "name": "Supabase Management API",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://api.supabase.com/v1",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 401,
+        "content_type": "application/json; charset=utf-8",
+        "classification": "REACHABLE_AUTH_REQUIRED",
+        "error": "Unauthorized"
+      },
+      "registered_certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [
+        {
+          "observed_at": "2026-08-25",
+          "evidence_class": "CONNECTED_PROVIDER_READBACK",
+          "state": "ACTIVE_HEALTHY",
+          "detail": "Supabase Management connection returned CrownThrive project status ACTIVE_HEALTHY."
+        }
+      ],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.stripe",
+      "name": "Stripe",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://api.stripe.com",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 404,
+        "content_type": "application/json",
+        "classification": "REACHABLE_HTTP_NON_2XX",
+        "error": "Not Found"
+      },
+      "registered_certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.google.drive",
+      "name": "Google Drive API",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://www.googleapis.com/drive/v3",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 404,
+        "content_type": "text/html; charset=UTF-8",
+        "classification": "REACHABLE_HTTP_NON_2XX",
+        "error": "Not Found"
+      },
+      "registered_certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.google.gmail",
+      "name": "Gmail API",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://gmail.googleapis.com/gmail/v1",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 404,
+        "content_type": "text/html; charset=UTF-8",
+        "classification": "REACHABLE_HTTP_NON_2XX",
+        "error": "Not Found"
+      },
+      "registered_certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.microsoft.graph",
+      "name": "Microsoft Graph / Outlook",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://graph.microsoft.com/v1.0",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 200,
+        "content_type": "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8",
+        "classification": "REACHABLE_2XX",
+        "error": null
+      },
+      "registered_certification_status": "REGISTERED_REQUIRES_RUNTIME_REVALIDATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.crownthrive.io.mcp",
+      "name": "CrownThrive IO / MCP",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://crownthrive.io",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "classification": "REACHABLE_2XX",
+        "error": null
+      },
+      "registered_certification_status": "REGISTERED_ENDPOINT_CONTRACT_PENDING_VERIFICATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [
+        {
+          "observed_at": "2026-08-25",
+          "evidence_class": "FOUNDER_DECLARED_CONTRACT",
+          "state": "REGISTERED_UNLIMITED",
+          "detail": "Provider limit is institutionally hardcoded as UNLIMITED; endpoint/auth runtime certification remains independent."
+        }
+      ],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    },
+    {
+      "integration_id": "ct.integration.adserver.online",
+      "name": "AdLuxe Network (powered by Adserve Online)",
+      "checked_at": "2026-09-09T12:52:09Z",
+      "endpoint": "https://adserver.online",
+      "transport": {
+        "transport_reachable": true,
+        "http_status": 200,
+        "content_type": "text/html; charset=UTF-8",
+        "classification": "REACHABLE_2XX",
+        "error": null
+      },
+      "registered_certification_status": "REGISTERED_ENDPOINT_CONTRACT_PENDING_VERIFICATION",
+      "runtime_classification": "TRANSPORT_VERIFIED",
+      "authenticated_runtime_certified": false,
+      "external_certification_evidence": [
+        {
+          "observed_at": "2026-08-25",
+          "evidence_class": "FOUNDER_DECLARED_CONTRACT",
+          "state": "REGISTERED_LIMIT_3000000",
+          "detail": "AdLuxe Network powered by Adserve Online provider limit is institutionally hardcoded at 3,000,000; endpoint/auth runtime certification remains independent."
+        }
+      ],
+      "notes": "Transport verification does not prove authenticated read/write/admin authority. Authenticated certification remains separate unless evidence is explicitly recorded."
+    }
+  ]
+}

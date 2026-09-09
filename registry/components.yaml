@@ -1,15 +1,38 @@
-version: 2.0.0-alpha.1
+version: 3.0.0
+updated: 2026-08-26
+institutional_phase: phase-3-execute
 components:
   - id: chlom-core
     name: CHLOM Core
-    status: phase-2-foundation
-    maturity: build-now
+    status: phase-3-execute
+    maturity: governed-operational
     functions: [rights, rules, roles, revenue, records, remedies]
+    authority_ceiling: bounded-by-current-policy-and-human-reserved-gates
   - id: dail
     name: Decentralized Autonomous Information Ledger
-    status: design-approved
-    maturity: build-next
-    description: Logical append-oriented institutional ledger for events, approvals, attestations, rights, sanctions, settlement, disputes and corrections. Public blockchain is not required.
+    status: production-hot-bounded
+    maturity: operational-bounded
+    institutional_phase: phase-3-execute
+    runtime_state: PRODUCTION_HOT_BOUNDED
+    hot_status_route_state: PASS
+    hot_status_route_scope: read-only-public-aggregate-status
+    authenticated_control_route_state: HOLD_AUTHORITY_AND_ACTOR_BOUND_IDEMPOTENCY_REQUIRED
+    authenticated_control_route_execution_effect: NONE
+    cold_state: LEDGER_LINEAGE_RECOVERY_VERIFIED
+    cold_assurance_state: BOUNDED_COLD_ASSURANCE_ONLY
+    cold_scope: ledger-lineage-only
+    source_recovery_state: BOUNDED_CONTROLS_DEPLOYED__COMPLETE_SOURCE_CUSTODY_INCOMPLETE
+    phase4_target: phase-4-verify
+    phase4_state: HOLD
+    ledger_lineage_recovery_verified: true
+    full_data_restore_certified: false
+    pitr_restore_certified: false
+    infrastructure_failover_certified: false
+    failback_certified: false
+    external_anchor_certified: false
+    assurance_manifest: developers/manifests/dail-phase4-assurance.v1.json
+    production_evidence_receipt: artifacts/receipts/dail-phase4-assurance-production-evidence-2026-08-26.v1.json
+    description: Bounded append-oriented institutional ledger for governed events, approvals, attestations, rights, sanctions, settlement, disputes and corrections. The read-only public production-hot status route passes its dated readback; the authenticated control-request route is intentionally fail-closed pending accepted action/target authority and actor/request-bound idempotency. A payload-free ledger-lineage package passed exact private-custody readback and isolated non-production reconstruction. That bounded cold assurance is not a data-bearing DAIL restore, PITR, production failover, failback or Phase 4 activation. Public blockchain is not required.
   - id: dla
     name: Dynamic Licensing Asset
     status: design-approved
@@ -70,3 +93,9 @@ components:
     name: Cross-Chain Settlement and Attestation Mirror
     status: target-architecture
     maturity: deferred
+  - id: pentabooks
+    name: PentaBooks Publishing OS
+    status: operational-v1
+    maturity: operational
+    description: Governed CrownThrive and Virality Music book-production runtime for source ingestion, canon continuity, edition lineage, VM-BOOK gates, release preflight, publishing events, and adaptation readiness.
+    functions: [canon, editions, vm-book-001, vm-book-002, qa, release-preflight, publishing-outbox, adaptation-readiness]

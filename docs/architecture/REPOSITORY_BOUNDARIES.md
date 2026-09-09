@@ -12,13 +12,13 @@ Changes to CHLOM meaning, status, registry identifiers, permissions, workflows, 
 
 ## Documentation projection
 
-`crownthrive1/CrownThrive-Support` is the Mintlify/help-center projection repository. It may render approved CHLOM material for human readers, support workflows, onboarding, public runbooks, and ecosystem navigation.
+`crownthrive1/CrownThrive-OS` is the Mintlify/help-center projection repository. It may render approved CHLOM material for human readers, support workflows, onboarding, public runbooks, and ecosystem navigation.
 
 It is not the source of truth for CHLOM registry state merely because Mintlify deploys from it.
 
 ## Collaboration requirement
 
-The CrownThrive GitHub identity and/or GitHub App used for CHLOM automation requires write access to `crownthrive1/CrownThrive-Support` before automated projection can be enabled. Until that permission exists, the projection repository must be treated as read-only from CHLOM automation.
+The CrownThrive GitHub identity and/or GitHub App used for CHLOM automation requires write access to `crownthrive1/CrownThrive-OS` before automated projection can be enabled. Until that permission exists, the projection repository must be treated as read-only from CHLOM automation.
 
 ## Safe synchronization contract
 
@@ -26,7 +26,7 @@ The CrownThrive GitHub identity and/or GitHub App used for CHLOM automation requ
 2. Merge to `main` after required approvals and CI.
 3. Generate or manually prepare the public-safe documentation projection.
 4. Record the exact upstream repository and commit in the projection metadata.
-5. Open a pull request against `CrownThrive-Support`.
+5. Open a pull request against `CrownThrive-OS`.
 6. Validate Mintlify navigation/build before merge.
 7. Publish only after the projection passes review.
 

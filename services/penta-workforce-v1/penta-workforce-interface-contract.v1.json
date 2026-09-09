@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.1.0",
+  "contract_id": "ct.contract.penta.workforce.v1",
+  "system_id": "penta.workforce-os",
+  "canonical_name": "PentaWorkforce OS™",
+  "fabric_id": "ct.fabric.penta.v1",
+  "phase": "3",
+  "state": "production",
+  "provider": {
+    "runtime": "ThriveBase",
+    "datastore": "Supabase Postgres",
+    "exposure": "server_only",
+    "public_api": false
+  },
+  "authority_model": {
+    "ordinary_chain": [
+      {"role_key": "penta.role.board", "name": "PentaBoard™", "rank": 500, "issues": ["directive"]},
+      {"role_key": "penta.role.director", "name": "PentaDirectors™", "rank": 400, "issues": ["policy", "sop", "sla"]},
+      {"role_key": "penta.role.manager", "name": "PentaManagers™", "rank": 300, "issues": ["contract", "task_order"]},
+      {"role_key": "penta.role.cohort", "name": "PentaCohorts™", "rank": 200, "issues": []},
+      {"role_key": "penta.role.worker", "name": "PentaWorkers™", "rank": 100, "issues": []}
+    ],
+    "cross_cutting": [
+      {"role_key": "penta.role.legal", "name": "PentaLegal™", "rank": 450, "issues": ["legal_hold", "legal_advisory"]},
+      {"role_key": "penta.role.hr", "name": "PentaHR™", "rank": 350, "issues": []}
+    ],
+    "equal_or_higher_rank_binding": false,
+    "self_approval": false,
+    "authority_manufacture": false
+  },
+  "governance_extension": {
+    "contract": "ct.contract.penta.governance.v1",
+    "charter": "Penta Democratic Governance Charter™",
+    "reserved_layer": "PentaBoard™",
+    "branches": {
+      "executive": "PentaExecutive™",
+      "legislative": "PentaLegislative™",
+      "judicial": "PentaJudicial™"
+    },
+    "democratic_substrate": "PentaDemocracy™",
+    "executive_uses_existing_chain": true,
+    "executive_creates_new_supervisory_rank": false,
+    "d2_d3_human_ratification": true,
+    "judicial_d2_d3_minimum_non_recused_panel": 3,
+    "emergency_action_ttl_hours": 72,
+    "organizational_not_sovereign": true
+  },
+  "modules": [
+    "PentaBoard™",
+    "PentaDirectors™",
+    "PentaManagers™",
+    "PentaCohorts™",
+    "PentaAccelerator™",
+    "PentaNotes™",
+    "PentaTriage™",
+    "PentaHealth™",
+    "PentaHR™",
+    "PentaBenefits™",
+    "PentaPay™",
+    "PentaCost™",
+    "PentaLegal™",
+    "PentaExecutive™",
+    "PentaLegislative™",
+    "PentaJudicial™",
+    "PentaDemocracy™"
+  ],
+  "bindings": [
+    {"system": "CHLOM", "mode": "authority_envelope", "may_expand_authority": false},
+    {"system": "PentaRFA™", "mode": "agent_request_source", "may_expand_authority": false},
+    {"system": "PentaSuite™", "mode": "lease_and_ttl_source", "may_expand_authority": false},
+    {"system": "PentaHybrid™", "mode": "governed_decision_surface", "may_expand_authority": false},
+    {"system": "PentaDemocracy™", "mode": "democratic_governance_substrate", "may_expand_authority": false},
+    {"system": "PentaExecutive™", "mode": "administrative_execution_branch", "may_expand_authority": false},
+    {"system": "PentaLegislative™", "mode": "internal_deliberation_and_enactment_branch", "may_expand_authority": false},
+    {"system": "PentaJudicial™", "mode": "internal_review_and_adjudication_branch", "may_expand_authority": false},
+    {"system": "penta_system_registry", "mode": "canonical_registry", "may_expand_authority": false}
+  ],
+  "guardrails": {
+    "fail_closed": true,
+    "money_movement": false,
+    "medical_decisioning": false,
+    "protected_health_data": false,
+    "vote_is_punishment_authority": false,
+    "restrictive_ramifications_require_authority_instrument": true,
+    "restrictive_ramifications_require_appeal": true,
+    "manager_contract_requires_target": true,
+    "cost_hard_cap": true,
+    "pay_self_approval": false,
+    "lease_reconciliation_inherits_authority": false,
+    "one_membership_one_vote": true,
+    "d2_d3_ballot_human_ratification": true,
+    "judicial_conflict_requires_recusal": true,
+    "emergency_executive_action_max_hours": 72,
+    "branch_authority_manufacture": false
+  },
+  "trademark": {
+    "owner": "CrownThrive, LLC",
+    "family": "Penta",
+    "default_symbol": "TM",
+    "registry_table": "public.penta_mark_registry",
+    "registered_symbol_requires_verified_registration": true,
+    "federal_registration_claimed": false,
+    "preserve_penta_mark_in_wrapped_names": true
+  },
+  "database": {
+    "provider_migration": "penta_workforce_os_v1",
+    "source_replay": [
+      "migrations/penta_workforce_os_v1/001_tables.sql",
+      "migrations/penta_workforce_os_v1/002_guardrails.sql",
+      "migrations/penta_workforce_os_v1/003_bootstrap_registry.sql",
+      "migrations/penta_workforce_os_v1/004_marks_reconciliation.sql",
+      "migrations/penta_workforce_os_v1/005_fk_indexes.sql",
+      "migrations/penta_governance_v1/001_three_branch_core.sql",
+      "migrations/penta_governance_v1/002_guardrails.sql"
+    ],
+    "workforce_table_count": 21,
+    "governance_table_count": 17,
+    "tables": [
+      "penta_workforce_system_state",
+      "penta_workforce_roles",
+      "penta_workforce_subjects",
+      "penta_workforce_units",
+      "penta_workforce_assignments",
+      "penta_governance_instruments",
+      "penta_cohorts",
+      "penta_cohort_members",
+      "penta_notes",
+      "penta_note_votes",
+      "penta_triage_cases",
+      "penta_health_snapshots",
+      "penta_hr_cases",
+      "penta_benefit_entitlements",
+      "penta_pay_entries",
+      "penta_cost_budgets",
+      "penta_cost_events",
+      "penta_accelerator_records",
+      "penta_ramifications",
+      "penta_mark_registry",
+      "penta_workforce_events"
+    ],
+    "functions": [
+      "penta_runtime.penta_workforce_validate_instrument_v1",
+      "penta_runtime.penta_cost_guard_v1",
+      "penta_runtime.penta_pay_self_approval_guard_v1",
+      "penta_runtime.penta_ramification_guard_v1",
+      "penta_runtime.penta_workforce_status_v1",
+      "penta_runtime.penta_mark_notice_v1",
+      "penta_runtime.penta_validate_ballot_vote_v1",
+      "penta_runtime.penta_close_ballot_v1",
+      "penta_runtime.penta_executive_action_guard_v1",
+      "penta_runtime.penta_judicial_panel_guard_v1",
+      "penta_runtime.penta_judicial_decision_guard_v1",
+      "penta_runtime.penta_governance_status_v1"
+    ]
+  },
+  "verification": {
+    "provider_applied": true,
+    "authority_negative_test": true,
+    "cost_cap_negative_test": true,
+    "d2_without_human_ratification_rejected": true,
+    "emergency_action_over_72_hours_rejected": true,
+    "sensitive_tables_rls": true,
+    "anon_authenticated_table_privileges": false,
+    "verified_on": "2026-08-26"
+  }
+}

@@ -1,6 +1,9 @@
 # Remix compiler artifacts
 **/artifacts/
 **/artifacts/**
+!artifacts/
+!artifacts/receipts/
+!artifacts/receipts/dail-phase4-assurance-production-evidence-2026-08-26.v1.json
 
 # Remix plugin state folders
 deps/
@@ -19,3 +22,8 @@ node_modules/
 .DS_Store
 .env.*
 .env.local
+.next/
+.vercel/
+coverage/
+npm-debug.log*
+public/build.json

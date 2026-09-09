@@ -1,0 +1,45 @@
+[workspace]
+members = [
+  "primitives",
+  "pallets/authority",
+  "pallets/identity",
+  "pallets/rights",
+  "pallets/licensing",
+  "pallets/settlement",
+  "pallets/tokenization",
+  "pallets/oracle",
+  "pallets/checkpoint",
+  "integration-tests",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+authors = ["CrownThrive, LLC"]
+repository = "https://github.com/crownthrive1/chlom-protocol"
+
+[workspace.dependencies]
+codec = { package = "parity-scale-codec", version = "3.7.5", default-features = false, features = ["derive", "max-encoded-len"] }
+scale-info = { version = "2.11.6", default-features = false, features = ["derive"] }
+frame-support = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-stable2506-7", default-features = false }
+frame-system = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-stable2506-7", default-features = false }
+sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-stable2506-7", default-features = false }
+sp-io = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-stable2506-7", default-features = false }
+sp-std = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-stable2506-7", default-features = false }
+chlom-primitives = { path = "primitives", default-features = false }
+pallet-chlom-authority = { path = "pallets/authority", default-features = false }
+pallet-chlom-identity = { path = "pallets/identity", default-features = false }
+pallet-chlom-rights = { path = "pallets/rights", default-features = false }
+pallet-chlom-licensing = { path = "pallets/licensing", default-features = false }
+pallet-chlom-settlement = { path = "pallets/settlement", default-features = false }
+pallet-chlom-tokenization = { path = "pallets/tokenization", default-features = false }
+pallet-chlom-oracle = { path = "pallets/oracle", default-features = false }
+pallet-chlom-checkpoint = { path = "pallets/checkpoint", default-features = false }
+
+[profile.release]
+panic = "unwind"
+opt-level = 3
+lto = true
+codegen-units = 1

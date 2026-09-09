@@ -16,8 +16,8 @@ repositories:
       - mintlify-rendered-pages
       - support-copy
       - website-copy
-  - id: crownthrive-support
-    repository: crownthrive1/CrownThrive-Support
+  - id: CrownThrive-OS
+    repository: crownthrive1/CrownThrive-OS
     role: documentation-projection
     authority:
       - mintlify-navigation

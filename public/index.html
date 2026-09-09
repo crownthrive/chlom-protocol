@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CHLOM Chain Evidence Fabric — governed blockchain RPC, Google Blockchain Analytics, evidence, REST, and MCP runtime for CrownThrive.">
+  <title>CHLOM Chain Evidence Fabric</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">CrownThrive · CHLOM · Chain Evidence Fabric</p>
+      <h1>Governed blockchain evidence. No fabricated authority.</h1>
+      <p class="lead">
+        Provider-neutral chain reads, Google Blockchain Analytics, deterministic
+        CHLOM evidence envelopes, DAIL projections, versioned REST APIs, and a
+        stateless MCP 2026-07-28 control surface.
+      </p>
+      <div class="runtime-line" aria-live="polite">
+        <span id="runtime-dot" class="dot hold"></span>
+        <strong id="runtime-state">Checking runtime…</strong>
+        <span id="runtime-observed"></span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="CHLOM runtime controls">
+      <article class="card">
+        <span class="label">Authority</span>
+        <h2>Fail-closed by default</h2>
+        <p>Read methods are allowlisted. Administrative RPC namespaces are prohibited. Chain broadcast requires promoted governance and exact ECAC evidence.</p>
+      </article>
+      <article class="card">
+        <span class="label">Google</span>
+        <h2>Blockchain Analytics</h2>
+        <p>BigQuery is the durable Google lane. Queries are template-bound, parameterized, time-bounded, row-capped, and protected by maximum bytes billed.</p>
+      </article>
+      <article class="card">
+        <span class="label">RPC</span>
+        <h2>Provider-neutral routing</h2>
+        <p>Endpoints are supplied only through governed server configuration. Requests cannot introduce arbitrary RPC URLs or redirect CHLOM traffic.</p>
+      </article>
+      <article class="card">
+        <span class="label">Evidence</span>
+        <h2>DAIL-ready envelopes</h2>
+        <p>Every successful read produces request, payload, and evidence digests, plus a deterministic DAIL event type and idempotency key.</p>
+      </article>
+      <article class="card">
+        <span class="label">MCP</span>
+        <h2>Stateless tool fabric</h2>
+        <p><code>/api/mcp</code> supports modern discovery, deterministic tool catalogs, strict routing-header validation, origin controls, and legacy fallback.</p>
+      </article>
+      <article class="card">
+        <span class="label">Custody</span>
+        <h2>No private keys</h2>
+        <p>The runtime does not accept, generate, store, or expose wallet seed phrases or private keys. Anchor preparation never broadcasts.</p>
+      </article>
+    </section>
+
+    <section class="endpoints">
+      <h2>Production interfaces</h2>
+      <dl>
+        <div><dt>Health</dt><dd><code>/api/health</code></dd></div>
+        <div><dt>Governed RPC</dt><dd><code>/api/v1/rpc</code></dd></div>
+        <div><dt>Google analytics</dt><dd><code>/api/v1/analytics</code></dd></div>
+        <div><dt>Anchor intent</dt><dd><code>/api/v1/attest</code></dd></div>
+        <div><dt>MCP</dt><dd><code>/api/mcp</code></dd></div>
+      </dl>
+    </section>
+
+    <section class="readiness">
+      <h2>Live readiness</h2>
+      <div id="readiness-grid" class="readiness-grid">
+        <p>Runtime readback has not completed.</p>
+      </div>
+    </section>
+
+    <footer>
+      CHLOM governs Rights, Rules, Roles, Revenue, Records, and Remedies. Technical reachability never creates institutional authority.
+    </footer>
+  </main>
+</body>
+</html>

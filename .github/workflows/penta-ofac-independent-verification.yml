@@ -1,0 +1,55 @@
+name: PentaOFAC Independent Verification
+
+on:
+  schedule:
+    - cron: '13 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'registry/penta-ofac-v1.json'
+      - 'docs/architecture/PENTAOFAC.md'
+      - '.github/workflows/penta-ofac-independent-verification.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate registry contract
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('registry/penta-ofac-v1.json'))
+          assert p['system_id']=='ct.penta.ofac.v1'
+          assert p['phase']==3 and p['state']=='ACTIVE'
+          assert len(p['sources'])==2
+          assert all(x['url'].startswith('https://sanctionslistservice.ofac.treas.gov/') for x in p['sources'])
+          assert p['runtime']['refresh_interval_minutes']==15
+          assert 'manufacture sanctions authority' in p['authority']['may_not']
+          print('PentaOFAC registry contract: PASS')
+          PY
+      - name: Verify live PentaOFAC status
+        run: |
+          curl --fail --silent --show-error --max-time 15 \
+            'https://tzajnzshmtzjenqulehq.supabase.co/functions/v1/penta-ofac?action=status' \
+            | tee /tmp/pentaofac-status.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/pentaofac-status.json'))
+          assert x['service']=='ct.penta.ofac.v1'
+          assert len(x['sources'])==2
+          for s in x['sources']:
+              latest=s.get('latest')
+              assert latest, f"missing snapshot for {s['source_id']}"
+              assert latest['http_status']==200
+              assert latest['valid_xml'] is True
+              assert latest['namespace_valid'] is True
+              assert len(latest['sha256'])==64
+          print('PentaOFAC live status: PASS')
+          PY

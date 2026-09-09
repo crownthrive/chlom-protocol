@@ -1,0 +1,70 @@
+name: CrownThrive OS Canonical Identity Guard
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CROWNTHRIVE_OS_REPOSITORY: crownthrive1/CrownThrive-OS
+  CROWNTHRIVE_OS_URL: https://github.com/crownthrive1/CrownThrive-OS
+
+jobs:
+  enforce-canonical-identity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Enforce CrownThrive OS identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          identity_path = Path('.crownthrive/canonical-os.json')
+          if not identity_path.exists():
+              raise SystemExit('Missing required .crownthrive/canonical-os.json binding')
+
+          identity = json.loads(identity_path.read_text(encoding='utf-8'))
+          component_repo = os.environ['GITHUB_REPOSITORY']
+          expected_repo = 'crownthrive1/CrownThrive-OS'
+          expected_url = 'https://github.com/crownthrive1/CrownThrive-OS'
+          if identity.get('component_repository') != component_repo:
+              raise SystemExit(f'Component repository mismatch: expected {component_repo}')
+          if identity.get('canonical_control_repository') != expected_repo:
+              raise SystemExit(f'Canonical repository mismatch: expected {expected_repo}')
+          if identity.get('canonical_url') != expected_url:
+              raise SystemExit(f'Canonical URL mismatch: expected {expected_url}')
+
+          legacy_slug = 'CrownThrive-' + 'Support'
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode('utf-8').split('\0')
+          hits = []
+          for filename in tracked:
+              if not filename or filename == '.github/workflows/crownthrive-os-identity-guard.yml':
+                  continue
+              path = Path(filename)
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if legacy_slug in text:
+                  lines = [i for i, line in enumerate(text.splitlines(), 1) if legacy_slug in line]
+                  hits.append((filename, lines[:20]))
+
+          if hits:
+              print('Legacy CrownThrive repository identity detected:')
+              for filename, lines in hits:
+                  print(f'  {filename}: lines {lines}')
+              print(f'Replace live references with {expected_url}')
+              raise SystemExit(1)
+
+          print(f'Federated repository bound to canonical CrownThrive OS: {expected_url}')
+          PY

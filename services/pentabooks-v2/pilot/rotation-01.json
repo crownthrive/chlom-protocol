@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "rotation_id": "ct.pentabooks.rotation.2026-09-02.01",
+  "system_id": "ct.pentabooks.v2",
+  "date": "2026-09-02",
+  "state": "SAFE_HOLD_CANDIDATE",
+  "products": [
+    {
+      "product_id": "VM-PB-R01-001",
+      "title": "Who Paid Ashley? The Motive Ledger",
+      "category": "Flagship illustrated forensic novel",
+      "kind": "book",
+      "version": "4.0.0",
+      "credits": 240,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "f4859b412b4da804628f4fd5ded9a7e6b9b91c7c14b138a925f33f1bcbb2ad5f",
+      "hard_holds": ["Book Seven sequence collision", "official EPUBCheck", "owned-reader/device QA", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "independent final review"]
+    },
+    {
+      "product_id": "VM-PB-R01-002",
+      "title": "The Book of Eloise: The Bible Wanted Names",
+      "category": "Illustrated archive novel",
+      "kind": "book",
+      "version": "4.0.0",
+      "credits": 140,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "f07a2d16ef6286ab432ba958e4e8e94a5b470d59b2b32db388f1bf87fe4437ec",
+      "hard_holds": ["official EPUBCheck", "owned-reader/device QA", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "independent final review"]
+    },
+    {
+      "product_id": "VM-PB-R01-003",
+      "title": "The Motive Ledger Workbook",
+      "category": "Reader workbook",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 60,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "50685f0c8a2cb9f080f8b8e44975c21e80c22011f3a1723c5fe26a3092921e3d",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-004",
+      "title": "Eight-Payment Evidence Cards",
+      "category": "Printable card deck",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 48,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "7738d8869533388b94aa41968eb5b5bee41392051a3526b224af5ac042341fcf",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-005",
+      "title": "Who Paid Ashley? Forensic Reading Guide",
+      "category": "Book club and reading guide",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 60,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "8804af668876384033049892b5db13bbfe4ca023887fec22239d256f30d04d8c",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-006",
+      "title": "Records, Motive, and Fiduciary Ethics Discussion Kit",
+      "category": "Facilitator discussion kit",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 72,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "df2536cce317d44ddeb18c844e087cab7dfea2641f4a2b4358bde18fd5f0100b",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-007",
+      "title": "The Blue Ink Family Record Journal",
+      "category": "Guided journal",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 64,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "676e16d3d78315b20f4eac75561591c68597b85dc2ea28b5d4ef11b92f8899ea",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-008",
+      "title": "Bible, Letter, and Object Archive Companion",
+      "category": "Object archive companion",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 48,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "a9e557b44fb5e36d1a5a0369ab9106dc9f88223e3a952c8b728ba5f6fe505116",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-009",
+      "title": "Genealogy, Privacy, and Consent Study Guide",
+      "category": "Study guide",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 64,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "9b11db8baf522441f714b12dfb6a9b9ed33c8ccb9003b8122e0fe605fb92deaf",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    },
+    {
+      "product_id": "VM-PB-R01-010",
+      "title": "TrapOpera Canon Compass",
+      "category": "Canon and reading-order guide",
+      "kind": "companion",
+      "version": "1.0.0",
+      "credits": 48,
+      "commerce_state": "SAFE_HOLD",
+      "production_complete": true,
+      "customer_package_sha256": "d2f3231944bfb7ca68971e811900593dbcf3d3dd96245cc043716079e6d45400",
+      "hard_holds": ["final product accessibility/QA receipt", "protected delivery/entitlement readback", "commerce SAFE_HOLD", "provider price/product readback"]
+    }
+  ],
+  "canon_collisions": [
+    {
+      "collision_id": "PB-HOLD-001",
+      "status": "DISPUTED",
+      "claim": "TrapOpera Book Seven",
+      "sources": ["Who Paid Ashley? The Motive Ledger V4", "The Song That Paid Everybody but Its Writer V4"],
+      "resolution": "Explicit creator/canon ruling required; no silent renumbering"
+    }
+  ],
+  "release_truth": "Production candidate is not provider publication."
+}

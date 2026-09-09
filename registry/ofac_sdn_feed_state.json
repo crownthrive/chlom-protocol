@@ -1,0 +1,9 @@
+{
+  "source": "U.S. Treasury / OFAC Sanctions List Service",
+  "dataset": "Specially Designated Nationals (SDN) \u2014 Advanced XML",
+  "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML",
+  "sha256": "220b2d92a1d033dee582b43d964b73d3d659a2e5e0de175ea1ea6b848251943a",
+  "published_date": null,
+  "checked_at_utc": "2026-09-08T18:30:37.469945+00:00",
+  "changed_since_last_check": true
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "system_id": "ct.penta.federation.v1",
+  "name": "PentaFederation",
+  "version": "1.0.0",
+  "status": "CONTROLLED_TEST",
+  "owner": "CrownThrive LLC",
+  "parent_federation": "CrownThrive Federation",
+  "canonical_repository_parent": {
+    "repo_id": "ct.repo.CrownThrive-OS",
+    "repository": "crownthrive1/CrownThrive-OS"
+  },
+  "role": "BOUNDED_FEDERATION_GOVERNANCE_AND_ROUTING_FACADE",
+  "runtime": {
+    "platform": "ThriveBase",
+    "canonical_state_schema": "institutional_federation",
+    "canonical_transport": "repository-federation-bus",
+    "control_service": "ct.penta.federation.control.v1",
+    "control_function": "penta-federation-control",
+    "mcp_function": "penta-federation-mcp",
+    "umbrella_control": "penta-control-v1",
+    "umbrella_mcp": "penta-mcp-v1",
+    "mcp_protocol": "2026-07-28",
+    "client_table_access": "DENY_BY_DEFAULT"
+  },
+  "penta_fabric": {
+    "agent_id": "ct.agent.gen61.penta.federation",
+    "fabric_id": "ct.fabric.penta.v1",
+    "institutional_did": "did:chlom:agent:pentafederation_governor",
+    "authority_ceiling": "A2",
+    "decision_ceiling": "D2",
+    "execution_mode": "candidate_only",
+    "independent_verifier_required": true,
+    "routes": [
+      "CHLOM -> PentaFederation",
+      "PentaFabric -> PentaFederation",
+      "PentaFederation -> Repository Federation Bus",
+      "PentaFederation -> PentaMesh",
+      "PentaFederation -> DAIL",
+      "PentaFederation -> CrownLytics"
+    ]
+  },
+  "core_bindings": [
+    "CHLOM",
+    "institutional_federation",
+    "repository-federation-bus",
+    "PentaFabric",
+    "PentaMesh",
+    "PentaFramework Factory",
+    "DAIL",
+    "CrownLytics",
+    "CrownThrive IO/MCP"
+  ],
+  "guardrails": {
+    "fail_closed": true,
+    "d3_human_reserved": true,
+    "authority_manufacture": false,
+    "self_approval": false,
+    "provider_write_inherited": false,
+    "money_movement_inherited": false,
+    "rights_grant_inherited": false,
+    "idempotency_required": true,
+    "evidence_required": true,
+    "child_voting_inherited": false
+  },
+  "interfaces": {
+    "read_and_evaluate": [
+      "status",
+      "member_state",
+      "route_plan"
+    ],
+    "write_execution_exposed_by_facade": false,
+    "canonical_federation_writes": "repository-federation-bus with GitHub Actions OIDC and governed RPCs"
+  },
+  "verification": {
+    "proof_key": "ct.penta.federation.proof.runtime.v1.2026-08-26",
+    "result": "PASS",
+    "score": 1.0,
+    "sha256": "940fb8442dd3f99211c14e28eb9a08632a5bce6868ebbd009346122d664112b5"
+  },
+  "promotion": {
+    "current_state": "CONTROLLED_TEST",
+    "inherits_parent_release_state": true,
+    "production_promotion_requires": [
+      "independent verification",
+      "parent governance gate",
+      "no unresolved critical security finding",
+      "required repository members certified"
+    ]
+  }
+}

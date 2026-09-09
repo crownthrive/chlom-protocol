@@ -1,0 +1,25 @@
+{
+  "schema": "ct.governance.gate-replica.v4",
+  "contract": "ct.governance.gate-contract.v4",
+  "contract_version": "4.0.0",
+  "repository": "crownthrive1/chlom-protocol",
+  "authority_source": {
+    "repository": "crownthrive1/CrownThrive-OS",
+    "path": "developers/manifests/phase4-gate-contract.v4.json",
+    "required_status_context": "CrownThrive governed merge gate"
+  },
+  "current_institutional_phase": 3,
+  "target_phase": 4,
+  "phase4_state": "BOUND_COMPAT",
+  "backward_compatibility": {
+    "accepted_contract_generations": [1, 2, 3, 4],
+    "legacy_workflow_names_preserved": true,
+    "local_gate_logic_remains_binding": true,
+    "hold_never_promoted_by_version_only": true
+  },
+  "authority_limits": {
+    "root_contract_cannot_manufacture_provider_authority": true,
+    "root_contract_cannot_manufacture_d3_authority": true,
+    "replication_is_not_phase4_activation": true
+  }
+}

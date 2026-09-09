@@ -1,0 +1,95 @@
+{
+  "contract": "ct.chlom.gateway-production-deployment-receipt.v2",
+  "observed_at": "2026-09-04T15:09:19.534404Z",
+  "release_state": "BOUNDED_OPERATIONAL",
+  "provider": {
+    "name": "SUPABASE_EDGE_FUNCTIONS",
+    "project_ref": "tzajnzshmtzjenqulehq",
+    "function_id": "9e5785d8-3ae6-49d3-8626-4ecc690784fa",
+    "function_slug": "chlom-control-plane-v1",
+    "provider_version": 4,
+    "provider_state": "ACTIVE",
+    "verify_jwt": true,
+    "deployed_bundle_sha256": "b1426595021a29106b7f10e344527a390af1f1ed36becb645ed5c1dcddaad540"
+  },
+  "contracts": {
+    "gateway": "ct.chlom.authenticated-control-plane-gateway.v1",
+    "gateway_version": "1.1.0",
+    "dispatcher": "ct.chlom.authenticated-control-plane-dispatch.v3",
+    "mutation_idempotency_required": true,
+    "read_idempotency_required": false,
+    "read_rate_limit_per_minute": 120,
+    "mutation_rate_limit_per_minute": 30
+  },
+  "source_custody": {
+    "repository": "crownthrive1/chlom-protocol",
+    "release_branch": "release/chlom-control-plane-v1-1-0-20260904",
+    "gateway_source_blob_sha": "0b6c81f5fe3cf5de4c8599b23f0fc6beb1b2039e",
+    "gateway_commit_sha": "3ddd7fc1786007de88a791ed556c4d46dd582c03",
+    "migration_commit_sha": "cb02c18fd31a4498e6ebac856906448faef8ee9b",
+    "migration": "migrations/20260904133500_chlom_api_dispatch_v3_read_safe_idempotency.sql"
+  },
+  "authenticated_database_canary": {
+    "state": "PASS",
+    "method": "AUTHENTICATED_DATABASE_CONTEXT_CANARY",
+    "external_signed_session_verified": false,
+    "binding_id": "a20e8ac0-4a7c-4651-8906-9577216a3cdf",
+    "binding_record_sha256": "02f2385b3fcfd15ed69f72c0653874faa36b283d312da104640e1a42e827bc29",
+    "domain_dail_event_id": "a8eb4005-d3b1-4572-a7c8-5d90b5e20cce",
+    "domain_dail_sequence_id": 2323191,
+    "domain_dail_event_hash": "ffac4b323dd7a187d585fe2a63be3044baa0f9f39f3ecdee7698e5a199a1354c",
+    "dispatch_request_id": "81b8ac87-9ce5-4943-9f77-2852af406c32",
+    "dispatch_receipt_id": "fdc799fa-0c8a-4d8c-a803-fe9cd25588d0",
+    "dispatch_dail_event_id": "4d05d21a-b5ae-4e79-bd03-1826c2704622",
+    "dispatch_dail_sequence_id": 2323192,
+    "dispatch_dail_event_hash": "20db482cf41126080746d8b3eb66ce1cef159f41d103ea438e95fecdee37845c",
+    "idempotency_response_sha256": "da00654e853d76800f11fa6cd9afe3d0a308f039f29aab727fcc86ff56946f53",
+    "idempotent_replay_verified": true,
+    "duplicate_domain_mutations": 0
+  },
+  "provider_boundary_tests": {
+    "unauthenticated_status": {
+      "http_status": 401,
+      "provider_code": "UNAUTHORIZED_NO_AUTH_HEADER",
+      "state": "PASS"
+    },
+    "allowed_origin_preflight": {
+      "origin": "https://crownthrive.com",
+      "http_status": 204,
+      "gateway_version_header": "1.1.0",
+      "dispatcher_contract_header": "ct.chlom.authenticated-control-plane-dispatch.v3",
+      "state": "PASS"
+    },
+    "denied_origin_preflight": {
+      "origin": "https://example.com",
+      "http_status": 403,
+      "code": "ORIGIN_DENIED",
+      "state": "PASS"
+    }
+  },
+  "deployment_registry": {
+    "gateway_subject_id": "ct.gateway.chlom-authenticated-gateway-v1",
+    "version": 2,
+    "deployment_manifest_sha256": "07f55628b2c66dda701c758c55273cdad85272348a744160ba275f5fb26df432",
+    "dail_event_id": "165c80b0-eb08-43e1-a17a-e5f157e4af6e",
+    "dail_sequence_id": 2323281,
+    "dail_event_hash": "b06d038e83cb756433b2a604f76829a4ebae51d239a7ed6eb4dc65567782b703"
+  },
+  "dail_assurance": {
+    "state": "PASS_GLOBAL_COMPACT_CHAIN",
+    "base_checkpoint_id": "dfb2018c-7dba-4200-b8af-16951efd4cc8",
+    "v4_segment_count": 437,
+    "verified_through_sequence_id": 2323298,
+    "current_head_sequence_id": 2323298,
+    "sequence_span_lag": 0
+  },
+  "explicit_boundaries": {
+    "external_money_movement": false,
+    "production_token_mint_confirmation": false,
+    "tokenomics_activation": false,
+    "validator_activation": false,
+    "public_chain_anchor_confirmation": false,
+    "legal_title_adjudication": false,
+    "external_execution_enabled": false
+  }
+}

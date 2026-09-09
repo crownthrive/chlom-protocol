@@ -1,0 +1,83 @@
+name: CrownThrive OS Binding + Rebrand Enforcement
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  enforce-main:
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Bind and auto-heal canonical OS identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, re, subprocess
+          from pathlib import Path
+          expected = 'crownthrive1/CrownThrive-OS'
+          binding_path = Path('.crownthrive/os-binding.json')
+          binding = json.loads(binding_path.read_text(encoding='utf-8'))
+          if binding.get('repository') != os.environ['GITHUB_REPOSITORY']: raise SystemExit('Repository binding mismatch')
+          if binding.get('canonical_os_repository') != expected: raise SystemExit('Canonical OS binding mismatch')
+          legacy = 'CrownThrive-' + 'Support'
+          pattern = re.compile(re.escape(legacy), re.IGNORECASE)
+          tracked = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          changed=[]
+          for filename in tracked:
+              if not filename or filename == '.github/workflows/crownthrive-os-binding-enforcement.yml': continue
+              path=Path(filename)
+              try: before=path.read_text(encoding='utf-8')
+              except (UnicodeDecodeError,OSError): continue
+              after,count=pattern.subn('CrownThrive-OS',before)
+              if count:
+                  path.write_text(after,encoding='utf-8'); changed.append((filename,count))
+          remaining=[]
+          for filename in tracked:
+              if not filename or filename == '.github/workflows/crownthrive-os-binding-enforcement.yml': continue
+              try: text=Path(filename).read_text(encoding='utf-8')
+              except (UnicodeDecodeError,OSError): continue
+              if pattern.search(text): remaining.append(filename)
+          if remaining: raise SystemExit('Legacy OS identity remains: '+', '.join(remaining))
+          print(f'Canonical OS binding verified; auto-healed {sum(c for _,c in changed)} references across {len(changed)} files.')
+          PY
+          if ! git diff --quiet; then
+            git config user.name 'CrownThrive PentaUpdate'
+            git config user.email 'contact@crownthrive.com'
+            git add -A
+            git commit -m 'rebrand(os): auto-heal canonical CrownThrive-OS references'
+            git push origin HEAD:main
+          fi
+  validate-pr:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Reject retired OS identity
+        shell: python
+        run: |
+          import json, os, re, subprocess
+          from pathlib import Path
+          binding=json.loads(Path('.crownthrive/os-binding.json').read_text(encoding='utf-8'))
+          assert binding['repository']==os.environ['GITHUB_REPOSITORY']
+          assert binding['canonical_os_repository']=='crownthrive1/CrownThrive-OS'
+          legacy='CrownThrive-'+'Support'; pattern=re.compile(re.escape(legacy),re.IGNORECASE); hits=[]
+          for filename in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+              if not filename or filename=='.github/workflows/crownthrive-os-binding-enforcement.yml': continue
+              try: text=Path(filename).read_text(encoding='utf-8')
+              except (UnicodeDecodeError,OSError): continue
+              if pattern.search(text): hits.append(filename)
+          if hits: raise SystemExit('Retired OS identity is forbidden: '+', '.join(hits))
+          print('Canonical CrownThrive-OS binding verified.')

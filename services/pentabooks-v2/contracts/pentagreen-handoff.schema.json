@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crownthrive.com/schemas/pentabooks/pentagreen-handoff-v2.json",
+  "title": "PentaBooks to PentaGreen Handoff",
+  "type": "object",
+  "required": [
+    "product_id",
+    "exact_version",
+    "exact_package_sha256",
+    "commerce_state",
+    "scenarios"
+  ],
+  "properties": {
+    "product_id": { "type": "string" },
+    "exact_version": { "type": "string" },
+    "exact_package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "commerce_state": { "type": "string" },
+    "provider_write": { "const": false },
+    "rights_grant": { "const": false },
+    "scenarios": { "type": "array" },
+    "restrictions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.1",
+  "contract_id": "ct.contract.penta.governance.v1",
+  "canonical_name": "Penta Democratic Governance™",
+  "state": "production",
+  "phase": "3",
+  "scope": "internal_organizational_governance",
+  "sovereign_government": false,
+  "charter": {
+    "key": "penta.charter.democratic-governance.v1",
+    "name": "Penta Democratic Governance Charter™",
+    "principles": ["separation_of_powers","democratic_participation","due_process","checks_and_balances","subsidiarity","evidence","appeal","recusal","no_authority_manufacture"],
+    "amendment_approval_threshold": 0.6667,
+    "human_ratification_required": true
+  },
+  "branches": {
+    "executive": {
+      "name": "PentaExecutive™",
+      "uses_existing_chain": ["PentaBoard™","PentaDirectors™","PentaManagers™"],
+      "creates_new_supervisory_rank": false,
+      "powers": ["implementation","administration","bounded_veto","appointments","budget_execution","time_limited_emergency_action"],
+      "emergency_ttl_hours": 72,
+      "d2_d3_legislative_review": true,
+      "emergency_judicial_review": true
+    },
+    "legislative": {
+      "name": "PentaLegislative™",
+      "powers": ["initiative","deliberation","amendment","internal_acts","policy_frameworks","budget_authorization","confirmation","referendum","override"],
+      "manages_workers_directly": false,
+      "one_membership_one_vote": true,
+      "quorum_required": true,
+      "d2_d3_human_ratification": true
+    },
+    "judicial": {
+      "name": "PentaJudicial™",
+      "internal_only": true,
+      "public_court": false,
+      "powers": ["appeal","stay","review","interpretation","remand","reverse","modify","invalidate_internal_action"],
+      "party_may_judge_own_case": false,
+      "conflict_requires_recusal": true,
+      "d2_d3_minimum_non_recused_judges": 3,
+      "explicit_remedy_for_reversal": true
+    }
+  },
+  "democracy": {
+    "name": "PentaDemocracy™",
+    "representation_modes": ["direct","representative","hybrid"],
+    "constituencies": ["Penta Workforce Electorate™","Affected Constituency™"],
+    "supports": ["initiatives","referenda","delegation","confirmation","override","confidence","charter_amendment"],
+    "vote_weight": 1,
+    "agent_votes_may_satisfy_human_ratification": false,
+    "eligibility_snapshot": true,
+    "conflict_disclosure": true,
+    "recusal": true,
+    "civic_enrollment": {
+      "source": "penta_workforce_subjects",
+      "auto_enroll_subject_types": ["human","agent"],
+      "excluded_subject_types": ["service","governance_body"],
+      "lifecycle_synced": true,
+      "membership_grants_authority": false,
+      "ballot_eligibility_requires_snapshot": true
+    }
+  },
+  "checks_and_balances": ["veto","override","judicial_stay","judicial_review","legislative_review","confirmation","no_confidence","remand","charter_challenge","emergency_review","human_ratification"],
+  "authority_boundaries": {
+    "authority_manufacture": false,
+    "external_legal_authority": false,
+    "provider_authority_manufacture": false,
+    "money_movement": false,
+    "CHLOM_remains_higher_order_envelope": true,
+    "founder_board_reserved_authority_preserved_when_valid": true
+  },
+  "provider": {"runtime":"ThriveBase","datastore":"Supabase Postgres","exposure":"server_only","rls":true},
+  "database": {
+    "table_count": 17,
+    "tables": ["penta_governance_charters","penta_governance_branches","penta_constituencies","penta_governance_memberships","penta_vote_delegations","penta_legislative_sessions","penta_legislative_items","penta_legislative_amendments","penta_ballots","penta_ballot_eligibility","penta_ballot_votes","penta_executive_actions","penta_appointments","penta_judicial_cases","penta_judicial_panel_members","penta_judicial_decisions","penta_checks_balances_events"],
+    "functions": ["penta_runtime.penta_validate_ballot_vote_v1","penta_runtime.penta_close_ballot_v1","penta_runtime.penta_executive_action_guard_v1","penta_runtime.penta_judicial_panel_guard_v1","penta_runtime.penta_judicial_decision_guard_v1","penta_runtime.penta_governance_status_v1","penta_runtime.penta_sync_civic_membership_v1","penta_runtime.penta_prepare_ballot_eligibility_v1"]
+  },
+  "verification": {
+    "provider_applied": true,
+    "d2_without_human_ratification_rejected": true,
+    "emergency_action_over_72_hours_rejected": true,
+    "civic_enrollment_trigger_applied": true,
+    "governance_bodies_do_not_auto_enroll": true,
+    "rls_verified": true,
+    "verified_on": "2026-08-26"
+  },
+  "trademark": {
+    "owner": "CrownThrive, LLC",
+    "marks": ["PentaExecutive™","PentaLegislative™","PentaJudicial™","PentaDemocracy™"],
+    "federal_registration_claimed": false
+  }
+}

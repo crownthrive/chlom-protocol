@@ -1,0 +1,13 @@
+{
+  "schema": "ct.repository.canonical-os-binding.v1",
+  "schema_version": "1.0.0",
+  "repository": "crownthrive1/chlom-protocol",
+  "canonical_os_repository": "crownthrive1/CrownThrive-OS",
+  "canonical_os_url": "https://github.com/crownthrive1/CrownThrive-OS",
+  "canonical_os_branch": "main",
+  "binding": "required",
+  "authority": "parent-control-plane",
+  "reference_policy": "all-live-os-control-references-use-canonical-identity",
+  "enforcement": "auto-heal-main-and-deny-pull-request",
+  "effective_date": "2026-08-27"
+}

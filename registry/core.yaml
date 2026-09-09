@@ -1,8 +1,36 @@
-version: 2.0.0-alpha.1
-updated: 2026-08-17
-status: phase-2-foundation
+version: 3.0.0
+updated: 2026-08-26
+status: phase-3-execute
 canonical_name: Compliance Hybrid Licensing and Ownership Model
 owner: CrownThrive LLC
+source_of_truth: CrownThrive OS
+institutional_phase:
+  current: phase-3
+  current_stage: Execute
+  target: phase-4
+  target_stage: Verify
+  target_state: HOLD
+dail_operating_state:
+  component_id: dail
+  canonical_name: Decentralized Autonomous Information Ledger
+  hot_state: PRODUCTION_HOT_BOUNDED
+  hot_status_route_state: PASS
+  hot_status_route_scope: read-only-public-aggregate-status
+  authenticated_control_route_state: HOLD_AUTHORITY_AND_ACTOR_BOUND_IDEMPOTENCY_REQUIRED
+  authenticated_control_route_execution_effect: NONE
+  cold_state: LEDGER_LINEAGE_RECOVERY_VERIFIED
+  cold_assurance_state: BOUNDED_COLD_ASSURANCE_ONLY
+  cold_scope: ledger-lineage-only
+  source_recovery_state: BOUNDED_CONTROLS_DEPLOYED__COMPLETE_SOURCE_CUSTODY_INCOMPLETE
+  phase4_assurance_state: HOLD
+  ledger_lineage_recovery_verified: true
+  full_data_restore_certified: false
+  pitr_restore_certified: false
+  infrastructure_failover_certified: false
+  failback_certified: false
+  institutional_phase4_activated: false
+  assurance_manifest: developers/manifests/dail-phase4-assurance.v1.json
+  production_evidence_receipt: artifacts/receipts/dail-phase4-assurance-production-evidence-2026-08-26.v1.json
 functions:
   - id: rights
     purpose: Govern assets, versions, provenance, authority, permissions, restrictions and chain of title.
